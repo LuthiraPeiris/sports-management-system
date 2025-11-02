@@ -76,6 +76,12 @@
     #categories  .participants { font-weight: 600; color: #444;}
     #categories .participants span { color: #1e5eff;}
     #categories .btn { display: inline-block; width: 100%; padding: 10px 0; background: #1e5eff; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.3s ease;}
+    #categories .btn:hover { background: #0d47a1;}
+    #categories .card.hidden { display: none;}
+    #categories .view-more-container { text-align: center; margin: 40px 0 20px; }
+    #categories .view-more-btn { background-color: #5734e2; color: white; border: none; padding: 15px 40px; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: background-color 0.3s ease; }
+    #categories .view-more-btn:hover { background-color: #4a24e3;}
+    #categories .view-more-btn.hidden { display: none;}
 
     /* Events */
     #events { background:#f4f7ff; }
@@ -261,7 +267,7 @@
         </div>
 
 
-        <div class="card">
+        <div class="card hidden">
           <img src="Sports/images/Football.webp" alt="Football" width="550px">
           <div class="card-content">
             <h3>Football</h3>
@@ -271,7 +277,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card hidden">
           <img src="Sports/images/tennis.jpg" alt="Tennis" width="550px">
           <div class="card-content">
             <h3>Tennis</h3>
@@ -281,7 +287,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card hidden">
           <img src="Sports/images/swimming.jpeg" alt="Swimming" width="550px">
           <div class="card-content">
             <h3>Swimming</h3>
@@ -291,7 +297,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card hidden">
           <img src="Sports/images/Table-tennis.jpg" alt="Table Tennis" width="550px">
           <div class="card-content">
             <h3>Table Tennis</h3>
@@ -301,7 +307,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card hidden">
           <img src="Sports/images/athletics.jpg" alt="Athletics" width="550px">
           <div class="card-content">
             <h3>Athletics</h3>
@@ -311,7 +317,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card hidden">
           <img src="Sports/images/carrom.jpeg" alt="Carrom" width="550px">
           <div class="card-content">
             <h3>Carrom</h3>
@@ -321,7 +327,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card hidden">
           <img src="Sports/images/chess.jpeg" alt="Chess" width="550px">
           <div class="card-content">
             <h3>Chess</h3>
@@ -331,7 +337,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card hidden">
           <img src="Sports/images/hockey.jpeg" alt="Hockey" width="550px">
           <div class="card-content">
             <h3>Hockey</h3>
@@ -341,7 +347,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card hidden">
           <img src="Sports/images/elle.jpeg" alt="Elle" width="550px">
           <div class="card-content">
             <h3>Elle</h3>
@@ -351,7 +357,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card hidden">
           <img src="Sports/images/karate.jpeg" alt="Karate" width="550px">
           <div class="card-content">
             <h3>Karate</h3>
@@ -361,7 +367,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card hidden">
           <img src="Sports/images/roadrace.jpeg" alt="Road Race" width="550px">
           <div class="card-content">
             <h3>Road Race</h3>
@@ -371,7 +377,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card hidden">
           <img src="Sports/images/rugby.jpeg" alt="Rugby" width="550px">
           <div class="card-content">
             <h3>Rugby</h3>
@@ -381,7 +387,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card hidden">
           <img src="Sports/images/volleyball.jpeg" alt="Volleyball" width="550px">
           <div class="card-content">
             <h3>Volleyball</h3>
@@ -391,7 +397,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card hidden">
           <img src="Sports/images/weightlifting.jpeg" alt="Weight Lifting" width="550px">
           <div class="card-content">
             <h3>Weight Lifting</h3>
@@ -401,7 +407,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card hidden">
           <img src="Sports/images/weightlifting.jpeg" alt="Wrestling" width="550px">
           <div class="card-content">
             <h3>Wrestling</h3>
@@ -411,7 +417,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card hidden">
           <img src="Sports/images/badminton.webp" alt="Badminton" width="550px">
           <div class="card-content">
             <h3>Badminton</h3>
@@ -420,6 +426,10 @@
             <button class="btn">View Details</button>
           </div>
         </div>
+      </div>
+      <div class="view-more-container">
+        <button class="view-more-btn" onclick="toggleCards()">View More Sports</button>
+        <button class="view-more-btn hidden" onclick="toggleCards()">Show Less</button>
       </div>
     </div>
   </section>
@@ -593,6 +603,37 @@
         alert("Event details coming soon!");
       }
     });
+
+    const initialCards = 4; // Change to 8 if you want to show 8 cards initially
+    let isExpanded = false;
+
+    function toggleCards() {
+      const cards = document.querySelectorAll('.card');
+      const buttons = document.querySelectorAll('.view-more-btn');
+      
+      if (!isExpanded) {
+        // Show all cards
+        cards.forEach(card => {
+          card.classList.remove('hidden');
+        });
+        buttons[0].classList.add('hidden'); // Hide "View More"
+        buttons[1].classList.remove('hidden'); // Show "Show Less"
+        isExpanded = true;
+      } else {
+        // Hide cards after initial count
+        cards.forEach((card, index) => {
+          if (index >= initialCards) {
+            card.classList.add('hidden');
+          }
+        });
+        buttons[0].classList.remove('hidden'); // Show "View More"
+        buttons[1].classList.add('hidden'); // Hide "Show Less"
+        isExpanded = false;
+        
+        // Scroll to top of section smoothly
+        document.querySelector('#categories').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
 
     function gotoBookings() {
       window.location.href = "Booking.html";
