@@ -203,18 +203,19 @@
 
         <div class="about-stats" role="list" aria-label="Statistics">
           <div class="stat-box" role="listitem">
-            <div class="stat-number">20+</div>
+            <div class="stat-number" data-target="200">0</div>
             <div class="stat-label">Sports Categories</div>
           </div>
           <div class="stat-box" role="listitem">
-            <div class="stat-number">500+</div>
+            <div class="stat-number" data-target="500">0</div>
             <div class="stat-label">Active Athletes</div>
           </div>
           <div class="stat-box" role="listitem">
-            <div class="stat-number">15+</div>
+            <div class="stat-number" data-target="150">0</div>
             <div class="stat-label">Championships Won</div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -649,6 +650,40 @@
     function gotoPageEvent(eventId){
       window.location.href = `Events/${eventId}.html`;
     }
+
+    // About page countup
+    const counters = document.querySelectorAll('.stat-number');
+
+    const startCounting = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counter = entry.target;
+          const target = +counter.getAttribute('data-target');
+      
+          // LOWER speed = faster animation (try 10, 5, 3)
+          const speed = 55;
+
+          let count = 0;
+          const increment = Math.ceil(target / speed);
+
+          const update = () => {
+            if (count < target) {
+              count += increment;
+              counter.textContent = count + "+";
+              requestAnimationFrame(update); // smoother than setTimeout
+            } else {
+              counter.textContent = target + "+";
+            }
+          };
+
+          update();
+          observer.unobserve(counter);
+        }
+      });
+    };
+
+const observer = new IntersectionObserver(startCounting, { threshold: 0.5 });
+counters.forEach(counter => observer.observe(counter));
   </script>
 </body>
 </html>
