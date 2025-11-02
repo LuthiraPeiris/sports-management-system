@@ -60,12 +60,99 @@
     .stat-label { margin-top:8px; color:#666; font-size:0.98rem; }
 
     /* Categories */
-    #categories { background:#f8f9fa; }
-    #categories .card { border:2px solid #1e3a55; border-radius:10px; transition: all .25s; cursor:pointer; height:100%; display:flex; align-items:center; justify-content:center; padding:24px; }
-    #categories .card:hover { background:#1e3a55; color:#fff; transform:translateY(-6px); box-shadow:0 8px 24px rgba(0,0,0,0.12); }
-    #categories .card-title { color:#1e3a55; font-weight:600; }
-    #categories .card:hover .card-title { color:#fff; }
+     .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 0;
+      text-align: center;
+    }
 
+    #categories h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    #categories p.lead {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 40px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      border: 2px solid #1e5eff;
+      border-radius: 8px;
+      transition: border 0.2s ease;
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: left;
+      border-radius: 8px;
+      transition: border 0.2s ease, transform 0.3s ease;
+      border: 3px solid transparent;
+      cursor: pointer;
+    }
+
+    .card img:active,
+    .card img:hover {
+      transform: scale(1.1);
+    }
+
+    .card-content {
+      padding: 20px;
+      text-align: left;
+    }
+
+    .card-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+
+    .about-content p {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .participants {
+      font-weight: 600;
+      color: #444;
+    }
+
+    .participants span {
+      color: #1e5eff;
+    }
+
+    .btn {
+      display: inline-block;
+      width: 100%;
+      padding: 10px 0;
+      background: #1e5eff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
     /* Events */
     #events { background:#f4f7ff; }
     .event-card { border-radius: 15px; transition: transform 0.4s ease, box-shadow 0.4s ease; overflow: hidden; }
@@ -205,38 +292,216 @@
   <!-- Categories -->
   <section id="categories">
     <div class="container">
-      <h1>Sports Categories</h1>
-      <p class="lead">Explore the sports categories available at our university.</p>
+      <h1 class="mb-3">Sport Categories</h1>
+      <p class="lead mb-4">Discover and register for your favourite sports programs</p>
 
-      <div class="row g-4">
-        <!-- repeatable card -->
-        <div class="col-6 col-md-3"><div class="card text-center p-3"><h5 class="card-title">Football</h5></div></div>
-        <div class="col-6 col-md-3"><div class="card text-center p-3"><h5 class="card-title">Basketball</h5></div></div>
-        <div class="col-6 col-md-3"><div class="card text-center p-3"><h5 class="card-title">Tennis</h5></div></div>
-        <div class="col-6 col-md-3"><div class="card text-center p-3"><h5 class="card-title">Swimming</h5></div></div>
+      <div class="row g-1">
+        <div class="card">
+          <img src="Sports/images/Cricket.jpg" alt="cricket" width="550px">
+          <div class="card-content">
+            <h3>Cricket</h3>
+            <p>Join competitive cricket leagues and professional training</p>
+            <p class="participants">Participants: <span>190</span></p>
+            <button class="btn">View detail</button>
+          </div>
+        </div>
 
-        <div class="col-6 col-md-3"><div class="card text-center p-3"><h5 class="card-title">Cricket</h5></div></div>
-        <div class="col-6 col-md-3"><div class="card text-center p-3"><h5 class="card-title">Table Tennis</h5></div></div>
-        <div class="col-6 col-md-3"><div class="card text-center p-3"><h5 class="card-title">Taekwondo</h5></div></div>
-        <div class="col-6 col-md-3"><div class="card text-center p-3"><h5 class="card-title">Athletics</h5></div></div>
+        <div class="card">
+          <img src="images/baseball.jpg" alt="Baseball" width="550px">
+          <div class="card-content">
+            <h3>Baseball</h3>
+            <p>Professional baseball coaching and team formations</p>
+            <p class="participants">Participants: <span>195</span></p>
+            <button class="btn">View Details</button>
+          </div>
+        </div>
 
-        <div class="col-6 col-md-3"><div class="card text-center p-3"><h5 class="card-title">Baseball</h5></div></div>
-        <div class="col-6 col-md-3"><div class="card text-center p-3"><h5 class="card-title">Carrom</h5></div></div>
-        <div class="col-6 col-md-3"><div class="card text-center p-3"><h5 class="card-title">Chess</h5></div></div>
-        <div class="col-6 col-md-3"><div class="card text-center p-3"><h5 class="card-title">Hockey</h5></div></div>
+        <div class="card">
+          <img src="images/netball.webp" alt="Elle Netball" width="550px">
+          <div class="card-content">
+            <h3>Netball</h3>
+            <p>Competitive Elle netball programs and tournaments</p>
+            <p class="participants">Participants: <span>234</span></p>
+            <button class="btn">View Details</button>
+          </div>
+        </div>
 
-        <div class="col-6 col-md-3"><div class="card text-center p-3"><h5 class="card-title">Elle</h5></div></div>
-        <div class="col-6 col-md-3"><div class="card text-center p-3"><h5 class="card-title">Karate</h5></div></div>
-        <div class="col-6 col-md-3"><div class="card text-center p-3"><h5 class="card-title">Netball</h5></div></div>
-        <div class="col-6 col-md-3"><div class="card text-center p-3"><h5 class="card-title">Road Race</h5></div></div>
+        <div class="card">
+          <img src="images/basketball.jpeg" alt="Basketball" width="550px">
+          <div class="card-content">
+            <h3>Basketball</h3>
+            <p>Basketball leagues with state-of-the-art facilities</p>
+            <p class="participants">Participants: <span>245</span></p>
+            <button class="btn">View Details</button>
+          </div>
+        </div>
 
-        <div class="col-6 col-md-3"><div class="card text-center p-3"><h5 class="card-title">Rugby</h5></div></div>
-        <div class="col-6 col-md-3"><div class="card text-center p-3"><h5 class="card-title">Volleyball</h5></div></div>
-        <div class="col-6 col-md-3"><div class="card text-center p-3"><h5 class="card-title">Weight Lifting</h5></div></div>
-        <div class="col-6 col-md-3"><div class="card text-center p-3"><h5 class="card-title">Wrestling</h5></div></div>
+
+        <div class="card">
+          <img src="images/Football.webp" alt="Football" width="550px">
+          <div class="card-content">
+            <h3>Football</h3>
+            <p>Competitive football leagues and training programs</p>
+            <p class="participants">Participants: <span>320</span></p>
+            <button class="btn">View Details</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/tennis.jpg" alt="Tennis" width="550px">
+          <div class="card-content">
+            <h3>Tennis</h3>
+            <p>Professional tennis coaching and tournaments</p>
+            <p class="participants">Participants: <span>210</span></p>
+            <button class="btn">View Details</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/swimming.jpeg" alt="Swimming" width="550px">
+          <div class="card-content">
+            <h3>Swimming</h3>
+            <p>Competitive swimming programs and training</p>
+            <p class="participants">Participants: <span>180</span></p>
+            <button class="btn">View Details</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/Table-tennis.jpg" alt="Table Tennis" width="550px">
+          <div class="card-content">
+            <h3>Table Tennis</h3>
+            <p>Fast-paced table tennis training and competitions</p>
+            <p class="participants">Participants: <span>190</span></p>
+            <button class="btn">View Details</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/athletics.jpg" alt="Athletics" width="550px">
+          <div class="card-content">
+            <h3>Athletics</h3>
+            <p>Track and field events to boost your endurance</p>
+            <p class="participants">Participants: <span>220</span></p>
+            <button class="btn">View Details</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/carrom.jpeg" alt="Carrom" width="550px">
+          <div class="card-content">
+            <h3>Carrom</h3>
+            <p>Indoor carrom tournaments and skill-building sessions</p>
+            <p class="participants">Participants: <span>140</span></p>
+            <button class="btn">View Details</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/chess.jpeg" alt="Chess" width="550px">
+          <div class="card-content">
+            <h3>Chess</h3>
+            <p>Sharpen your mind with strategic chess competitions</p>
+            <p class="participants">Participants: <span>155</span></p>
+            <button class="btn">View Details</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/hockey.jpeg" alt="Hockey" width="550px">
+          <div class="card-content">
+            <h3>Hockey</h3>
+            <p>Competitive hockey teams and inter-university matches</p>
+            <p class="participants">Participants: <span>175</span></p>
+            <button class="btn">View Details</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/elle.jpeg" alt="Elle" width="550px">
+          <div class="card-content">
+            <h3>Elle</h3>
+            <p>Competitive Elle netball programs and tournaments</p>
+            <p class="participants">Participants: <span>234</span></p>
+            <button class="btn">View Details</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/karate.jpeg" alt="Karate" width="550px">
+          <div class="card-content">
+            <h3>Karate</h3>
+            <p>Professional martial arts and self-defense programs</p>
+            <p class="participants">Participants: <span>190</span></p>
+            <button class="btn">View Details</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/roadrace.jpeg" alt="Road Race" width="550px">
+          <div class="card-content">
+            <h3>Road Race</h3>
+            <p>Endurance-based road races and competitions</p>
+            <p class="participants">Participants: <span>130</span></p>
+            <button class="btn">View Details</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/rugby.jpeg" alt="Rugby" width="550px">
+          <div class="card-content">
+            <h3>Rugby</h3>
+            <p>Join the thrill of competitive rugby leagues</p>
+            <p class="participants">Participants: <span>180</span></p>
+            <button class="btn">View Details</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/volleyball.jpeg" alt="Volleyball" width="550px">
+          <div class="card-content">
+            <h3>Volleyball</h3>
+            <p>Indoor and beach volleyball tournaments</p>
+            <p class="participants">Participants: <span>210</span></p>
+            <button class="btn">View Details</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/weightlifting.jpeg" alt="Weight Lifting" width="550px">
+          <div class="card-content">
+            <h3>Weight Lifting</h3>
+            <p>Strength training and professional competitions</p>
+            <p class="participants">Participants: <span>160</span></p>
+            <button class="btn">View Details</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/wrestling.jpeg" alt="Wrestling" width="550px">
+          <div class="card-content">
+            <h3>Wrestling</h3>
+            <p>Professional wrestling programs and tournaments</p>
+            <p class="participants">Participants: <span>150</span></p>
+            <button class="btn">View Details</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/badminton.webp" alt="Badminton" width="550px">
+          <div class="card-content">
+            <h3>Badminton</h3>
+            <p>Exciting badminton training sessions and inter-college tournaments</p>
+            <p class="participants">Participants: <span>205</span></p>
+            <button class="btn">View Details</button>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
+
+       
 
   <!-- Events -->
   <section id="events">
