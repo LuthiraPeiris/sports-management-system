@@ -60,13 +60,28 @@
     .stat-label { margin-top:8px; color:#666; font-size:0.98rem; }
 
     /* Categories */
-     .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 0;
-      text-align: center;
-    }
+    #categories { background:#f8f9fa; }
+    #categories .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 40px 0; text-align: center;}
+    #categories h1 { font-size: 2.5rem; margin-bottom: 10px; }
+    #categories p.lead { font-size: 1.1rem; color: #666; margin-bottom: 40px;}
+    #categories .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;}
+    #categories .card { background: #fff; border-radius: 12px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease;}
+    #categories .card:hover { border: 2px solid #1e5eff; border-radius: 8px; transition: border 0.2s ease; transform: translateY(-8px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);}
+    #categories .card img { width: 100%; height: 180px; object-fit: left; border-radius: 8px; transition: border 0.2s ease, transform 0.3s ease; border: 3px solid transparent; cursor: pointer;}
+    #categories .card img:active,
+    .card img:hover { transform: scale(1.1);}
+    #categories .card-content { padding: 20px; text-align: left;}
+    #categories .card-content h3 { font-size: 1.3rem; margin-bottom: 8px;}
+    #categories .about-content p { font-size: 0.95rem; color: #555; margin-bottom: 10px; }
+    #categories  .participants { font-weight: 600; color: #444;}
+    #categories .participants span { color: #1e5eff;}
+    #categories .btn { display: inline-block; width: 100%; padding: 10px 0; background: #1e5eff; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.3s ease;}
+    #categories .btn:hover { background: #0d47a1;}
+    #categories .card.hidden { display: none;}
+    #categories .view-more-container { text-align: center; margin: 40px 0 20px; }
+    #categories .view-more-btn { background-color: #5734e2; color: white; border: none; padding: 15px 40px; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: background-color 0.3s ease; }
+    #categories .view-more-btn:hover { background-color: #4a24e3;}
+    #categories .view-more-btn.hidden { display: none;}
 
     #categories h1 {
       font-size: 2.5rem;
@@ -273,18 +288,19 @@
 
         <div class="about-stats" role="list" aria-label="Statistics">
           <div class="stat-box" role="listitem">
-            <div class="stat-number">20+</div>
+            <div class="stat-number" data-target="200">0</div>
             <div class="stat-label">Sports Categories</div>
           </div>
           <div class="stat-box" role="listitem">
-            <div class="stat-number">500+</div>
+            <div class="stat-number" data-target="500">0</div>
             <div class="stat-label">Active Athletes</div>
           </div>
           <div class="stat-box" role="listitem">
-            <div class="stat-number">15+</div>
+            <div class="stat-number" data-target="150">0</div>
             <div class="stat-label">Championships Won</div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -292,47 +308,80 @@
   <!-- Categories -->
   <section id="categories">
     <div class="container">
+<<<<<<< HEAD
       <h1 class="mb-3">Sport Categories</h1>
+=======
+      <h1 class="mb-3">Sports Categories</h1>
+>>>>>>> main
       <p class="lead mb-4">Discover and register for your favourite sports programs</p>
 
       <div class="row g-1">
         <div class="card">
+<<<<<<< HEAD
           <img src="Sports/images/Cricket.jpg
           " alt="cricket" width="550px">
+=======
+          <img src="Sports/images/Cricket.jpg" alt="cricket" width="550px">
+>>>>>>> main
           <div class="card-content">
             <h3>Cricket</h3>
             <p>Join competitive cricket leagues and professional training</p>
             <p class="participants">Participants: <span>190</span></p>
+<<<<<<< HEAD
             <button class="btn">View detail</button>
+=======
+            <button class="btn" onclick="gotoPage('Cricket')">View detail</button>
+>>>>>>> main
           </div>
         </div>
 
         <div class="card">
+<<<<<<< HEAD
           <img src="images/baseball.jpg" alt="Baseball" width="550px">
+=======
+          <img src="Sports/images/baseball.jpg" alt="Baseball" width="550px">
+>>>>>>> main
           <div class="card-content">
             <h3>Baseball</h3>
             <p>Professional baseball coaching and team formations</p>
             <p class="participants">Participants: <span>195</span></p>
+<<<<<<< HEAD
             <button class="btn">View Details</button>
+=======
+            <button class="btn" onclick="gotoPage('Baseball')">View Details</button>
+>>>>>>> main
           </div>
         </div>
 
         <div class="card">
+<<<<<<< HEAD
           <img src="images/netball.webp" alt="Elle Netball" width="550px">
+=======
+          <img src="Sports/images/netball.webp" alt="Netball" width="550px">
+>>>>>>> main
           <div class="card-content">
             <h3>Netball</h3>
             <p>Competitive Elle netball programs and tournaments</p>
             <p class="participants">Participants: <span>234</span></p>
+<<<<<<< HEAD
             <button class="btn">View Details</button>
+=======
+            <button class="btn" onclick="gotoPage('Netball')">View Details</button>
+>>>>>>> main
           </div>
         </div>
 
         <div class="card">
+<<<<<<< HEAD
           <img src="images/basketball.jpeg" alt="Basketball" width="550px">
+=======
+          <img src="Sports/images/basketball.jpeg" alt="Basketball" width="550px">
+>>>>>>> main
           <div class="card-content">
             <h3>Basketball</h3>
             <p>Basketball leagues with state-of-the-art facilities</p>
             <p class="participants">Participants: <span>245</span></p>
+<<<<<<< HEAD
             <button class="btn">View Details</button>
           </div>
         </div>
@@ -498,6 +547,176 @@
           </div>
         </div>
 
+=======
+            <button class="btn" onclick="gotoPage('Basketball')">View Details</button>
+          </div>
+        </div>
+
+
+        <div class="card hidden">
+          <img src="Sports/images/Football.webp" alt="Football" width="550px">
+          <div class="card-content">
+            <h3>Football</h3>
+            <p>Competitive football leagues and training programs</p>
+            <p class="participants">Participants: <span>320</span></p>
+            <button class="btn" onclick="gotoPage('Football')">View Details</button>
+          </div>
+        </div>
+
+        <div class="card hidden">
+          <img src="Sports/images/tennis.jpg" alt="Tennis" width="550px">
+          <div class="card-content">
+            <h3>Tennis</h3>
+            <p>Professional tennis coaching and tournaments</p>
+            <p class="participants">Participants: <span>210</span></p>
+            <button class="btn" onclick="gotoPage('Tennis')">View Details</button>
+          </div>
+        </div>
+
+        <div class="card hidden">
+          <img src="Sports/images/swimming.jpeg" alt="Swimming" width="550px">
+          <div class="card-content">
+            <h3>Swimming</h3>
+            <p>Competitive swimming programs and training</p>
+            <p class="participants">Participants: <span>180</span></p>
+            <button class="btn" onclick="gotoPage('Swimming')">View Details</button>
+          </div>
+        </div>
+
+        <div class="card hidden">
+          <img src="Sports/images/Table-tennis.jpg" alt="Table Tennis" width="550px">
+          <div class="card-content">
+            <h3>Table Tennis</h3>
+            <p>Fast-paced table tennis training and competitions</p>
+            <p class="participants">Participants: <span>190</span></p>
+            <button class="btn" onclick="gotoPage('TableTennis')">View Details</button>
+          </div>
+        </div>
+
+        <div class="card hidden">
+          <img src="Sports/images/athletics.jpg" alt="Athletics" width="550px">
+          <div class="card-content">
+            <h3>Athletics</h3>
+            <p>Track and field events to boost your endurance</p>
+            <p class="participants">Participants: <span>220</span></p>
+            <button class="btn" onclick="gotoPage('Athletics')">View Details</button>
+          </div>
+        </div>
+
+        <div class="card hidden">
+          <img src="Sports/images/carrom.jpeg" alt="Carrom" width="550px">
+          <div class="card-content">
+            <h3>Carrom</h3>
+            <p>Indoor carrom tournaments and skill-building sessions</p>
+            <p class="participants">Participants: <span>140</span></p>
+            <button class="btn" onclick="gotoPage('Carrom')">View Details</button>
+          </div>
+        </div>
+
+        <div class="card hidden">
+          <img src="Sports/images/chess.jpeg" alt="Chess" width="550px">
+          <div class="card-content">
+            <h3>Chess</h3>
+            <p>Sharpen your mind with strategic chess competitions</p>
+            <p class="participants">Participants: <span>155</span></p>
+            <button class="btn" onclick="gotoPage('Chess')">View Details</button>
+          </div>
+        </div>
+
+        <div class="card hidden">
+          <img src="Sports/images/hockey.jpeg" alt="Hockey" width="550px">
+          <div class="card-content">
+            <h3>Hockey</h3>
+            <p>Competitive hockey teams and inter-university matches</p>
+            <p class="participants">Participants: <span>175</span></p>
+            <button class="btn" onclick="gotoPage('Hockey')">View Details</button>
+          </div>
+        </div>
+
+        <div class="card hidden">
+          <img src="Sports/images/elle.jpeg" alt="Elle" width="550px">
+          <div class="card-content">
+            <h3>Elle</h3>
+            <p>Competitive Elle netball programs and tournaments</p>
+            <p class="participants">Participants: <span>234</span></p>
+            <button class="btn" onclick="gotoPage('Elle')">View Details</button>
+          </div>
+        </div>
+
+        <div class="card hidden">
+          <img src="Sports/images/karate.jpeg" alt="Karate" width="550px">
+          <div class="card-content">
+            <h3>Karate</h3>
+            <p>Professional martial arts and self-defense programs</p>
+            <p class="participants">Participants: <span>190</span></p>
+            <button class="btn" onclick="gotoPage('Karate')">View Details</button>
+          </div>
+        </div>
+
+        <div class="card hidden">
+          <img src="Sports/images/roadrace.jpeg" alt="Road Race" width="550px">
+          <div class="card-content">
+            <h3>Road Race</h3>
+            <p>Endurance-based road races and competitions</p>
+            <p class="participants">Participants: <span>130</span></p>
+            <button class="btn" onclick="gotoPage('Roadrace')">View Details</button>
+          </div>
+        </div>
+
+        <div class="card hidden">
+          <img src="Sports/images/rugby.jpeg" alt="Rugby" width="550px">
+          <div class="card-content">
+            <h3>Rugby</h3>
+            <p>Join the thrill of competitive rugby leagues</p>
+            <p class="participants">Participants: <span>180</span></p>
+            <button class="btn" onclick="gotoPage('Rugby')">View Details</button>
+          </div>
+        </div>
+
+        <div class="card hidden">
+          <img src="Sports/images/volleyball.jpeg" alt="Volleyball" width="550px">
+          <div class="card-content">
+            <h3>Volleyball</h3>
+            <p>Indoor and beach volleyball tournaments</p>
+            <p class="participants">Participants: <span>210</span></p>
+            <button class="btn" onclick="gotoPage('Volleyball')">View Details</button>
+          </div>
+        </div>
+
+        <div class="card hidden">
+          <img src="Sports/images/weightlifting.jpeg" alt="Weight Lifting" width="550px">
+          <div class="card-content">
+            <h3>Weight Lifting</h3>
+            <p>Strength training and professional competitions</p>
+            <p class="participants">Participants: <span>160</span></p>
+            <button class="btn" onclick="gotoPage('WeightLifting')">View Details</button>
+          </div>
+        </div>
+
+        <div class="card hidden">
+          <img src="Sports/images/weightlifting.jpeg" alt="Wrestling" width="550px">
+          <div class="card-content">
+            <h3>Wrestling</h3>
+            <p>Professional wrestling programs and tournaments</p>
+            <p class="participants">Participants: <span>150</span></p>
+            <button class="btn" onclick="gotoPage('Wrestling')">View Details</button>
+          </div>
+        </div>
+
+        <div class="card hidden">
+          <img src="Sports/images/badminton.webp" alt="Badminton" width="550px">
+          <div class="card-content">
+            <h3>Badminton</h3>
+            <p>Exciting badminton training sessions and inter-college tournaments</p>
+            <p class="participants">Participants: <span>205</span></p>
+            <button class="btn" onclick="gotoPage('Badminton')">View Details</button>
+          </div>
+        </div>
+      </div>
+      <div class="view-more-container">
+        <button class="view-more-btn" onclick="toggleCards()">View More Sports</button>
+        <button class="view-more-btn hidden" onclick="toggleCards()">Show Less</button>
+>>>>>>> main
       </div>
     </div>
   </section>
@@ -621,25 +840,28 @@
     // Event data
     const events = [
       {
+        id: "Slug",
         title: "Slug Competition",
         description: "Annual slug race competition between university teams",
         date: "November 15, 2025",
         teams: "12 teams registered",
-        image: "Events-images/image 01.jpeg"
+        image: "Events/images/image 01.jpeg"
       },
       {
+        id: "InterUniversity",
         title: "Inter University Games",
         description: "Multi-sport championship with universities nationwide",
         date: "December 10 to 15, 2025",
         teams: "25 teams registered",
-        image: "Events-images/image 02.jpeg"
+        image: "Events/images/image 02.jpeg"
       },
       {
+        id: "InterFaculty",
         title: "Inter Faculty Sports Meet",
         description: "Annual sports meet between university faculties",
         date: "January 20, 2026",
         teams: "18 teams registered",
-        image: "Events-images/image 03.jpeg"
+        image: "Events/images/image 03.jpeg"
       }
     ];
 
@@ -658,7 +880,7 @@
                 <p class="mb-1"><i class="bi bi-calendar-event text-primary"></i> ${event.date}</p>
                 <p><i class="bi bi-people-fill text-primary"></i> ${event.teams}</p>
               </div>
-              <a href="#" class="btn btn-primary w-100">🏆 View Event Details</a>
+              <a href="#" class="btn btn-primary w-100" onclick="gotoPageEvent('${event.id}')">🏆 View Event Details</a>
             </div>
           </div>
         </div>
@@ -666,13 +888,36 @@
       container.insertAdjacentHTML("beforeend", cardHTML);
     });
 
-    // Add button interaction
-    document.addEventListener("click", e => {
-      if (e.target.classList.contains("btn")) {
-        e.preventDefault();
-        alert("Event details coming soon!");
+    const initialCards = 4; // Change to 8 if you want to show 8 cards initially
+    let isExpanded = false;
+
+    function toggleCards() {
+      const cards = document.querySelectorAll('.card');
+      const buttons = document.querySelectorAll('.view-more-btn');
+      
+      if (!isExpanded) {
+        // Show all cards
+        cards.forEach(card => {
+          card.classList.remove('hidden');
+        });
+        buttons[0].classList.add('hidden'); // Hide "View More"
+        buttons[1].classList.remove('hidden'); // Show "Show Less"
+        isExpanded = true;
+      } else {
+        // Hide cards after initial count
+        cards.forEach((card, index) => {
+          if (index >= initialCards) {
+            card.classList.add('hidden');
+          }
+        });
+        buttons[0].classList.remove('hidden'); // Show "View More"
+        buttons[1].classList.add('hidden'); // Hide "Show Less"
+        isExpanded = false;
+        
+        // Scroll to top of section smoothly
+        document.querySelector('#categories').scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-    });
+    }
 
     function gotoBookings() {
       window.location.href = "Booking.html";
@@ -683,6 +928,50 @@
     function gotoLogin() {
       window.location.href = "Login.html";
     }
+
+    // Pages in the Sports categories
+    function gotoPage(sport){
+      window.location.href = `Sports/${sport}.html`;
+    }
+
+    // Pages in the Sports events
+    function gotoPageEvent(eventId){
+      window.location.href = `Events/${eventId}.html`;
+    }
+
+    // About page countup
+    const counters = document.querySelectorAll('.stat-number');
+
+    const startCounting = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counter = entry.target;
+          const target = +counter.getAttribute('data-target');
+      
+          // LOWER speed = faster animation (try 10, 5, 3)
+          const speed = 55;
+
+          let count = 0;
+          const increment = Math.ceil(target / speed);
+
+          const update = () => {
+            if (count < target) {
+              count += increment;
+              counter.textContent = count + "+";
+              requestAnimationFrame(update); // smoother than setTimeout
+            } else {
+              counter.textContent = target + "+";
+            }
+          };
+
+          update();
+          observer.unobserve(counter);
+        }
+      });
+    };
+
+const observer = new IntersectionObserver(startCounting, { threshold: 0.5 });
+counters.forEach(counter => observer.observe(counter));
   </script>
 </body>
 </html>
