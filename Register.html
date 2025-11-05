@@ -16,9 +16,10 @@
 </head>
 
 <body class="bg-light">
+
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh; margin-top:40px; margin-bottom:40px;">
         <div class="card shadow-sm p-4 w-100 rounded-4" style="max-width: 500px;">
-            <h2 class="text-center mb-4 fw-bold" style="color:#2969a5;" id="formTitle">Student's Registration Form</h2>
+            <h2 class="text-center mb-4 fw-bold" style="color:#2969a5;" id="formTitle"> Registration Form</h2>
 
             <!-- Role Selection -->
             <div class="mb-4">
@@ -105,6 +106,16 @@
             </form>
         </div>
     </div>
+    <style>
+       body {
+  background: 
+  linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('images/susl-campus.jpg') center/cover no-repeat;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;}
+  </style>
 
     <script>
         const studentBtn = document.getElementById('studentBtn');
@@ -142,6 +153,7 @@
             document.getElementById('studentNIC').required = false;
         };
     </script>
+
 
 </body>
 
