@@ -127,6 +127,22 @@
                         <input type="tel" class="form-control" id="groundPhone" required>
                     </div>
                     <div class="mb-3">
+                        <label for="groundSportsType" class="form-label">Sports Type</label>
+                        <select class="form-control" id="groundSportsType" required>
+                            <option value="">Select Sport</option>
+                            <option value="Cricket">Cricket</option>
+                            <option value="Football">Football</option>
+                            <option value="Athletics">Athletics</option>
+                            <option value="Basketball">Basketball</option>
+                            <option value="Volleyball">Volleyball</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="groundPlayers" class="form-label">Number of Players/Participants</label>
+                        <input type="number" class="form-control" id="groundPlayers" min="1" required>
+                    </div>
+                    <div class="mb-3">
                         <label for="groundDate" class="form-label">Date</label>
                         <input type="date" class="form-control" id="groundDate" required>
                     </div>
@@ -137,6 +153,10 @@
                     <div class="mb-3">
                         <label for="groundDuration" class="form-label">Duration (hours)</label>
                         <input type="number" class="form-control" id="groundDuration" min="1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="groundRequirements" class="form-label">Special Requirements</label>
+                        <textarea class="form-control" id="groundRequirements" rows="3" placeholder="e.g., Tournament, Coaching Session, etc."></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit Booking</button>
                 </form>
