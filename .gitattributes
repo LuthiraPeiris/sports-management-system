@@ -1,0 +1,2 @@
+sport-tools.jpg filter=lfs diff=lfs merge=lfs -text
+*.php linguist-language=PHP
