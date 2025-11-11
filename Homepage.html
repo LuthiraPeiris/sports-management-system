@@ -99,6 +99,12 @@
     .help-card:hover { border-color:#1e3a55; box-shadow:0 8px 20px rgba(0,0,0,0.06); }
     .help-icon { font-size:2.6rem; color:#1e3a55; margin-bottom:14px; }
     .contact-info { background:#1e3a55; color:#fff; padding:28px; border-radius:10px; margin-top:22px; }
+    .map-container {margin-top: 25px;border-radius: 8px;overflow: hidden;box-shadow: 0 5px 15px rgba(0,0,0,0.2);border: 3px solid rgba(255,255,255,0.2);}
+    .map-container iframe {width: 100%;height: 300px;display: block;border: 0;}
+    .map-caption {background: rgba(255,255,255,0.1);color: #fff;padding: 10px 15px;font-size: 0.9rem;text-align: center;border-top: 1px solid rgba(255,255,255,0.2);}
+    .map-caption a {color: #fff;text-decoration: underline;font-weight: 500;}
+    .map-caption a:hover {color: #f0f0f0;text-decoration: none;}
+    
 
     footer { background:#1e3a55; color:#fff; padding:26px 0; text-align:center; }
 
@@ -109,6 +115,7 @@
       .stat-number { font-size:2rem; }
       .navbar-nav .nav-link { margin: 6px 0; }
       .btn-register, .btn-login { margin:6px 0; }
+      .map-image {height: 250px;}
     }
   </style>
 </head>
@@ -132,7 +139,7 @@
               aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
+      
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav align-items-center">
           <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
@@ -450,48 +457,54 @@
   </section>
 
   <!-- Help -->
-  <section id="help">
-    <div class="container">
-      <h1>How Can We Help?</h1>
-      <p class="lead">Find answers to common questions and get the support you need</p>
+<section id="help">
+  <div class="container">
+    <h1>How Can We Help?</h1>
+    <p class="lead">Find answers to common questions and get the support you need</p>
 
-      <div class="row g-4 mb-4">
-        <div class="col-md-4">
-          <div class="help-card" onclick="gotoRegister()">
-            <div class="help-icon" aria-hidden="true">📝</div>
-            <h4 class="help-title">Registration</h4>
-            <p class="help-text">New to our sports club? Learn how to register and become a member. We'll guide you step-by-step.</p>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="help-card" onclick="gotoBookings()">
-            <div class="help-icon" aria-hidden="true">📅</div>
-            <h4 class="help-title">Facility Booking</h4>
-            <p class="help-text">Book courts, fields, or equipment. Our online system makes reservations easy and available 24/7.</p>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="help-card">
-            <div class="help-icon" aria-hidden="true">👥</div>
-            <h4 class="help-title">Coaching Services</h4>
-            <p class="help-text">Professional coaching for beginners and advanced athletes. Check schedules and fees in the office.</p>
-          </div>
+    <div class="row g-4 mb-4 justify-content-center two-cards-container">
+      <div class="col-md-5">
+        <div class="help-card" onclick="gotoRegister()">
+          <div class="help-icon" aria-hidden="true">📝</div>
+          <h4 class="help-title">Registration</h4>
+          <p class="help-text">New to our sports club? Learn how to register and become a member. We'll guide you step-by-step.</p>
         </div>
       </div>
 
-      <div class="contact-info" role="region" aria-label="Contact Information">
-        <h4>Contact Information</h4>
-        <div class="row">
-          <div class="col-md-4"><p><strong>📧 Email:</strong></p><p>sportsclub@susl.ac.lk</p></div>
-          <div class="col-md-4"><p><strong>📞 Phone:</strong></p><p>+94 45 222 7000</p></div>
-          <div class="col-md-4"><p><strong>📍 Location:</strong></p><p>Sports Complex, SUSL Campus</p></div>
+      <div class="col-md-5">
+        <div class="help-card" onclick="gotoBookings()">
+          <div class="help-icon" aria-hidden="true">📅</div>
+          <h4 class="help-title">Facility Booking</h4>
+          <p class="help-text">Book courts, fields, or equipment. Our online system makes reservations easy and available 24/7.</p>
         </div>
-        <p style="margin-top:18px;"><strong>Office Hours:</strong> Monday - Friday, 8:00 AM - 4:00 PM</p>
       </div>
     </div>
-  </section>
+
+    <div class="contact-info" role="region" aria-label="Contact Information">
+      <h4>Contact Information</h4>
+      <div class="row">
+        <div class="col-md-4"><p><strong>📧 Email:</strong></p><p>sportsclub@susl.ac.lk</p></div>
+        <div class="col-md-4"><p><strong>📞 Phone:</strong></p><p>+94 45 222 7000</p></div>
+        <div class="col-md-4"><p><strong>📍 Location:</strong></p><p>Sabaragamuwa University of Sri Lanka,<br>P.O. Box 02, Belihuloya, 70140, Sri Lanka</p></div>
+      </div>
+      <p style="margin-top:18px;"><strong>Office Hours:</strong> Monday - Friday, 8:00 AM - 4:00 PM</p>
+      
+      <!-- Google Maps Section -->
+      <div class="map-container">
+        <iframe 
+          src="https://maps.google.com/maps?q=sabaragamuwa%20university&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          width="100%" 
+          height="300" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
 
   <!-- Footer -->
   <footer>
@@ -635,10 +648,10 @@
       window.location.href = "Booking.html";
     }
     function gotoRegister() {
-      window.location.href = "Register.html";
+      window.location.href = "Dashboard/Register.html";
     }
     function gotoLogin() {
-      window.location.href = "Login.html";
+      window.location.href = "Dashboard/Login.html";
     }
 
     // Pages in the Sports categories
