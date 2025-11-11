@@ -84,22 +84,58 @@ $conn->close();
 
         .role-btn.active {
             background-color: #2937a5;
-            border-color: #2935a5;
+            border-color: #2937a5;
             color: white;
+        }
+        .home-btn {
+            position: absolute; 
+            top: 20px; 
+            left: 20px; 
+            background-color: rgba(255, 255, 255, 0.9); 
+            color: #333; 
+            border: 1px solid #ddd;
+            transition: 0.7s;
+        }
+        .home-btn:hover {
+            background-color: white; 
+            color: rgb(70, 140, 252);
+            box-shadow: 1px 2px 6px rgb(78, 78, 78);
+        }
+        
+        .login-link {
+            color: #1a1a1a; 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: 500;
+        }
+        .login-link:hover {
+            color: rgb(70, 140, 252); 
+            text-decoration: underline;
+        }
+        
+        .btn {
+            transition: 0.7s;
+        }
+        .btn:hover {
+            box-shadow: 1px 2px 6px rgb(78, 78, 78);
         }
 
     </style>
 </head>
 
 <body class="bg-light">
+    <!-- Back to Homepage Button -->
+    <a href="../Homepage.php" class="btn home-btn">
+        ← Back to Home
+    </a>
  
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 40vh; margin-top:40px; margin-bottom:40px;">
         <div class="card shadow-sm p-4 w-100 rounded-4" style="max-width: 500px; background: rgba(255, 255, 255, 0.2);box-shadow: 0px 2px 8px rgb(70, 140, 252);backdrop-filter: blur(10px); ">
-            <h2 class="text-center mb-4 fw-bold" style="color:white;" id="formTitle"> Registration Form</h2>
+            <h2 class="text-center mb-4 fw-bold" style="color:#1a1a1a;" id="formTitle"> Registration Form</h2>
 
             <!-- Role Selection -->
             <div class="mb-4">
-                <label class="form-label fw-semibold" style="color: white;">Select Role:</label>
+                <label class="form-label fw-semibold" style="color: #333;">Select Role:</label>
                 <div class="btn-group w-100">
                     <button type="button" class="btn btn-outline-primary role-btn active" id="studentBtn">Student</button>
                     <button type="button" class="btn btn-outline-primary role-btn" id="coachBtn" >Coach</button>
@@ -110,28 +146,28 @@ $conn->close();
                 <input type="hidden" name="role" id="selectedRole" value="student">
 
                 <div class="mb-3">
-                    <label class="form-label" style="color: white">Name:</label>
+                    <label class="form-label" style="color: #333">Name:</label>
                     <input type="text" name="name" class="form-control" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" style="color: white">Email:</label>
+                    <label class="form-label" style="color: #333">Email:</label>
                     <input type="email" name="email" class="form-control" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" style="color: white">Password:</label>
+                    <label class="form-label" style="color: #333">Password:</label>
                     <input type="password" name="password" class="form-control" required>
                 </div>
 
                 <!-- Student Fields -->
                 <div id="studentFields">
                     <div class="mb-3">
-                        <label class="form-label" style="color: white;">Student ID:</label>
+                        <label class="form-label" style="color: #333;">Student ID:</label>
                         <input type="text" name="studentID" id="studentID" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" style="color: white;">NIC:</label>
+                        <label class="form-label" style="color: #333;">NIC:</label>
                         <input type="text" name="studentNIC" id="studentNIC" class="form-control" required>
                     </div>
                 </div>
@@ -139,17 +175,17 @@ $conn->close();
                 <!-- Coach Fields -->
                 <div id="coachFields" style="display:none;">
                     <div class="mb-3">
-                        <label class="form-label" style="color: white">Coach ID:</label>
+                        <label class="form-label" style="color: #333">Coach ID:</label>
                         <input type="text" name="coachID" id="coachID" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" style="color: white">NIC:</label>
+                        <label class="form-label" style="color: #333">NIC:</label>
                         <input type="text" name="coachNIC" id="coachNIC" class="form-control">
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" style="color: white;">Sport:</label>
+                    <label class="form-label" style="color: #333;">Sport:</label>
                     <select name="sport" class="form-control" required>
                         <option value="" disabled selected>Select Sport</option>
                         <?php
@@ -166,6 +202,10 @@ $conn->close();
                     <button type="submit" name="register" class="btn btn-primary px-4">Register</button>
                 </div>
             </form>
+            <!-- Login Link -->
+            <div class="mt-3 text-center">
+                <a href="Login.php" class="login-link">Already have an account? Login here</a>
+            </div>
         </div>
     </div>
    </div>

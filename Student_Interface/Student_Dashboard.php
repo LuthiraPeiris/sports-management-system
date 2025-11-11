@@ -224,7 +224,7 @@ if(isset($_GET['delete_sport'])){
                         <a class="nav-link px-3" href="#">Achievements</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-3" href="#"><a href="logout.php" class="btn btn-danger">Logout</a></a>
+                        <a class="nav-link px-3" href="#"><a href="../Dashboard/logout.php" class="btn btn-danger">Logout</a></a>
                     </li>
                 </ul>
             </div>
