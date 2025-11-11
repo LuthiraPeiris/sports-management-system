@@ -1,3 +1,44 @@
+<!-- <?php
+session_start();
+include 'db.php';
+
+
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $query = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $query->bind_param("s", $email);
+    $query->execute();
+    $result = $query->get_result();
+
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+
+        if (password_verify($password, $user['password'])) {
+
+            // Store user info in session
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['role'] = $user['role'];
+
+            // Redirect based on role
+            if ($user['role'] == 'student') {
+                header("Location: Student_Dashboard.php");
+                exit();
+            } else {
+                header("Location: Coach_Dashboard.php");
+                exit();
+            }
+        } else {
+            echo "<script>alert('Invalid Password');</script>";
+        }
+    } else {
+        echo "<script>alert('Email Not Found');</script>";
+    }
+}
+?> -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +49,7 @@
 
     <style>
         body {
-        background-image: url("images/login_4.jpeg"); /* <-- Change this */
+        background-image: url("../images/login_4.jpeg"); 
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
