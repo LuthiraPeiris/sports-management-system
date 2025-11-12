@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,114 +12,133 @@
 
   <style>
     /* Reset + base */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #ffffff; color: #222; }
+    * { margin: 0; padding: 0; box-sizing: border-box;}
+
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #ffffff; color: #222;}
 
     /* Navbar */
-    .navbar {
-      background-color: rgba(62,105,145,0.95);
-      padding: 10px 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-      transition: background-color 0.3s ease, padding 0.2s ease;
+    .navbar { background-color: rgba(62, 105, 145, 0.95);padding: 10px 0;box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);transition: background-color 0.3s ease, padding 0.2s ease;}
+    .navbar-scrolled { background-color: rgba(62, 105, 145, 0.95) !important; padding: 6px 0;}
+    .navbar-brand {display: flex;align-items: center;color: #fff !important;font-weight: 600;}
+    .logo-circle {width: 50px;height: 50px;background: #fff;border-radius: 50%;display: flex;align-items: center;justify-content: center;margin-right: 12px;}
+    .logo-circle img {width: 34px;height: 34px;object-fit: contain;}
+    .brand-text {display: flex;flex-direction: column;line-height: 1.1;}
+    .brand-title {font-size: 17px;font-weight: 700;color: #fff;}
+    .brand-subtitle {font-size: 13px;color: rgba(255, 255, 255, 0.95);font-weight: 400;}
+    .navbar-nav .nav-link {color: rgba(255, 255, 255, 0.95) !important;margin: 0 10px;font-weight: 500;font-size: 15px;}
+    .navbar-nav .nav-link.btn-register,
+    .navbar-nav .nav-link.btn-login {
+      margin-left: 8px;
     }
-    .navbar-scrolled {
-      background-color: rgba(62,105,145,0.95) !important;
-      padding: 6px 0;
+    .btn-register,
+    .btn-login {
+      padding: 8px 22px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all .2s;
     }
-    .navbar-brand { display:flex; align-items:center; color:#fff !important; font-weight:600; }
-    .logo-circle { width:50px; height:50px; background:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-right:12px; }
-    .logo-circle img { width:34px; height:34px; object-fit:contain; }
-    .brand-text { display:flex; flex-direction:column; line-height:1.1; }
-    .brand-title { font-size:17px; font-weight:700; color:#fff; }
-    .brand-subtitle { font-size:13px; color:rgba(255,255,255,0.95); font-weight:400; }
-
-    .navbar-nav .nav-link { color: rgba(255,255,255,0.95) !important; margin: 0 10px; font-weight:500; font-size:15px; }
-    .navbar-nav .nav-link.btn-register, .navbar-nav .nav-link.btn-login { margin-left:8px; }
-    .btn-register, .btn-login {
-      padding: 8px 22px; border-radius:6px; font-weight:600; font-size:14px; transition:all .2s;
-    }
-    .btn-register { background:transparent; border:2px solid #dc3545; color:#dc3545 !important; }
-    .btn-register:hover { background:#dc3545; color:#fff !important; }
-    .btn-login { background:transparent; border:2px solid #fff; color:#fff !important; }
-    .btn-login:hover { background:#fff; color:#1e3a55 !important; }
+    .btn-register {background: transparent;border: 2px solid #dc3545;color: #dc3545 !important;}
+    .btn-register:hover {background: #dc3545;color: #fff !important;}
+    .btn-login {background: transparent;border: 2px solid #fff;color: #fff !important;}
+    .btn-login:hover {background: #fff;color: #1e3a55 !important;}
 
     /* Carousel */
-    .carousel-item { height: 600px; }
-    .carousel-item img { width:100%; height:100%; object-fit:cover; display:block; }
-    .carousel-caption { background: rgba(0,0,0,0.55); padding:18px; border-radius:10px; max-width:720px; margin:0 auto; }
+    .carousel-item {height: 600px;}
+    .carousel-item img {width: 100%;height: 100%;object-fit: cover;display: block;}
+    .carousel-caption {background: rgba(0, 0, 0, 0.55);padding: 18px;border-radius: 10px;max-width: 720px;margin: 0 auto;}
 
     /* Sections */
-    section { padding: 60px 0; }
-    section h1 { text-align:center; color:#1e3a55; margin-bottom:14px; font-weight:700; font-size:2.4rem; }
-    section p.lead { text-align:center; color:#666; margin-bottom:30px; font-size:1.05rem; }
+    section {padding: 60px 0;}
+    section h1 {text-align: center;color: #1e3a55;margin-bottom: 14px;font-weight: 700;font-size: 2.4rem;}
+    section p.lead {text-align: center;color: #666;margin-bottom: 30px;font-size: 1.05rem;}
 
     /* About */
-    .about-content { max-width:920px; margin:0 auto; text-align:center; color:#444; }
-    .about-stats { display:flex; justify-content:space-around; gap:20px; margin-top:32px; flex-wrap:wrap; }
-    .stat-box { text-align:center; padding:16px; min-width:160px; }
-    .stat-number { font-size:2.6rem; font-weight:700; color:#1e3a55; }
-    .stat-label { margin-top:8px; color:#666; font-size:0.98rem; }
+    .about-content {max-width: 920px;margin: 0 auto;text-align: center;color: #444;}
+    .about-stats {display: flex;justify-content: space-around;gap: 20px;margin-top: 32px;flex-wrap: wrap;}
+    .stat-box {text-align: center;padding: 16px;min-width: 160px;}
+    .stat-number {font-size: 2.6rem;font-weight: 700;color: #1e3a55;}
+    .stat-label {margin-top: 8px;color: #666;font-size: 0.98rem;}
 
     /* Categories */
-    #categories { background:#f8f9fa; }
-    #categories .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 40px 0; text-align: center;}
-    #categories h1 { font-size: 2.5rem; margin-bottom: 10px; }
-    #categories p.lead { font-size: 1.1rem; color: #666; margin-bottom: 40px;}
-    #categories .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;}
-    #categories .card { background: #fff; border-radius: 12px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease;}
-    #categories .card:hover { border: 2px solid #1e5eff; border-radius: 8px; transition: border 0.2s ease; transform: translateY(-8px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);}
-    #categories .card img { width: 100%; height: 180px; object-fit: left; border-radius: 8px; transition: border 0.2s ease, transform 0.3s ease; border: 3px solid transparent; cursor: pointer;}
+    #categories {background: #f8f9fa;}
+    #categories .container {width: 90%;max-width: 1200px;margin: 0 auto;padding: 40px 0;text-align: center;}
+    #categories h1 {font-size: 2.5rem;margin-bottom: 10px;}
+    #categories p.lead {font-size: 1.1rem;color: #666;margin-bottom: 40px;}
+    #categories .row {display: grid;grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));gap: 30px;}
+    #categories .card {background: #fff;border-radius: 12px;box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);overflow: hidden;transition: transform 0.3s ease, box-shadow 0.3s ease;}
+    #categories .card:hover {border: 2px solid #1e5eff;border-radius: 8px;transition: border 0.2s ease;transform: translateY(-8px);box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);}
+    #categories .card img {width: 100%;height: 180px;object-fit: left;border-radius: 8px;transition: border 0.2s ease, transform 0.3s ease;border: 3px solid transparent;cursor: pointer;}
     #categories .card img:active,
-    .card img:hover { transform: scale(1.1);}
-    #categories .card-content { padding: 20px; text-align: left;}
-    #categories .card-content h3 { font-size: 1.3rem; margin-bottom: 8px;}
-    #categories .about-content p { font-size: 0.95rem; color: #555; margin-bottom: 10px; }
-    #categories  .participants { font-weight: 600; color: #444;}
-    #categories .participants span { color: #1e5eff;}
-    #categories .btn { display: inline-block; width: 100%; padding: 10px 0; background: #1e5eff; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.3s ease;}
-    #categories .btn:hover { background: #0d47a1;}
-    #categories .card.hidden { display: none;}
-    #categories .view-more-container { text-align: center; margin: 40px 0 20px; }
-    #categories .view-more-btn { background-color: #5734e2; color: white; border: none; padding: 15px 40px; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: background-color 0.3s ease; }
-    #categories .view-more-btn:hover { background-color: #4a24e3;}
-    #categories .view-more-btn.hidden { display: none;}
+    .card img:hover {transform: scale(1.1);}
+    #categories .card-content {padding: 20px;text-align: left;}
+    #categories .card-content h3 {font-size: 1.3rem;margin-bottom: 8px;}
+    #categories .about-content p {font-size: 0.95rem;color: #555;margin-bottom: 10px;}
+    #categories .participants {font-weight: 600;color: #444;}
+    #categories .participants span {color: #1e5eff;}
+    #categories .btn {display: inline-block;width: 100%;padding: 10px 0;background: #1e5eff;color: #fff;border: none;border-radius: 8px;cursor: pointer;font-size: 1rem;transition: background 0.3s ease;}
+    #categories .btn:hover {background: #0d47a1;}
+    #categories .card.hidden {display: none;}
+    #categories .view-more-container {text-align: center;margin: 40px 0 20px;}
+    #categories .view-more-btn {background-color: #5734e2;color: white;border: none;padding: 15px 40px;border-radius: 8px;cursor: pointer;font-size: 1rem;font-weight: 600;transition: background-color 0.3s ease;}
+    #categories .view-more-btn:hover {background-color: #4a24e3;}
+    #categories .view-more-btn.hidden {display: none;}
 
     /* Events */
-    #events { background:#f4f7ff; }
-    .event-card { border-radius: 15px; transition: transform 0.4s ease, box-shadow 0.4s ease; overflow: hidden; }
-    .event-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(13, 110, 253, 0.2);}
-    .event-card img { height: 220px; object-fit: cover; }
-    .event-info p { font-size: 0.9rem; margin: 0; }
-    #events .btn-primary { background-color: #0d95fd; border: none; font-weight: 600; border-radius: 10px; transition: background 0.4s ease; }
-    #events .btn-primary:hover { background-color: #0b52d7; }
-    .subtitle { color: #6c757d; font-size: 1.1rem;}
+    #events {background: #f4f7ff;}
+    .event-card {border-radius: 15px;transition: transform 0.4s ease, box-shadow 0.4s ease;overflow: hidden;}
+    .event-card:hover {transform: translateY(-5px);box-shadow: 0 10px 25px rgba(13, 110, 253, 0.2);}
+    .event-card img {height: 220px;object-fit: cover;}
+    .event-info p {font-size: 0.9rem;margin: 0;}
+    #events .btn-primary {background-color: #0d95fd;border: none;font-weight: 600;border-radius: 10px;transition: background 0.4s ease;}
+    #events .btn-primary:hover {background-color: #0b52d7;}
+    .subtitle {color: #6c757d;font-size: 1.1rem;}
 
     /* Help/Contact */
-    #help { background:#f8f9fa; }
-    .help-card { background:#fff; border-radius:10px; padding:26px; text-align:center; transition:all .2s; height:100%; border:2px solid transparent; }
-    .help-card:hover { border-color:#1e3a55; box-shadow:0 8px 20px rgba(0,0,0,0.06); }
-    .help-icon { font-size:2.6rem; color:#1e3a55; margin-bottom:14px; }
-    .contact-info { background:#1e3a55; color:#fff; padding:28px; border-radius:10px; margin-top:22px; }
-    .map-container {margin-top: 25px;border-radius: 8px;overflow: hidden;box-shadow: 0 5px 15px rgba(0,0,0,0.2);border: 3px solid rgba(255,255,255,0.2);}
+    #help {background: #f8f9fa;}
+    .help-card {background: #fff;border-radius: 10px;padding: 26px;text-align: center;transition: all .2s;height: 100%;border: 2px solid transparent;}
+    .help-card:hover {border-color: #1e3a55;box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);}
+    .help-icon {font-size: 2.6rem;color: #1e3a55;margin-bottom: 14px;}
+    .contact-info {background: #1e3a55;color: #fff;padding: 28px;border-radius: 10px;margin-top: 22px;}
+    .map-container {margin-top: 25px;border-radius: 8px;overflow: hidden;box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);border: 3px solid rgba(255, 255, 255, 0.2);}
     .map-container iframe {width: 100%;height: 300px;display: block;border: 0;}
-    .map-caption {background: rgba(255,255,255,0.1);color: #fff;padding: 10px 15px;font-size: 0.9rem;text-align: center;border-top: 1px solid rgba(255,255,255,0.2);}
+    .map-caption {background: rgba(255, 255, 255, 0.1);color: #fff;padding: 10px 15px;font-size: 0.9rem;text-align: center;border-top: 1px solid rgba(255, 255, 255, 0.2);}
     .map-caption a {color: #fff;text-decoration: underline;font-weight: 500;}
     .map-caption a:hover {color: #f0f0f0;text-decoration: none;}
-    
 
-    footer { background:#1e3a55; color:#fff; padding:26px 0; text-align:center; }
+    /* Footer */
+    footer {
+      background: #1e3a55;
+      color: #fff;
+      padding: 26px 0;
+      text-align: center;
+    }
 
     /* Responsive tweaks */
     @media (max-width: 768px) {
-      .carousel-item { height: 320px; }
-      section h1 { font-size:1.9rem; }
-      .stat-number { font-size:2rem; }
-      .navbar-nav .nav-link { margin: 6px 0; }
-      .btn-register, .btn-login { margin:6px 0; }
-      .map-image {height: 250px;}
+      .carousel-item {
+        height: 320px;
+      }
+      section h1 {
+        font-size: 1.9rem;
+      }
+      .stat-number {
+        font-size: 2rem;
+      }
+      .navbar-nav .nav-link {
+        margin: 6px 0;
+      }
+      .btn-register,
+      .btn-login {
+        margin: 6px 0;
+      }
+      .map-image {
+        height: 250px;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- Navbar -->
@@ -136,10 +156,10 @@
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      
+
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav align-items-center">
           <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
@@ -416,7 +436,7 @@
         </div>
 
         <div class="card hidden">
-          <img src="Sports/images/weightlifting.jpeg" alt="Wrestling" width="550px">
+          <img src="Sports/images/wrestling.jpeg" alt="Wrestling" width="550px">
           <div class="card-content">
             <h3>Wrestling</h3>
             <p>Professional wrestling programs and tournaments</p>
@@ -451,59 +471,68 @@
       </div>
 
       <div class="row g-4" id="events-container">
-      <!-- Dynamic cards will appear here -->
+        <!-- Dynamic cards will appear here -->
       </div>
     </div>
   </section>
 
   <!-- Help -->
-<section id="help">
-  <div class="container">
-    <h1>How Can We Help?</h1>
-    <p class="lead">Find answers to common questions and get the support you need</p>
+  <section id="help">
+    <div class="container">
+      <h1>How Can We Help?</h1>
+      <p class="lead">Find answers to common questions and get the support you need</p>
 
-    <div class="row g-4 mb-4 justify-content-center two-cards-container">
-      <div class="col-md-5">
-        <div class="help-card" onclick="gotoRegister()">
-          <div class="help-icon" aria-hidden="true">📝</div>
-          <h4 class="help-title">Registration</h4>
-          <p class="help-text">New to our sports club? Learn how to register and become a member. We'll guide you step-by-step.</p>
+      <div class="row g-4 mb-4 justify-content-center two-cards-container">
+        <div class="col-md-5">
+          <div class="help-card" onclick="gotoRegister()">
+            <div class="help-icon" aria-hidden="true">📝</div>
+            <h4 class="help-title">Registration</h4>
+            <p class="help-text">New to our sports club? Learn how to register and become a member. We'll guide you step-by-step.</p>
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <div class="help-card" onclick="gotoBookings()">
+            <div class="help-icon" aria-hidden="true">📅</div>
+            <h4 class="help-title">Facility Booking</h4>
+            <p class="help-text">Book courts, fields, or equipment. Our online system makes reservations easy and available 24/7.</p>
+          </div>
         </div>
       </div>
 
-      <div class="col-md-5">
-        <div class="help-card" onclick="gotoBookings()">
-          <div class="help-icon" aria-hidden="true">📅</div>
-          <h4 class="help-title">Facility Booking</h4>
-          <p class="help-text">Book courts, fields, or equipment. Our online system makes reservations easy and available 24/7.</p>
+      <div class="contact-info" role="region" aria-label="Contact Information">
+        <h4>Contact Information</h4>
+        <div class="row">
+          <div class="col-md-4">
+            <p><strong>📧 Email:</strong></p>
+            <p>sportsclub@susl.ac.lk</p>
+          </div>
+          <div class="col-md-4">
+            <p><strong>📞 Phone:</strong></p>
+            <p>+94 45 222 7000</p>
+          </div>
+          <div class="col-md-4">
+            <p><strong>📍 Location:</strong></p>
+            <p>Sabaragamuwa University of Sri Lanka,<br>P.O. Box 02, Belihuloya, 70140, Sri Lanka</p>
+          </div>
+        </div>
+        <p style="margin-top:18px;"><strong>Office Hours:</strong> Monday - Friday, 8:00 AM - 4:00 PM</p>
+
+        <!-- Google Maps Section -->
+        <div class="map-container">
+          <iframe
+            src="https://maps.google.com/maps?q=sabaragamuwa%20university&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            width="100%"
+            height="300"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
         </div>
       </div>
     </div>
-
-    <div class="contact-info" role="region" aria-label="Contact Information">
-      <h4>Contact Information</h4>
-      <div class="row">
-        <div class="col-md-4"><p><strong>📧 Email:</strong></p><p>sportsclub@susl.ac.lk</p></div>
-        <div class="col-md-4"><p><strong>📞 Phone:</strong></p><p>+94 45 222 7000</p></div>
-        <div class="col-md-4"><p><strong>📍 Location:</strong></p><p>Sabaragamuwa University of Sri Lanka,<br>P.O. Box 02, Belihuloya, 70140, Sri Lanka</p></div>
-      </div>
-      <p style="margin-top:18px;"><strong>Office Hours:</strong> Monday - Friday, 8:00 AM - 4:00 PM</p>
-      
-      <!-- Google Maps Section -->
-      <div class="map-container">
-        <iframe 
-          src="https://maps.google.com/maps?q=sabaragamuwa%20university&t=&z=13&ie=UTF8&iwloc=&output=embed"
-          width="100%" 
-          height="300" 
-          style="border:0;" 
-          allowfullscreen="" 
-          loading="lazy" 
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
 
   <!-- Footer -->
@@ -522,14 +551,17 @@
   <script>
     // Smooth scroll for internal nav links (only for same page anchors)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+      anchor.addEventListener('click', function(e) {
         const targetSelector = this.getAttribute('href');
         // allow external hashes like "#!" or similar to be ignored
         if (!targetSelector || targetSelector === '#') return;
         const target = document.querySelector(targetSelector);
         if (target) {
           e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
           // close responsive navbar after click (mobile)
           const bsCollapse = document.querySelector('.navbar-collapse');
           if (bsCollapse && bsCollapse.classList.contains('show')) {
@@ -542,11 +574,14 @@
 
     // Navbar scrolled class: use scrollY for consistent behavior
     const navbar = document.querySelector('.navbar');
+
     function updateNavbarScrolled() {
       if (window.scrollY > 10) navbar.classList.add('navbar-scrolled');
       else navbar.classList.remove('navbar-scrolled');
     }
-    window.addEventListener('scroll', updateNavbarScrolled, { passive: true });
+    window.addEventListener('scroll', updateNavbarScrolled, {
+      passive: true
+    });
     document.addEventListener('DOMContentLoaded', updateNavbarScrolled);
 
     // Improve carousel accessibility: pause on focus, resume on blur
@@ -563,8 +598,7 @@
     }
 
     // Event data
-    const events = [
-      {
+    const events = [{
         id: "Slug",
         title: "Slug Competition",
         description: "Annual slug race competition between university teams",
@@ -619,7 +653,7 @@
     function toggleCards() {
       const cards = document.querySelectorAll('.card');
       const buttons = document.querySelectorAll('.view-more-btn');
-      
+
       if (!isExpanded) {
         // Show all cards
         cards.forEach(card => {
@@ -638,29 +672,34 @@
         buttons[0].classList.remove('hidden'); // Show "View More"
         buttons[1].classList.add('hidden'); // Hide "Show Less"
         isExpanded = false;
-        
+
         // Scroll to top of section smoothly
-        document.querySelector('#categories').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.querySelector('#categories').scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
       }
     }
 
     function gotoBookings() {
-      window.location.href = "Booking.html";
+      window.location.href = "Booking.php";
     }
+
     function gotoRegister() {
-      window.location.href = "Register.html";
+      window.location.href = "Dashboard/Register.php";
     }
+
     function gotoLogin() {
-      window.location.href = "Login.html";
+      window.location.href = "Dashboard/Login.php";
     }
 
     // Pages in the Sports categories
-    function gotoPage(sport){
+    function gotoPage(sport) {
       window.location.href = `Sports/${sport}.html`;
     }
 
     // Pages in the Sports events
-    function gotoPageEvent(eventId){
+    function gotoPageEvent(eventId) {
       window.location.href = `Events/${eventId}.html`;
     }
 
@@ -672,7 +711,7 @@
         if (entry.isIntersecting) {
           const counter = entry.target;
           const target = +counter.getAttribute('data-target');
-      
+
           // LOWER speed = faster animation (try 10, 5, 3)
           const speed = 55;
 
@@ -695,8 +734,11 @@
       });
     };
 
-const observer = new IntersectionObserver(startCounting, { threshold: 0.5 });
-counters.forEach(counter => observer.observe(counter));
+    const observer = new IntersectionObserver(startCounting, {
+      threshold: 0.5
+    });
+    counters.forEach(counter => observer.observe(counter));
   </script>
 </body>
+
 </html>
