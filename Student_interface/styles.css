@@ -28,3 +28,28 @@ header .logo img{
     height: 40px;
     margin-right: 10px;
 }
+
+header .logo span{
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+header nac ul{
+    list-style: none;
+    display: flex;
+}
+
+header nav li{
+    margin: 0 15px;
+}
+
+header nav a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+header nav a:hover{
+    color: #ddd;
+}
