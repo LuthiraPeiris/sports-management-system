@@ -27,7 +27,7 @@
             border: 2px solid black !important;
             border-radius: 10px;
             transition: all 0.3s ease;
-            height: 200px; /* Fixed height for consistency */
+            height: 450px; /* Increased height to fit descriptions inside the card */
         }
 
         .card-custom:hover {
@@ -47,6 +47,10 @@
         .p-3{
             padding: 0 !important;
         }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
     </style>
 </head>
 <body>
@@ -61,8 +65,9 @@
     <!-- Ground Booking Card -->
             <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                 <button type="button" class="btn text-decoration-none p-0 w-100" data-bs-toggle="modal" data-bs-target="#groundBookingModal">
-                    <div class="card h-100 text-center card-custom">
+                    <div class="card text-center card-custom">
                         <div class="card-body d-flex flex-column justify-content-center">
+                            <img src="Sports/images/Football.webp" alt="Football" class="img-fluid mb-2">
                             <i class="fas fa-futbol fa-3x mb-3 text-dark"></i>
                             <h4 class="card-title text-dark">Ground Booking</h4>
                             <p class="card-text text-muted">
@@ -76,8 +81,9 @@
     <!-- Gym Booking Card -->
             <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                 <button type="button" class="btn text-decoration-none p-0 w-100" data-bs-toggle="modal" data-bs-target="#gymBookingModal">
-                    <div class="card h-100 text-center card-custom">
+                    <div class="card text-center card-custom">
                         <div class="card-body d-flex flex-column justify-content-center">
+                            <img src="Sports/images/weightlifting.jpeg" alt="Weightlifting" class="img-fluid mb-2">
                             <i class="fas fa-dumbbell fa-3x mb-3 text-dark"></i>
                             <h4 class="card-title text-dark">Gym Booking</h4>
                             <p class="card-text text-muted">
@@ -91,8 +97,9 @@
     <!-- Indoor Booking Card -->
             <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                 <button type="button" class="btn text-decoration-none p-0 w-100" data-bs-toggle="modal" data-bs-target="#indoorBookingModal">
-                    <div class="card h-100 text-center card-custom">
+                    <div class="card text-center card-custom">
                         <div class="card-body d-flex flex-column justify-content-center">
+                            <img src="Sports/images/badminton.webp" alt="Badminton" class="img-fluid mb-2">
                             <i class="fas fa-table-tennis fa-3x mb-3 text-dark"></i>
                             <h4 class="card-title text-dark">Indoor Booking</h4>
                             <p class="card-text text-muted">
@@ -102,6 +109,66 @@
                     </div>
                 </button>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- Booked Details Section -->
+<section id="booked-details" class="py-5" style="background-color: #e0e2e4ff;">
+    <div class="container">
+        <h2 class="text-center mb-4" style="color: rgba(62, 105, 145, 0.95);">Booked Details</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead style="background-color:red; color: white;">
+                    <tr>
+                        <th>Facility</th>
+                        <th>Date</th>
+                        <th>Time Slot</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Ground Booking Samples -->
+                    <tr>
+                        <td>Ground Booking</td>
+                        <td>2023-11-10</td>
+                        <td>2:00 PM - 5:00 PM</td>
+                        <td>Booked</td>
+                    </tr>
+                    <tr>
+                        <td>Ground Booking</td>
+                        <td>2023-11-15</td>
+                        <td>10:00 AM - 12:00 PM</td>
+                        <td>Booked</td>
+                    </tr>
+                    <!-- Gym Booking Samples -->
+                    <tr>
+                        <td>Gym Booking</td>
+                        <td>2023-11-12</td>
+                        <td>6:00 PM - 8:00 PM</td>
+                        <td>Booked</td>
+                    </tr>
+                    <tr>
+                        <td>Gym Booking</td>
+                        <td>2023-11-18</td>
+                        <td>9:00 AM - 11:00 AM</td>
+                        <td>Booked</td>
+                    </tr>
+                    <!-- Indoor Booking Samples -->
+                    <tr>
+                        <td>Indoor Booking</td>
+                        <td>2023-11-14</td>
+                        <td>4:00 PM - 6:00 PM</td>
+                        <td>Booked</td>
+                    </tr>
+                    <tr>
+                        <td>Indoor Booking</td>
+                        <td>2023-11-20</td>
+                        <td>1:00 PM - 3:00 PM</td>
+                        <td>Booked</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </section>
