@@ -10,3 +10,21 @@ body{
     color: #333;
 }
 
+header{
+    background-color: #3b5998;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo{
+    display: flex;
+    align-items: center;
+}
+
+header .logo img{
+    height: 40px;
+    margin-right: 10px;
+}
