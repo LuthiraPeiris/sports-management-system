@@ -1,10 +1,10 @@
 <?php
 session_start();
-include 'db.php';
+include '../Dashboard/db.php';
 
 // Block access if not student
 if(!isset($_SESSION['role']) || $_SESSION['role'] != 'student'){
-    header("Location: login.php");
+    header("Location: ../Dashboard/login.php");
     exit();
 }
 
@@ -263,7 +263,7 @@ $nextNumber = $totalSports + 1;
                         <a class="nav-link px-3" href="#">Achievements</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-3" href="#"><a href="logout.php" class="btn btn-danger">Logout</a></a>
+                        <a class="nav-link px-3" href="#"><a href="../Dashboard/logout.php" class="btn btn-danger">Logout</a></a>
                     </li>
                 </ul>
             </div>
