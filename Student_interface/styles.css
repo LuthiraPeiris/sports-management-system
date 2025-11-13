@@ -27,8 +27,9 @@ header{
     background-color: #6a89cc;
     padding: 10px 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start; /* align logo + nav to the left */
     align-items: center;
+    gap: 30px; /* space between logo and nav */
 }
 
 header .logo{
@@ -38,7 +39,7 @@ header .logo{
 
 header .logo img{
     height: 50px;
-    margin-right: 15px;
+    margin-right: 20px;
 }
 
 header .logo span{
@@ -51,10 +52,13 @@ header .logo span{
 header nav ul{
     list-style: none;
     display: flex;
+    gap: 20px; /* replace nav li margins with gap for consistent spacing */
+    margin: 0;
+    padding: 0;
 }
 
 header nav li{
-    margin: 0 20px;
+    margin: 0; /* remove extra margins so "Home" begins at the left edge */
 }
 
 header nav a{
@@ -62,13 +66,12 @@ header nav a{
     color: white;
     font-weight: bold;
     font-size: 16px;
-}
-
-header nav a:hover{
-    color: #ddd;
+    display: inline-block;
+    text-align: left;
 }
 
 header .user-profile{
+    margin-left: auto; /* push the user profile area to the far right while keeping logo+nav left */
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -95,4 +98,28 @@ header .user-profile-text span{
 
 header .user-profile-text #profile-status{
     font-weight: normal;;
+}
+
+section#welcome {
+    padding: 20px 0;
+}
+
+.welcome-box{
+    background-color: #6a89cc;
+    color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 10px 20px; /* same horizontal padding as header (20px) */
+    text-align: center; /* start-align text instead of center */
+    max-width: calc(100% - 40px);
+}
+
+.welcome-box h2{
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.welcome-box p{
+    font-size:16px;
 }
