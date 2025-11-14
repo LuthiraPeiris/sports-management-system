@@ -112,6 +112,45 @@ if(isset($_GET['delete_sport'])){
     exit();
 }
 
+if(isset($_POST['register_sport'])){
+    $user_id = $_SESSION['user_id'];
+    $sport_id = intval($_POST['sport_id']);
+
+    //  Fetch coach for this sport
+    $coachData = $conn->prepare("SELECT user_id AS coach_id FROM coach WHERE sport_id = ?");
+    $coachData->bind_param("i", $sport_id);
+    $coachData->execute();
+    $coachResult = $coachData->get_result()->fetch_assoc();
+    $coach_id = $coachResult['coach_id'];
+    $coachData->close();
+
+    //  Insert into student_sport_registration
+    $insert = $conn->prepare("INSERT INTO student_sport_registration (user_id, sport_id, coach_id) VALUES (?, ?, ?)");
+    $insert->bind_param("iii", $user_id, $sport_id, $coach_id);
+    
+    if($insert->execute()){
+        echo "<script>alert('Sport Registered Successfully!'); window.location='Student_Dashboard.php';</script>";
+    } else {
+        echo "<script>alert('Error: Could not register sport.'); window.location='Student_Dashboard.php';</script>";
+    }
+    $insert->close();
+}
+
+// Schedule number counting
+$scheduleCount = $schedules->num_rows;
+// Count achievements
+$achievementCount = $achievements->num_rows;
+
+// Fetch the total number of sports already registered
+$countQuery = $conn->prepare("SELECT COUNT(*) AS total FROM student_sport_registration WHERE user_id = ?");
+$countQuery->bind_param("i", $user_id);
+$countQuery->execute();
+$result = $countQuery->get_result()->fetch_assoc();
+$totalSports = $result['total'];
+
+// The next number to display should be total + 1
+$nextNumber = $totalSports + 1;
+
 ?>
 
 
@@ -244,21 +283,21 @@ if(isset($_GET['delete_sport'])){
             <div class="col-md-6 col-lg-4">
                 <div class="stat-card bg-white rounded-3 p-4 h-100">
                     <div class="stat-icon icon-blue mb-3">⚽</div>
-                    <h3 class="display-6 fw-bold">3</h3>
+                    <h3 id="sportCount" class="display-6 fw-bold"><?= $nextNumber ?></h3>
                     <p class="text-muted">Sports Enrolled</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-4">
                 <div class="stat-card bg-white rounded-3 p-4 h-100">
                     <div class="stat-icon icon-orange mb-3">📅</div>
-                    <h3 class="display-6 fw-bold">5</h3>
-                    <p class="text-muted">Events Registered</p>
+                    <h3><span class="display-6 fw-bold"><?= $scheduleCount ?></span></h3>
+                    <p class="text-muted">Schedules</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-4">
                 <div class="stat-card bg-white rounded-3 p-4 h-100">
                     <div class="stat-icon icon-gold mb-3">🏆</div>
-                    <h3 class="display-6 fw-bold">3</h3>
+                    <h3><span class="display-6 fw-bold"><?= $achievementCount ?></span></h3>
                     <p class="text-muted">Achievements Earned</p>
                 </div>
             </div>
@@ -267,35 +306,41 @@ if(isset($_GET['delete_sport'])){
         <div class="row g-4">
             <!-- My Schedule -->
             <div class="col-lg-8">
-                <div class="schedule-section bg-white rounded-3 p-4 h-100">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h4 class="fw-bold mb-0">My Schedule</h4>
-                        <button class="add-btn btn px-4 py-2" data-bs-toggle="modal" data-bs-target="#addScheduleModal">Add Item</button>
-                    </div>
+    <div class="schedule-section bg-white rounded-3 p-4 h-100">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="fw-bold mb-0">My Schedule</h4>
+            <button class="add-btn btn px-4 py-2" data-bs-toggle="modal" data-bs-target="#addScheduleModal">Add Item</button>
+        </div>
 
-                    <?php while($row = $schedules->fetch_assoc()): ?>
-                    <div class="schedule-item p-3 mb-3 d-flex justify-content-between align-items-center bg-light rounded">
-                        <div class="d-flex align-items-center">
-                            <div class="schedule-date text-center me-3">
-                                <span class="day"><?= date("d", strtotime($row['schedule_date'])) ?></span>
-                                <span class="month d-block"><?= strtoupper(date("M", strtotime($row['schedule_date']))) ?></span>
-                            </div>
-                            <div>
-                                <div class="schedule-title fw-semibold fs-5"><?= $row['title'] ?></div>
-                                <small class="text-muted"><?= date("h:i A", strtotime($row['schedule_time'])) ?></small>
-                            </div>
-                        </div>
-                        <a href="?delete=<?= $row['id'] ?>" class="btn btn-danger btn-sm">Delete</a>
+        <?php if($scheduleCount > 0): ?>
+            <?php while($row = $schedules->fetch_assoc()): ?>
+            <div class="schedule-item p-3 mb-3 d-flex justify-content-between align-items-center bg-light rounded">
+                <div class="d-flex align-items-center">
+                    <div class="schedule-date text-center me-3">
+                        <span class="day"><?= date("d", strtotime($row['schedule_date'])) ?></span>
+                        <span class="month d-block"><?= strtoupper(date("M", strtotime($row['schedule_date']))) ?></span>
                     </div>
-                    <?php endwhile; ?>     
+                    <div>
+                        <div class="schedule-title fw-semibold fs-5"><?= htmlspecialchars($row['title']) ?></div>
+                        <small class="text-muted"><?= date("h:i A", strtotime($row['schedule_time'])) ?></small>
+                    </div>
                 </div>
+                <a href="?delete=<?= $row['id'] ?>" class="btn btn-danger btn-sm">Delete</a>
             </div>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p class="text-muted">No schedules added yet.</p>
+        <?php endif; ?>
+    </div>
+</div>
             
             <!-- Quick Actions -->
             <div class="col-lg-4">
                 <div class="quick-actions bg-white rounded-3 p-4 h-100">
                     <h4 class="fw-semibold mb-4">Quick Actions</h4>
-                    <button class="action-btn btn w-100 py-3 mb-3">Register for Sport</button>
+                    <button class="action-btn btn btn-primary w-100 py-3 mb-3" data-bs-toggle="modal" data-bs-target="#registerSportModal">
+      Register for Sport
+    </button>
                 </div>
             </div>
         </div>
@@ -335,7 +380,7 @@ if(isset($_GET['delete_sport'])){
     </section>
 
 
-    <!-- Achievements Section -->
+<!-- Achievements Section -->
 <section class="achievements-section py-5">
     <div class="container">
         <div class="section-header d-flex justify-content-between align-items-center mb-4">
@@ -343,20 +388,23 @@ if(isset($_GET['delete_sport'])){
             <button class="add-btn" data-bs-toggle="modal" data-bs-target="#addAchModal">Add Achievement</button>
         </div>
         <div class="row g-4">
-            <?php while($ach = $achievements->fetch_assoc()): ?>
-            <div class="col-md-6 col-lg-3">
-                <div class="achievement-card bg-white rounded-3 p-4 h-100 position-relative">
-                    <h6 class="fw-semibold"><?= $ach['title'] ?></h6>
-                    <p class="mb-1"><strong>Date:</strong> <?= date("F Y", strtotime($ach['date'])) ?></p>
-                    <p class="mb-4"><strong>Event:</strong> <?= $ach['event_name'] ?></p>
+            <?php if($achievementCount > 0): ?>
+                <?php while($ach = $achievements->fetch_assoc()): ?>
+                <div class="col-md-6 col-lg-3">
+                    <div class="achievement-card bg-white rounded-3 p-4 h-100 position-relative">
+                        <h6 class="fw-semibold"><?= htmlspecialchars($ach['title']) ?></h6>
+                        <p class="mb-1"><strong>Date:</strong> <?= date("F Y", strtotime($ach['date'])) ?></p>
+                        <p class="mb-4"><strong>Event:</strong> <?= htmlspecialchars($ach['event_name']) ?></p>
 
-                    <!-- Delete Button -->
-                    <a href="?delete_achievement=<?= $ach['id'] ?>" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-2">X</a>
+                        <!-- Delete Button -->
+                        <a href="?delete_achievement=<?= $ach['id'] ?>" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-2">X</a>
+                    </div>
                 </div>
-            </div>
-            <?php endwhile; ?>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p class="text-muted">No achievements added yet.</p>
+            <?php endif; ?>
         </div>
-
     </div>
 </section>
 
@@ -437,6 +485,42 @@ if(isset($_GET['delete_sport'])){
   </div>
 </div>
 
+<!-- Register Sport Modal -->
+<div class="modal fade" id="registerSportModal" tabindex="-1" aria-labelledby="registerSportLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 border-0 shadow-lg">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title fw-semibold" id="registerSportLabel">Register for a Sport</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <form action="" method="POST">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Select Sport</label>
+            <select name="sport_id" class="form-select" required>
+              <option value="">-- Choose Sport --</option>
+              <?php
+              include 'db.php';
+              $sports = $conn->query("SELECT * FROM sports");
+              while ($sport = $sports->fetch_assoc()) {
+                  echo "<option value='{$sport['sport_id']}'>{$sport['name']}</option>";
+              }
+              ?>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" name="register_sport" class="btn btn-primary px-4">Register Sport</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
 
     <!-- Footer -->
     <footer class="footer py-3 text-center">
@@ -474,6 +558,7 @@ document.querySelector('.add-btn').addEventListener('click', function() {
     alert('Add Achievement functionality');
     // You can replace this with a modal or form to add new achievements
 });
+
     </script>
 </body>
 </html>

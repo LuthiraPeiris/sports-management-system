@@ -116,25 +116,15 @@
 
     /* Responsive tweaks */
     @media (max-width: 768px) {
-      .carousel-item {
-        height: 320px;
-      }
-      section h1 {
-        font-size: 1.9rem;
-      }
-      .stat-number {
-        font-size: 2rem;
-      }
-      .navbar-nav .nav-link {
-        margin: 6px 0;
-      }
+      .carousel-item {height: 320px;}
+      section h1 {font-size: 1.9rem;}
+      .stat-number {font-size: 2rem;}
+      .navbar-nav .nav-link {margin: 6px 0;}
       .btn-register,
       .btn-login {
         margin: 6px 0;
       }
-      .map-image {
-        height: 250px;
-      }
+      .map-image {height: 250px;}
     }
   </style>
 </head>
