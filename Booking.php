@@ -29,7 +29,7 @@
             border: 2px solid black !important;
             border-radius: 10px;
             transition: all 0.3s ease;
-            height: 450px; 
+            height: 450px;
         }
 
         .card-custom:hover {
@@ -69,7 +69,7 @@
                         <div class="card-body d-flex flex-column justify-content-center">
                             <img src="Sports/images/Football.webp" alt="Football" class="img-fluid mb-2">
                             <i class="fas fa-futbol fa-3x mb-3 text-dark"></i>
-                            <h4 class="card-title text-dark">Ground Booking</h4>
+                            <h4 class="card-title text-dark"><b>Ground Booking</b></h4>
                             <p class="card-text text-muted">
                                 Book outdoor sports grounds for football, cricket, and athletics
                             </p>
@@ -85,7 +85,7 @@
                         <div class="card-body d-flex flex-column justify-content-center">
                             <img src="Sports/images/weightlifting.jpeg" alt="Weightlifting" class="img-fluid mb-2">
                             <i class="fas fa-dumbbell fa-3x mb-3 text-dark"></i>
-                            <h4 class="card-title text-dark">Gym Booking</h4>
+                            <h4 class="card-title text-dark"><b>Gym Booking</b></h4>
                             <p class="card-text text-muted">
                                 Access our fully-equipped gym with modern equipment
                             </p>
@@ -101,7 +101,7 @@
                         <div class="card-body d-flex flex-column justify-content-center">
                             <img src="Sports/images/badminton.webp" alt="Badminton" class="img-fluid mb-2">
                             <i class="fas fa-table-tennis fa-3x mb-3 text-dark"></i>
-                            <h4 class="card-title text-dark">Indoor Booking</h4>
+                            <h4 class="card-title text-dark"><b>Indoor Booking</b></h4>
                             <p class="card-text text-muted">
                                 Book indoor courts for badminton, basketball, and squash
                             </p>
