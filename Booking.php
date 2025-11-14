@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookings</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .font{
             font-weight: 700;  
         }
+
         .h1{
             color: white;
         }
@@ -27,7 +29,7 @@
             border: 2px solid black !important;
             border-radius: 10px;
             transition: all 0.3s ease;
-            height: 450px; /* Increased height to fit descriptions inside the card */
+            height: 450px; 
         }
 
         .card-custom:hover {
@@ -48,9 +50,7 @@
             padding: 0 !important;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        
     </style>
 </head>
 <body>
@@ -116,7 +116,7 @@
 <!-- Booked Details Section -->
 <section id="booked-details" class="py-5" style="background-color: #e0e2e4ff;">
     <div class="container">
-        <h2 class="text-center mb-4" style="color: rgba(62, 105, 145, 0.95);">Booked Details</h2>
+        <h1 class="text-center mb-4 font" style="color: rgba(62, 105, 145, 0.95); font-size: 3rem;">Booked Details</h1>
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
                 <thead style="background-color:red; color: white;">
@@ -422,5 +422,11 @@
         modal.hide();
     });
 </script>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-300 py-4 text-center">
+    <p>&copy; 2025 Sabaragamuwa University of Sri Lanka. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
