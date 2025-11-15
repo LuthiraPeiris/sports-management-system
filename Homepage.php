@@ -164,6 +164,7 @@
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="#categories">Sports</a></li>
           <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="#help">Help</a></li>
           <li class="nav-item"><a class="nav-link btn-register" href="#register" onclick="gotoRegister()">Register</a></li>
           <li class="nav-item"><a class="nav-link btn-login" href="#login" onclick="gotoLogin()">Login</a></li>
         </ul>
