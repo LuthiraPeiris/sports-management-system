@@ -242,7 +242,7 @@
 <body>
     <!--Back button-->
     <div class="top-bar">
-        <button class="back-btn">← Back to Home</button>
+        <button class="back-btn" onclick="gotoHomepage()">← Back to Home</button>
     </div>
 
     <!--header section-->
@@ -361,6 +361,10 @@
             document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
             tabElement.classList.add('active');
+        }
+
+        function gotoHomepage() {
+            window.location.href = "../Homepage.php";
         }
     </script>
 </body>
