@@ -59,6 +59,14 @@
     .stat-box {text-align: center;padding: 16px;min-width: 160px;}
     .stat-number {font-size: 2.6rem;font-weight: 700;color: #1e3a55;}
     .stat-label {margin-top: 8px;color: #666;font-size: 0.98rem;}
+    /* Image inside card */
+    .about-card img {width: 100%;border-radius: 10px;transition: transform 0.4s ease;}
+    /* Hover effect */
+    .about-card:hover {transform: translateY(-10px) scale(1.05);box-shadow: 0 15px 30px rgba(0,0,0,0.15);}
+    .about-card:hover img {transform: scale(1.12);}
+    /* Title under image */
+    .about-card .card-title {font-size: 1.1rem;font-weight: 600;color: #222;margin-top: 8px;}
+
 
     /* Categories */
     #categories {background: #f8f9fa;}
@@ -209,33 +217,69 @@
   </div>
 
   <!-- About -->
-  <section id="about">
-    <div class="container">
-      <h1>About Us</h1>
-      <div class="about-content">
-        <p class="lead">The Sports Club of Sabaragamuwa University promotes fitness, sportsmanship and competitive excellence among students.</p>
-        <p style="color:#666; line-height:1.8;">
+<section id="about" class="py-5">
+  <div class="container">
+    <h1 class="text-center mb-4">About Us</h1>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <p class="lead">
+          The Sports Club of Sabaragamuwa University promotes fitness, sportsmanship and competitive excellence among students.
+        </p>
+        <p class="text-muted" style="line-height:1.8;">
           Established to nurture athletic talent and a healthy lifestyle, our club offers training programs and facilities to develop well-rounded athletes. Our coaches and facilities support students at all levels.
         </p>
-
-        <div class="about-stats" role="list" aria-label="Statistics">
-          <div class="stat-box" role="listitem">
-            <div class="stat-number" data-target="200">0</div>
-            <div class="stat-label">Sports Categories</div>
-          </div>
-          <div class="stat-box" role="listitem">
-            <div class="stat-number" data-target="500">0</div>
-            <div class="stat-label">Active Athletes</div>
-          </div>
-          <div class="stat-box" role="listitem">
-            <div class="stat-number" data-target="150">0</div>
-            <div class="stat-label">Championships Won</div>
-          </div>
-        </div>
-
       </div>
     </div>
-  </section>
+
+    <!-- IMAGE CARDS -->
+    <div class="row g-4 mt-4 justify-content-center">
+      <div class="col-md-4 col-sm-6">
+        <div class="about-card card border-0 shadow-sm">
+          <img src="About/about1.jpg" class="card-img-top" alt="Training">
+          <div class="card-body text-center">
+            <h5 class="card-title"></h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-6">
+        <div class="about-card card border-0 shadow-sm">
+          <img src="About/about2.jpg" class="card-img-top" alt="Facilities">
+          <div class="card-body text-center">
+            <h5 class="card-title"></h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-6">
+        <div class="about-card card border-0 shadow-sm">
+          <img src="About/about3.jpg" class="card-img-top" alt="Coaches">
+          <div class="card-body text-center">
+            <h5 class="card-title"></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="about-stats d-flex justify-content-center gap-5 mt-5 text-center">
+      <div>
+        <h2 class="stat-number" data-target="200">0</h2>
+        <p class="text-muted">Sports Categories</p>
+      </div>
+      <div>
+        <h2 class="stat-number" data-target="500">0</h2>
+        <p class="text-muted">Active Athletes</p>
+      </div>
+      <div>
+        <h2 class="stat-number" data-target="150">0</h2>
+        <p class="text-muted">Championships Won</p>
+      </div>
+    </div>
+
+  </div>
+</section>
 
   <!-- Categories -->
   <section id="categories">
