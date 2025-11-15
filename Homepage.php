@@ -96,9 +96,10 @@
 
     /* Events */
     #events {background: #ffffff;}
-    .event-card {border-radius: 15px;transition: transform 0.4s ease, box-shadow 0.4s ease;overflow: hidden;}
-    .event-card:hover {transform: translateY(-5px);box-shadow: 0 10px 25px rgba(13, 110, 253, 0.2);}
-    .event-card img {height: 220px;object-fit: cover;}
+    .event-card {border-radius: 15px;transition: transform 0.5s ease, box-shadow 0.5s ease; overflow: hidden;}
+    .event-card:hover {transform: translateY(-5px) scale(1.03); box-shadow: 0 10px 25px rgba(13, 110, 253, 0.25);}
+    .event-card img {height: 220px;object-fit: cover;transition: transform 0.5s ease; }
+    .event-card:hover img {transform: scale(1.06);}
     .event-info p {font-size: 0.9rem;margin: 0;}
     #events .btn-primary {background-color: #0d95fd;border: none;font-weight: 600;border-radius: 10px;transition: background 0.4s ease;}
     #events .btn-primary:hover {background-color: #0b52d7;}
