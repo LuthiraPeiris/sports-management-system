@@ -734,7 +734,7 @@
 
     // Pages in the Sports events
     function gotoPageEvent(eventId) {
-      window.location.href = `Events/${eventId}.html`;
+      window.location.href = `Events/${eventId}.php`;
     }
 
     // About page countup

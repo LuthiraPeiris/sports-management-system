@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inter Faculty Sports Meet</title>
+    <title>SLUG COMPETITION</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -42,7 +42,7 @@
             border-radius: 12px;
             overflow: hidden;
             height: 400px;
-            background: url('images/Sports_wallpaper.jpg') center/cover no-repeat;
+            background: url('images/sports.png') center/cover no-repeat;
         }
 
         .overlay {
@@ -242,13 +242,13 @@
 <body>
     <!--Back button-->
     <div class="top-bar">
-        <button class="back-btn">← Back to Home</button>
+        <button class="back-btn" onclick="gotoHomepage()">← Back to Home</button>
     </div>
 
     <!--header section-->
     <div class="section-header">
         <div class="overlay">
-            <h1 class="title">Inter Faculty Sports Meet</h1>
+            <h1 class="title">Slug Competition</h1>
         </div>
     </div>
 
@@ -263,30 +263,30 @@
     <div id="home" class="section active">
         <div class="card">
             <h2>Event Overview</h2>
-            <p>An annual celebration of athletic talent and faculty pride, where different departments compete in
-                friendly yet competitive sporting events.</p>
+            <p>The annual slug race competition brings together the best teams from across the university in an exciting
+                display of speed, strategy, and team coordination.</p>
             <div class="info-grid">
                 <div class="info-item"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         fill="currentColor" class="icon">
                         <path
                             d="M6 2a1 1 0 0 1 1 1v1h6V3a1 1 0 1 1 2 0v1h1a2 2 0 0 1 2 2v2H3V6a2 2 0 0 1 2-2h1V3a1 1 0 0 1 1-1zM3 9h14v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9zm4 3v3h2v-3H7z" />
-                    </svg>Date: November 16, 2025</div>
+                    </svg>Date: November 15, 2025</div>
                 <div class="info-item"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         fill="currentColor" class="icon">
                         <path
                             d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM12 11.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
-                    </svg>Location: University Sports Complex</div>
+                    </svg>Location: University Main Track & Field</div>
                 <div class="info-item"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         fill="currentColor" class="icon">
                         <path
                             d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zM8 11c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
-                    </svg>Teams: 20 registered</div>
+                    </svg>Teams: 12 registered</div>
             </div>
         </div>
         <div class="card">
             <h2>History</h2>
-            <p>Since 2015, the Inter Faculty Sports Meet has strengthened bonds between departments while promoting
-                healthy competition and athletic excellence.</p>
+            <p>Started in 2018, the Slug Competition has become one of the most anticipated events on campus, showcasing
+                incredible athletic prowess and team spirit.</p>
         </div>
     </div>
 
@@ -299,33 +299,33 @@
 
             <div class="achievement-card">
                 <div class="icon">
-                    <img src="images/Champion.jpeg" alt="Inter University Champion">
+                    <img src="images/inter-uni-champion.jpg" alt="Inter University Champion">
                 </div>
                 <div class="content">
-                    <h3>Champions</h3>
-                    <p>2024 Champions: Faculty of Computing </p>
+                    <h3>Inter-University Champion</h3>
+                    <p>Dominated 3 consecutive years with Alpha Team.</p>
                 </div>
             </div>
 
 
             <div class="achievement-card">
                 <div class="icon">
-                    <img src="images/Mostwins.jpeg" alt="Speed Record">
+                    <img src="images/speed_race.jpg" alt="Speed Record">
                 </div>
                 <div class="content">
-                    <h3>Most Wins</h3>
-                    <p>Faculty of Sciences (5 events)</p>
+                    <h3>Speed Record</h3>
+                    <p>Fastest completion time: 2.45 seconds.</p>
                 </div>
             </div>
 
 
             <div class="achievement-card">
                 <div class="icon">
-                    <img src="images/Team_spirit.webp" alt="Popularity Award">
+                    <img src="images/fairplay.jpg" alt="Popularity Award">
                 </div>
                 <div class="content">
-                    <h3>Team Spirit</h3>
-                    <p>Best team spirit: Faculty of Managemnet </p>
+                    <h3>Fair Play Award</h3>
+                    <p>Recognized for outstanding sportsmanship and discipline</p>
                 </div>
             </div>
 
@@ -337,21 +337,21 @@
         <div class="card">
             <h2>Event Schedule</h2>
             <ul class="schedule-list">
-                <li><span>08:00 AM</span>Faculty Registration</li>
-                <li><span>09:00 AM</span>Opening Ceremonys</li>
-                <li><span>10:00 AM</span>Various Sport Competitions</li>
-                <li><span>11:00 AM</span>Faculty Relay Championships</li>
-                <li><span>11:30 AM</span>Finals & Closing Ceremony</li>
+                <li><span>09:00 AM</span>Registration & Team Check-in</li>
+                <li><span>10:30 AM</span>Opening Ceremony</li>
+                <li><span>11:00 AM</span>Qualifying Rounds</li>
+                <li><span>02:00 PM</span>Semi-Finals</li>
+                <li><span>04:00 PM</span>Finals & Awards</li>
             </ul>
         </div>
         <div class="card">
-            <h2>Upcoming Inter Faculty Sports Meet Dates</h2>
+            <h2>Upcoming Slug Competition Dates</h2>
             <p><span style="background:#e9f0ff;padding:5px 10px;border-radius:6px;color:#007bff;font-weight:bold;">November
-                    15, 2025</span> Inter Faculty Sports Meet 2026</p>
-            <p><span style="background:#e9f0ff;padding:5px 10px;border-radius:6px;color:#007bff;font-weight:bold;">December
-                    15, 2025</span> Annual Competition 2025</p>
-            <p><span style="background:#e9f0ff;padding:5px 10px;border-radius:6px;color:#007bff;font-weight:bold;">December
-                    15, 2025</span> Mid-Year Faculty Challenge</p>
+                    15, 2025</span> Annual Slug Competition 2025</p>
+            <p><span style="background:#e9f0ff;padding:5px 10px;border-radius:6px;color:#007bff;font-weight:bold;">November
+                    15, 2025</span> Annual Slug Competition 2025</p>
+            <p><span style="background:#e9f0ff;padding:5px 10px;border-radius:6px;color:#007bff;font-weight:bold;">November
+                    15, 2025</span> Annual Slug Competition 2025</p>
         </div>
     </div>
 
@@ -361,6 +361,9 @@
             document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
             tabElement.classList.add('active');
+        }
+        function gotoHomepage() {
+            window.location.href = "../Homepage.php";
         }
     </script>
 </body>
