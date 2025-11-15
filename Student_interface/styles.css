@@ -226,3 +226,37 @@ section#dashboard-columns .container{
     font-weight: normal;
 }
 
+#quick-actions{
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-height: 100%;
+}
+
+#quick-action h2{
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.action-button{
+    display: block;
+    background-color: #4a69bb;
+    color: white;
+    text-decoration:none;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.action-button:hover{
+    background-color: #3b5998;
+}
+
+.action-button:last-child{
+    margin-bottom: 0;
+}
+
