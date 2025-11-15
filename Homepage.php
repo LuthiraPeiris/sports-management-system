@@ -539,7 +539,7 @@
       </div>
 
       <div class="contact-info" role="region" aria-label="Contact Information">
-        <h4>Contact Information</h4>
+        <h4><b>Contact Information</b></h4>
         <div class="row">
           <div class="col-md-4">
             <p><strong>📧 Email:</strong></p>
