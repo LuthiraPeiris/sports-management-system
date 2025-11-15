@@ -80,8 +80,8 @@
     #categories .btn:hover {background: #0d47a1;}
     #categories .card.hidden {display: none;}
     #categories .view-more-container {text-align: center;margin: 40px 0 20px;}
-    #categories .view-more-btn {background-color: #5734e2;color: white;border: none;padding: 15px 40px;border-radius: 8px;cursor: pointer;font-size: 1rem;font-weight: 600;transition: background-color 0.3s ease;}
-    #categories .view-more-btn:hover {background-color: #4a24e3;}
+    #categories .view-more-btn {background-color: transparent;color: #0b52d7;border: 2px solid #0b52d7;padding: 15px 40px;border-radius: 8px;cursor: pointer;font-size: 1rem;font-weight: 600;transition: all 0.3s ease;}
+    #categories .view-more-btn:hover {background-color: #0b52d7; color: white;}
     #categories .view-more-btn.hidden {display: none;}
 
     /* Events */
