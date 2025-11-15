@@ -24,7 +24,7 @@
     .logo-circle img {width: 34px;height: 34px;object-fit: contain;}
     .brand-text {display: flex;flex-direction: column;line-height: 1.1;}
     .brand-title {font-size: 17px;font-weight: 700;color: #fff;}
-    .brand-subtitle {font-size: 13px;color: rgba(255, 255, 255, 0.95);font-weight: 400;}
+    .brand-subtitle {font-size: 14px;color: rgba(255, 255, 255, 0.95);font-weight: 400;}
     .navbar-nav .nav-link {color: rgba(255, 255, 255, 0.95) !important;margin: 0 10px;font-weight: 500;font-size: 15px;}
     .navbar-nav .nav-link.btn-register,
     .navbar-nav .nav-link.btn-login {
