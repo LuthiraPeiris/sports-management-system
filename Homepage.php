@@ -85,7 +85,7 @@
     #categories .view-more-btn.hidden {display: none;}
 
     /* Events */
-    #events {background: #f4f7ff;}
+    #events {background: #ffffff;}
     .event-card {border-radius: 15px;transition: transform 0.4s ease, box-shadow 0.4s ease;overflow: hidden;}
     .event-card:hover {transform: translateY(-5px);box-shadow: 0 10px 25px rgba(13, 110, 253, 0.2);}
     .event-card img {height: 220px;object-fit: cover;}
@@ -99,7 +99,7 @@
     .help-card {background: #fff;border-radius: 10px;padding: 26px;text-align: center;transition: all .2s;height: 100%;border: 2px solid transparent;}
     .help-card:hover {border-color: #1e3a55;box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);}
     .help-icon {font-size: 2.6rem;color: #1e3a55;margin-bottom: 14px;}
-    .contact-info {background: #1e3a55;color: #fff;padding: 28px;border-radius: 10px;margin-top: 22px;}
+    .contact-info {background: #0b52d7;color: #fff;padding: 28px;border-radius: 10px;margin-top: 22px;}
     .map-container {margin-top: 25px;border-radius: 8px;overflow: hidden;box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);border: 3px solid rgba(255, 255, 255, 0.2);}
     .map-container iframe {width: 100%;height: 300px;display: block;border: 0;}
     .map-caption {background: rgba(255, 255, 255, 0.1);color: #fff;padding: 10px 15px;font-size: 0.9rem;text-align: center;border-top: 1px solid rgba(255, 255, 255, 0.2);}
@@ -456,7 +456,7 @@
   <section id="events">
     <div class="container">
       <div class="text-center my-5">
-        <h1 class="fw-bold text-primary display-5">Sport Events</h1>
+        <h1 class="fw-bold mb-3">Sport Events</h1>
         <p class="subtitle">Join exciting competitions and represent your team</p>
       </div>
 
@@ -629,7 +629,7 @@
                 <p class="mb-1"><i class="bi bi-calendar-event text-primary"></i> ${event.date}</p>
                 <p><i class="bi bi-people-fill text-primary"></i> ${event.teams}</p>
               </div>
-              <a href="#" class="btn btn-primary w-100" onclick="gotoPageEvent('${event.id}')">🏆 View Event Details</a>
+              <a href="#" class="btn btn-primary w-100" onclick="gotoPageEvent('${event.id}')">View Event Details</a>
             </div>
           </div>
         </div>
