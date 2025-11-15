@@ -46,7 +46,9 @@
     /* Carousel */
     .carousel-item {height: 600px;}
     .carousel-item img {width: 100%;height: 100%;object-fit: cover;display: block;}
-    .carousel-caption {background: rgba(0, 0, 0, 0.55);padding: 18px;border-radius: 10px;max-width: 720px;margin: 0 auto;}
+    .carousel-caption {padding: 18px;border-radius: 10px;max-width: 720px;margin: 0 auto;background: none;}
+    .carousel-caption h2 {font-size: 2.8rem;font-weight: 700;color: #fff;text-shadow: 2px 2px 6px rgba(0,0,0,0.5);}
+    .carousel-caption p {font-size: 1.2rem;color: #f0f0f0;margin: 12px 0 20px;text-shadow: 1px 1px 4px rgba(0,0,0,0.4);}
 
     /* Sections */
     section {padding: 60px 0;}
