@@ -235,6 +235,22 @@
       </div>
     </div>
 
+    <!-- Stats -->
+    <div class="about-stats d-flex justify-content-center gap-5 mt-5 text-center">
+      <div>
+        <h2 class="stat-number" data-target="200">0</h2>
+        <p class="text-muted">Sports Categories</p>
+      </div>
+      <div>
+        <h2 class="stat-number" data-target="500">0</h2>
+        <p class="text-muted">Active Athletes</p>
+      </div>
+      <div>
+        <h2 class="stat-number" data-target="150">0</h2>
+        <p class="text-muted">Championships Won</p>
+      </div>
+    </div>
+
     <!-- IMAGE CARDS -->
     <div class="row g-4 mt-4 justify-content-center">
       <div class="col-md-4 col-sm-6">
@@ -262,22 +278,6 @@
             <h5 class="card-title"></h5>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Stats -->
-    <div class="about-stats d-flex justify-content-center gap-5 mt-5 text-center">
-      <div>
-        <h2 class="stat-number" data-target="200">0</h2>
-        <p class="text-muted">Sports Categories</p>
-      </div>
-      <div>
-        <h2 class="stat-number" data-target="500">0</h2>
-        <p class="text-muted">Active Athletes</p>
-      </div>
-      <div>
-        <h2 class="stat-number" data-target="150">0</h2>
-        <p class="text-muted">Championships Won</p>
       </div>
     </div>
 
