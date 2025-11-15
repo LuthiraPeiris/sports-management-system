@@ -173,9 +173,14 @@ $nextNumber = $totalSports + 1;
 
         /* Navigation */
         .navbar-custom {background: linear-gradient(135deg, #7e8ef5 0%, #9b9ef5 100%);}
-        .navbar-custom .nav-link {color: rgba(255, 255, 255, 0.85);font-weight: 500;transition: all 0.3s;}
+        .navbar-custom .nav-link {color: rgba(255, 255, 255, 0.85);font-weight: 500; transition: all 0.3s;}
         .navbar-custom .nav-link:hover,
         .navbar-custom .nav-link.active {color: white;background-color: rgba(255, 255, 255, 0.1);border-radius: 5px;}
+
+        /* Logout button */
+        .logout-btn {color: white;font-weight: 500;padding: 6px 15px;}
+        .logout-btn:hover {background-color: #fd0000ff;}
+
 
         /* Welcome Banner */
         .welcome-banner {background: linear-gradient(135deg, #7e8ef5 0%, #9b9ef5 100%);border-radius: 15px;color: white;box-shadow: 0 4px 12px rgba(0,0,0,0.15);}
@@ -246,29 +251,34 @@ $nextNumber = $totalSports + 1;
     </header>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-custom py-3">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link px-3" href="#">My Sports</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-3" href="#">My Schedules</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-3" href="#">Achievements</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-3" href="#"><a href="../Dashboard/logout.php" class="btn btn-danger">Logout</a></a>
-                    </li>
-                </ul>
-            </div>
+<nav class="navbar navbar-expand-lg navbar-custom py-3">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Center Nav Items -->
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link px-3" href="#sports">My Sports</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3" href="#schedules">My Schedules</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3" href="#achievements">Achievements</a>
+                </li>
+            </ul>
+
+            <!-- Logout Button Right-Aligned -->
+            <a href="../Dashboard/logout.php" class="btn btn-danger logout-btn ms-lg-3">
+                Logout
+            </a>
         </div>
-    </nav>
+    </div>
+</nav>
+
 
     <!-- Main Content -->
     <main class="container my-4">
@@ -303,9 +313,9 @@ $nextNumber = $totalSports + 1;
             </div>
         </div>
 
-        <div class="row g-4">
+        <div class="row g-4" >
             <!-- My Schedule -->
-            <div class="col-lg-8">
+            <div class="col-lg-8" id="schedules">
     <div class="schedule-section bg-white rounded-3 p-4 h-100">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h4 class="fw-bold mb-0">My Schedule</h4>
@@ -347,7 +357,7 @@ $nextNumber = $totalSports + 1;
     </main>
 
     <!-- My Sports Section -->
-    <section class="my-sports-section py-5 mt-5">
+    <section class="my-sports-section py-5 mt-5" id="sports">
         <div class="container">
             <h3 class="text-center fw-semibold text-white mb-4">My Sports</h3>
 
@@ -381,7 +391,7 @@ $nextNumber = $totalSports + 1;
 
 
 <!-- Achievements Section -->
-<section class="achievements-section py-5">
+<section class="achievements-section py-5" id="achievements">
     <div class="container">
         <div class="section-header d-flex justify-content-between align-items-center mb-4">
             <h3 class="text-center fw-semibold mb-0">Achievements</h3>
@@ -531,6 +541,13 @@ $nextNumber = $totalSports + 1;
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // Prevent Back Button
+        window.history.pushState(null, "", window.location.href);
+        window.onpopstate = function () {
+        alert("Logout first!");
+        window.history.pushState(null, "", window.location.href);
+        };
+
         // Add interactivity for Add Items button
         document.querySelector('.add-btn').addEventListener('click', function() {
             alert('Add new schedule item functionality');
