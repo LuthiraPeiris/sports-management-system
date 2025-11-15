@@ -173,7 +173,7 @@ $nextNumber = $totalSports + 1;
 
         /* Navigation */
         .navbar-custom {background: linear-gradient(135deg, #7e8ef5 0%, #9b9ef5 100%);}
-        .navbar-custom .nav-link {color: rgba(255, 255, 255, 0.85);font-weight: 500; transition: all 0.3s}
+        .navbar-custom .nav-link {color: rgba(255, 255, 255, 0.85);font-weight: 500; transition: all 0.3s;}
         .navbar-custom .nav-link:hover,
         .navbar-custom .nav-link.active {color: white;background-color: rgba(255, 255, 255, 0.1);border-radius: 5px;}
 
