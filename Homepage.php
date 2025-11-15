@@ -230,7 +230,8 @@
           The Sports Club of Sabaragamuwa University promotes fitness, sportsmanship and competitive excellence among students.
         </p>
         <p class="text-muted" style="line-height:1.8;">
-          Established to nurture athletic talent and a healthy lifestyle, our club offers training programs and facilities to develop well-rounded athletes. Our coaches and facilities support students at all levels.
+          The SUSL Sports Management System is a smart digital platform that brings athletes, coaches, and sports administrators together. 
+          It simplifies sport registrations, training updates, events, and communication—making university sports more organized, accessible, and engaging.
         </p>
       </div>
     </div>
