@@ -38,10 +38,10 @@
       font-size: 14px;
       transition: all .2s;
     }
-    .btn-register {background: transparent;border: 2px solid #dc3545;color: #dc3545 !important;}
-    .btn-register:hover {background: #dc3545;color: #fff !important;}
-    .btn-login {background: transparent;border: 2px solid #fff;color: #fff !important;}
-    .btn-login:hover {background: #fff;color: #1e3a55 !important;}
+    .btn-register {background: #dc3545; border: none; color: #fff;}
+    .btn-register:hover {background: #e21126ff;color: #fff;}
+    .navbar-nav .nav-link.btn-login {background: #fff !important;border: none !important;color: #1e3a55 !important;}
+    .navbar-nav .nav-link.btn-login:hover {background: #ffffffe4 !important;color: #1e3a55 !important;}
 
     /* Carousel */
     .carousel-item {height: 600px;}
