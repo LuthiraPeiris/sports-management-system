@@ -24,7 +24,7 @@
     .logo-circle img {width: 34px;height: 34px;object-fit: contain;}
     .brand-text {display: flex;flex-direction: column;line-height: 1.1;}
     .brand-title {font-size: 17px;font-weight: 700;color: #fff;}
-    .brand-subtitle {font-size: 13px;color: rgba(255, 255, 255, 0.95);font-weight: 400;}
+    .brand-subtitle {font-size: 14px;color: rgba(255, 255, 255, 0.95);font-weight: 400;}
     .navbar-nav .nav-link {color: rgba(255, 255, 255, 0.95) !important;margin: 0 10px;font-weight: 500;font-size: 15px;}
     .navbar-nav .nav-link.btn-register,
     .navbar-nav .nav-link.btn-login {
@@ -38,15 +38,17 @@
       font-size: 14px;
       transition: all .2s;
     }
-    .btn-register {background: transparent;border: 2px solid #dc3545;color: #dc3545 !important;}
-    .btn-register:hover {background: #dc3545;color: #fff !important;}
-    .btn-login {background: transparent;border: 2px solid #fff;color: #fff !important;}
-    .btn-login:hover {background: #fff;color: #1e3a55 !important;}
+    .btn-register {background: #dc3545; border: none; color: #fff;}
+    .btn-register:hover {background: #e21126ff;color: #fff;}
+    .navbar-nav .nav-link.btn-login {background: #fff !important;border: none !important;color: #1e3a55 !important;}
+    .navbar-nav .nav-link.btn-login:hover {background: #ffffffe4 !important;color: #1e3a55 !important;}
 
     /* Carousel */
     .carousel-item {height: 600px;}
     .carousel-item img {width: 100%;height: 100%;object-fit: cover;display: block;}
-    .carousel-caption {background: rgba(0, 0, 0, 0.55);padding: 18px;border-radius: 10px;max-width: 720px;margin: 0 auto;}
+    .carousel-caption {padding: 18px;border-radius: 10px;max-width: 720px;margin: 0 auto;background: none;}
+    .carousel-caption h2 {font-size: 2.8rem;font-weight: 700;color: #fff;text-shadow: 2px 2px 6px rgba(0,0,0,0.5);}
+    .carousel-caption p {font-size: 1.2rem;color: #f0f0f0;margin: 12px 0 20px;text-shadow: 1px 1px 4px rgba(0,0,0,0.4);}
 
     /* Sections */
     section {padding: 60px 0;}
@@ -59,33 +61,41 @@
     .stat-box {text-align: center;padding: 16px;min-width: 160px;}
     .stat-number {font-size: 2.6rem;font-weight: 700;color: #1e3a55;}
     .stat-label {margin-top: 8px;color: #666;font-size: 0.98rem;}
+    /* Image inside card */
+    .about-card img {width: 100%;border-radius: 10px;transition: transform 0.4s ease;}
+    /* Hover effect */
+    .about-card:hover {transform: translateY(-10px) scale(1.05);box-shadow: 0 15px 30px rgba(0,0,0,0.15);}
+    .about-card:hover img {transform: scale(1.12);}
+    /* Title under image */
+    .about-card .card-title {font-size: 1.1rem;font-weight: 600;color: #222;margin-top: 8px;}
 
-    /* Categories */
-    #categories {background: #f8f9fa;}
-    #categories .container {width: 90%;max-width: 1200px;margin: 0 auto;padding: 40px 0;text-align: center;}
-    #categories h1 {font-size: 2.5rem;margin-bottom: 10px;}
-    #categories p.lead {font-size: 1.1rem;color: #666;margin-bottom: 40px;}
-    #categories .row {display: grid;grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));gap: 30px;}
-    #categories .card {background: #fff;border-radius: 12px;box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);overflow: hidden;transition: transform 0.3s ease, box-shadow 0.3s ease;}
-    #categories .card:hover {border: 2px solid #1e5eff;border-radius: 8px;transition: border 0.2s ease;transform: translateY(-8px);box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);}
-    #categories .card img {width: 100%;height: 180px;object-fit: left;border-radius: 8px;transition: border 0.2s ease, transform 0.3s ease;border: 3px solid transparent;cursor: pointer;}
-    #categories .card img:active,
-    .card img:hover {transform: scale(1.1);}
-    #categories .card-content {padding: 20px;text-align: left;}
-    #categories .card-content h3 {font-size: 1.3rem;margin-bottom: 8px;}
-    #categories .about-content p {font-size: 0.95rem;color: #555;margin-bottom: 10px;}
-    #categories .participants {font-weight: 600;color: #444;}
-    #categories .participants span {color: #1e5eff;}
-    #categories .btn {display: inline-block;width: 100%;padding: 10px 0;background: #1e5eff;color: #fff;border: none;border-radius: 8px;cursor: pointer;font-size: 1rem;transition: background 0.3s ease;}
-    #categories .btn:hover {background: #0d47a1;}
-    #categories .card.hidden {display: none;}
-    #categories .view-more-container {text-align: center;margin: 40px 0 20px;}
-    #categories .view-more-btn {background-color: #5734e2;color: white;border: none;padding: 15px 40px;border-radius: 8px;cursor: pointer;font-size: 1rem;font-weight: 600;transition: background-color 0.3s ease;}
-    #categories .view-more-btn:hover {background-color: #4a24e3;}
-    #categories .view-more-btn.hidden {display: none;}
+
+   /* Categories */ 
+   #categories {background: #f8f9fa;} 
+   #categories .container {width: 90%;max-width: 1200px;margin: 0 auto;padding: 40px 0;text-align: center;} 
+   #categories h1 {font-size: 2.5rem;margin-bottom: 10px;} 
+   #categories p.lead {font-size: 1.1rem;color: #666;margin-bottom: 40px;} 
+   #categories .row {display: grid;grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));gap: 30px;} 
+   #categories .card {background: #fff;border-radius: 12px;box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);overflow: hidden;transition: transform 0.3s ease, box-shadow 0.3s ease;} 
+   #categories .card:hover {border: 2px solid #1e5eff;border-radius: 8px;transition: border 0.2s ease;transform: translateY(-8px);box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);} 
+   #categories .card img {width: 100%;height: 180px;object-fit: left;border-radius: 8px;transition: border 0.2s ease, transform 0.3s ease;border: 3px solid transparent;cursor: pointer;} 
+   #categories .card img:active, .card img:hover {transform: scale(1.1);} 
+   #categories .card-content {padding: 20px;text-align: left;} 
+   #categories .card-content h3 {font-size: 1.3rem;margin-bottom: 8px;} 
+   #categories .about-content p {font-size: 0.95rem;color: #555;margin-bottom: 10px;} 
+   #categories .participants {font-weight: 600;color: #444;} 
+   #categories .participants span {color: #1e5eff;} 
+   #categories .btn {display: inline-block;width: 100%;padding: 10px 0;background: #1e5eff;color: #fff;border: none;border-radius: 8px;cursor: pointer;font-size: 1rem;transition: background 0.3s ease;} 
+   #categories .btn:hover {background: #0d47a1;} 
+   #categories .card.hidden {display: none;} 
+   #categories .view-more-container {text-align: center;margin: 40px 0 20px;} 
+   #categories .view-more-btn {background-color: transparent;color: #0b52d7;border: 2px solid #0b52d7;padding: 15px 40px;border-radius: 8px;cursor: pointer;font-size: 1rem;font-weight: 600;transition: all 0.3s ease;} 
+   #categories .view-more-btn:hover {background-color: #0b52d7; color: white;} 
+   #categories .view-more-btn.hidden {display: none;}
+
 
     /* Events */
-    #events {background: #f4f7ff;}
+    #events {background: #ffffff;}
     .event-card {border-radius: 15px;transition: transform 0.4s ease, box-shadow 0.4s ease;overflow: hidden;}
     .event-card:hover {transform: translateY(-5px);box-shadow: 0 10px 25px rgba(13, 110, 253, 0.2);}
     .event-card img {height: 220px;object-fit: cover;}
@@ -99,7 +109,7 @@
     .help-card {background: #fff;border-radius: 10px;padding: 26px;text-align: center;transition: all .2s;height: 100%;border: 2px solid transparent;}
     .help-card:hover {border-color: #1e3a55;box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);}
     .help-icon {font-size: 2.6rem;color: #1e3a55;margin-bottom: 14px;}
-    .contact-info {background: #1e3a55;color: #fff;padding: 28px;border-radius: 10px;margin-top: 22px;}
+    .contact-info {background: #0b52d7;color: #fff;padding: 28px;border-radius: 10px;margin-top: 22px;}
     .map-container {margin-top: 25px;border-radius: 8px;overflow: hidden;box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);border: 3px solid rgba(255, 255, 255, 0.2);}
     .map-container iframe {width: 100%;height: 300px;display: block;border: 0;}
     .map-caption {background: rgba(255, 255, 255, 0.1);color: #fff;padding: 10px 15px;font-size: 0.9rem;text-align: center;border-top: 1px solid rgba(255, 255, 255, 0.2);}
@@ -107,35 +117,21 @@
     .map-caption a:hover {color: #f0f0f0;text-decoration: none;}
 
     /* Footer */
-    footer {
-      background: #1e3a55;
-      color: #fff;
-      padding: 26px 0;
-      text-align: center;
-    }
+    footer {background: #1e3a55;color: #fff;padding: 26px 0;text-align: center;}
 
     /* Responsive tweaks */
     @media (max-width: 768px) {
-      .carousel-item {
-        height: 320px;
-      }
-      section h1 {
-        font-size: 1.9rem;
-      }
-      .stat-number {
-        font-size: 2rem;
-      }
-      .navbar-nav .nav-link {
-        margin: 6px 0;
-      }
+      .carousel-item {height: 320px;}
+      section h1 {font-size: 1.9rem;}
+      .stat-number {font-size: 2rem;}
+      .navbar-nav .nav-link {margin: 6px 0;}
       .btn-register,
       .btn-login {
         margin: 6px 0;
       }
-      .map-image {
-        height: 250px;
-      }
+      .map-image {height: 250px;}
     }
+    
   </style>
 </head>
 
@@ -166,6 +162,7 @@
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="#categories">Sports</a></li>
           <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="#help">Help</a></li>
           <li class="nav-item"><a class="nav-link btn-register" href="#register" onclick="gotoRegister()">Register</a></li>
           <li class="nav-item"><a class="nav-link btn-login" href="#login" onclick="gotoLogin()">Login</a></li>
         </ul>
@@ -219,33 +216,70 @@
   </div>
 
   <!-- About -->
-  <section id="about">
-    <div class="container">
-      <h1>About Us</h1>
-      <div class="about-content">
-        <p class="lead">The Sports Club of Sabaragamuwa University promotes fitness, sportsmanship and competitive excellence among students.</p>
-        <p style="color:#666; line-height:1.8;">
-          Established to nurture athletic talent and a healthy lifestyle, our club offers training programs and facilities to develop well-rounded athletes. Our coaches and facilities support students at all levels.
+<section id="about" class="py-5">
+  <div class="container">
+    <h1 class="text-center mb-4">About Us</h1>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <p class="lead">
+          The Sports Club of Sabaragamuwa University promotes fitness, sportsmanship and competitive excellence among students.
         </p>
-
-        <div class="about-stats" role="list" aria-label="Statistics">
-          <div class="stat-box" role="listitem">
-            <div class="stat-number" data-target="200">0</div>
-            <div class="stat-label">Sports Categories</div>
-          </div>
-          <div class="stat-box" role="listitem">
-            <div class="stat-number" data-target="500">0</div>
-            <div class="stat-label">Active Athletes</div>
-          </div>
-          <div class="stat-box" role="listitem">
-            <div class="stat-number" data-target="150">0</div>
-            <div class="stat-label">Championships Won</div>
-          </div>
-        </div>
-
+        <p class="text-muted" style="line-height:1.8;">
+          The SUSL Sports Management System is a smart digital platform that brings athletes, coaches, and sports administrators together. 
+          It simplifies sport registrations, training updates, events, and communication—making university sports more organized, accessible, and engaging.
+        </p>
       </div>
     </div>
-  </section>
+
+    <!-- Stats -->
+    <div class="about-stats d-flex justify-content-center gap-5 mt-5 text-center">
+      <div>
+        <h2 class="stat-number" data-target="200">0</h2>
+        <p class="text-muted">Sports Categories</p>
+      </div>
+      <div>
+        <h2 class="stat-number" data-target="500">0</h2>
+        <p class="text-muted">Active Athletes</p>
+      </div>
+      <div>
+        <h2 class="stat-number" data-target="150">0</h2>
+        <p class="text-muted">Championships Won</p>
+      </div>
+    </div>
+
+    <!-- IMAGE CARDS -->
+    <div class="row g-4 mt-4 justify-content-center">
+      <div class="col-md-4 col-sm-6">
+        <div class="about-card card border-0 shadow-sm">
+          <img src="About/about1.jpg" class="card-img-top" alt="Training">
+          <div class="card-body text-center">
+            <h5 class="card-title"></h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-6">
+        <div class="about-card card border-0 shadow-sm">
+          <img src="About/about2.jpg" class="card-img-top" alt="Facilities">
+          <div class="card-body text-center">
+            <h5 class="card-title"></h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-6">
+        <div class="about-card card border-0 shadow-sm">
+          <img src="About/about3.jpg" class="card-img-top" alt="Coaches">
+          <div class="card-body text-center">
+            <h5 class="card-title"></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
   <!-- Categories -->
   <section id="categories">
@@ -466,7 +500,7 @@
   <section id="events">
     <div class="container">
       <div class="text-center my-5">
-        <h1 class="fw-bold text-primary display-5">Sport Events</h1>
+        <h1 class="fw-bold mb-3">Sport Events</h1>
         <p class="subtitle">Join exciting competitions and represent your team</p>
       </div>
 
@@ -501,7 +535,7 @@
       </div>
 
       <div class="contact-info" role="region" aria-label="Contact Information">
-        <h4>Contact Information</h4>
+        <h4><b>Contact Information</b></h4>
         <div class="row">
           <div class="col-md-4">
             <p><strong>📧 Email:</strong></p>
@@ -639,7 +673,7 @@
                 <p class="mb-1"><i class="bi bi-calendar-event text-primary"></i> ${event.date}</p>
                 <p><i class="bi bi-people-fill text-primary"></i> ${event.teams}</p>
               </div>
-              <a href="#" class="btn btn-primary w-100" onclick="gotoPageEvent('${event.id}')">🏆 View Event Details</a>
+              <a href="#" class="btn btn-primary w-100" onclick="gotoPageEvent('${event.id}')">View Event Details</a>
             </div>
           </div>
         </div>
@@ -647,39 +681,39 @@
       container.insertAdjacentHTML("beforeend", cardHTML);
     });
 
-    const initialCards = 4; // Change to 8 if you want to show 8 cards initially
-    let isExpanded = false;
+  let isExpanded = false;
+  const initialCards = 4; // Shows Cricket, Baseball, Netball, Basketball
 
-    function toggleCards() {
-      const cards = document.querySelectorAll('.card');
-      const buttons = document.querySelectorAll('.view-more-btn');
+  function toggleCards() {
+    const cards = document.querySelectorAll('#categories .card');
+    const buttons = document.querySelectorAll('#categories .view-more-btn');
 
-      if (!isExpanded) {
-        // Show all cards
-        cards.forEach(card => {
-          card.classList.remove('hidden');
-        });
-        buttons[0].classList.add('hidden'); // Hide "View More"
-        buttons[1].classList.remove('hidden'); // Show "Show Less"
-        isExpanded = true;
-      } else {
-        // Hide cards after initial count
-        cards.forEach((card, index) => {
-          if (index >= initialCards) {
-            card.classList.add('hidden');
-          }
-        });
-        buttons[0].classList.remove('hidden'); // Show "View More"
-        buttons[1].classList.add('hidden'); // Hide "Show Less"
-        isExpanded = false;
+    if (!isExpanded) {
+      // Show all cards
+      cards.forEach(card => {
+       card.classList.remove('hidden');
+      });
+      buttons[0].classList.add('hidden'); // Hide "View More Sports"
+      buttons[1].classList.remove('hidden'); // Show "Show Less"
+      isExpanded = true;
+    } else {
+      // Hide cards after initial count (keep first 4 visible)
+      cards.forEach((card, index) => {
+        if (index >= initialCards) {
+          card.classList.add('hidden');
+        }
+      });
+      buttons[0].classList.remove('hidden'); // Show "View More Sports"
+      buttons[1].classList.add('hidden'); // Hide "Show Less"
+      isExpanded = false;
 
-        // Scroll to top of section smoothly
-        document.querySelector('#categories').scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    }
+      // Scroll to top of section smoothly
+      document.querySelector('#categories').scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+}
 
     function gotoBookings() {
       window.location.href = "Booking.php";

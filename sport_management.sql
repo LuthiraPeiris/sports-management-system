@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2025 at 05:04 PM
+-- Generation Time: Nov 12, 2025 at 02:13 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,7 +40,8 @@ CREATE TABLE `achievements` (
 --
 
 INSERT INTO `achievements` (`id`, `user_id`, `title`, `date`, `event_name`) VALUES
-(1, 11, 'My leg day', '2025-11-19', 'Faculty of Engineering');
+(1, 11, 'My leg day', '2025-11-19', 'Faculty of Engineering'),
+(2, 13, 'Homerun', '2025-11-13', 'Slug');
 
 -- --------------------------------------------------------
 
@@ -88,7 +89,8 @@ CREATE TABLE `schedules` (
 INSERT INTO `schedules` (`id`, `user_id`, `title`, `schedule_date`, `schedule_time`, `description`) VALUES
 (1, 12, 'Tomorrow', '2025-11-13', '19:09:00', 'Need to go to practice'),
 (3, 12, 'My daily routing', '2025-11-12', '07:16:00', 'I need to practice'),
-(5, 13, 'Football', '2025-11-13', '10:00:00', 'lfgldf');
+(5, 13, 'Football', '2025-11-13', '10:00:00', 'lfgldf'),
+(6, 13, 'Cricket', '2025-11-14', '06:33:00', '');
 
 -- --------------------------------------------------------
 
@@ -198,6 +200,27 @@ INSERT INTO `student_sport` (`id`, `user_id`, `title`, `coach_name`, `date_time`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `student_sport_registration`
+--
+
+CREATE TABLE `student_sport_registration` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `sport_id` int(11) NOT NULL,
+  `coach_id` int(11) NOT NULL,
+  `registered_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `student_sport_registration`
+--
+
+INSERT INTO `student_sport_registration` (`id`, `user_id`, `sport_id`, `coach_id`, `registered_at`) VALUES
+(3, 13, 20, 10, '2025-11-12 14:00:51');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -280,6 +303,15 @@ ALTER TABLE `student_sport`
   ADD KEY `fk_sport_student` (`user_id`);
 
 --
+-- Indexes for table `student_sport_registration`
+--
+ALTER TABLE `student_sport_registration`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_user_id` (`user_id`),
+  ADD KEY `fk_sport_id` (`sport_id`),
+  ADD KEY `fk_ssr_coach` (`coach_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -294,7 +326,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `achievements`
 --
 ALTER TABLE `achievements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `coach`
@@ -306,7 +338,7 @@ ALTER TABLE `coach`
 -- AUTO_INCREMENT for table `schedules`
 --
 ALTER TABLE `schedules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `sports`
@@ -330,7 +362,13 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `student_sport`
 --
 ALTER TABLE `student_sport`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `student_sport_registration`
+--
+ALTER TABLE `student_sport_registration`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -380,6 +418,14 @@ ALTER TABLE `student`
 --
 ALTER TABLE `student_sport`
   ADD CONSTRAINT `fk_sport_student` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `student_sport_registration`
+--
+ALTER TABLE `student_sport_registration`
+  ADD CONSTRAINT `fk_ssr_coach` FOREIGN KEY (`coach_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_ssr_sport` FOREIGN KEY (`sport_id`) REFERENCES `sports` (`sport_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_ssr_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `users`
