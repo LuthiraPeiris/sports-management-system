@@ -70,29 +70,29 @@
     .about-card .card-title {font-size: 1.1rem;font-weight: 600;color: #222;margin-top: 8px;}
 
 
-    /* Categories */
-    #categories {background: #f8f9fa;}
-    #categories .container {width: 90%;max-width: 1200px;margin: 0 auto;padding: 40px 0;text-align: center;}
-    #categories h1 {font-size: 2.5rem;margin-bottom: 10px;}
-    #categories p.lead {font-size: 1.1rem;color: #666;margin-bottom: 40px;}
-    #categories .row {display: grid;grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));gap: 30px;}
-    #categories .card {background: #fff;border-radius: 12px;box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);overflow: hidden;transition: transform 0.3s ease, box-shadow 0.3s ease;}
-    #categories .card:hover {border: 2px solid #1e5eff;border-radius: 8px;transition: border 0.2s ease;transform: translateY(-8px);box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);}
-    #categories .card img {width: 100%;height: 180px;object-fit: left;border-radius: 8px;transition: border 0.2s ease, transform 0.3s ease;border: 3px solid transparent;cursor: pointer;}
-    #categories .card img:active,
-    .card img:hover {transform: scale(1.1);}
-    #categories .card-content {padding: 20px;text-align: left;}
-    #categories .card-content h3 {font-size: 1.3rem;margin-bottom: 8px;}
-    #categories .about-content p {font-size: 0.95rem;color: #555;margin-bottom: 10px;}
-    #categories .participants {font-weight: 600;color: #444;}
-    #categories .participants span {color: #1e5eff;}
-    #categories .btn {display: inline-block;width: 100%;padding: 10px 0;background: #1e5eff;color: #fff;border: none;border-radius: 8px;cursor: pointer;font-size: 1rem;transition: background 0.3s ease;}
-    #categories .btn:hover {background: #0d47a1;}
-    #categories .card.hidden {display: none;}
-    #categories .view-more-container {text-align: center;margin: 40px 0 20px;}
-    #categories .view-more-btn {background-color: transparent;color: #0b52d7;border: 2px solid #0b52d7;padding: 15px 40px;border-radius: 8px;cursor: pointer;font-size: 1rem;font-weight: 600;transition: all 0.3s ease;}
-    #categories .view-more-btn:hover {background-color: #0b52d7; color: white;}
-    #categories .view-more-btn.hidden {display: none;}
+   /* Categories */ 
+   #categories {background: #f8f9fa;} 
+   #categories .container {width: 90%;max-width: 1200px;margin: 0 auto;padding: 40px 0;text-align: center;} 
+   #categories h1 {font-size: 2.5rem;margin-bottom: 10px;} 
+   #categories p.lead {font-size: 1.1rem;color: #666;margin-bottom: 40px;} 
+   #categories .row {display: grid;grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));gap: 30px;} 
+   #categories .card {background: #fff;border-radius: 12px;box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);overflow: hidden;transition: transform 0.3s ease, box-shadow 0.3s ease;} 
+   #categories .card:hover {border: 2px solid #1e5eff;border-radius: 8px;transition: border 0.2s ease;transform: translateY(-8px);box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);} 
+   #categories .card img {width: 100%;height: 180px;object-fit: left;border-radius: 8px;transition: border 0.2s ease, transform 0.3s ease;border: 3px solid transparent;cursor: pointer;} 
+   #categories .card img:active, .card img:hover {transform: scale(1.1);} 
+   #categories .card-content {padding: 20px;text-align: left;} 
+   #categories .card-content h3 {font-size: 1.3rem;margin-bottom: 8px;} 
+   #categories .about-content p {font-size: 0.95rem;color: #555;margin-bottom: 10px;} 
+   #categories .participants {font-weight: 600;color: #444;} 
+   #categories .participants span {color: #1e5eff;} 
+   #categories .btn {display: inline-block;width: 100%;padding: 10px 0;background: #1e5eff;color: #fff;border: none;border-radius: 8px;cursor: pointer;font-size: 1rem;transition: background 0.3s ease;} 
+   #categories .btn:hover {background: #0d47a1;} 
+   #categories .card.hidden {display: none;} 
+   #categories .view-more-container {text-align: center;margin: 40px 0 20px;} 
+   #categories .view-more-btn {background-color: transparent;color: #0b52d7;border: 2px solid #0b52d7;padding: 15px 40px;border-radius: 8px;cursor: pointer;font-size: 1rem;font-weight: 600;transition: all 0.3s ease;} 
+   #categories .view-more-btn:hover {background-color: #0b52d7; color: white;} 
+   #categories .view-more-btn.hidden {display: none;}
+
 
     /* Events */
     #events {background: #ffffff;}
@@ -117,12 +117,7 @@
     .map-caption a:hover {color: #f0f0f0;text-decoration: none;}
 
     /* Footer */
-    footer {
-      background: #1e3a55;
-      color: #fff;
-      padding: 26px 0;
-      text-align: center;
-    }
+    footer {background: #1e3a55;color: #fff;padding: 26px 0;text-align: center;}
 
     /* Responsive tweaks */
     @media (max-width: 768px) {
@@ -136,6 +131,7 @@
       }
       .map-image {height: 250px;}
     }
+    
   </style>
 </head>
 
@@ -685,39 +681,39 @@
       container.insertAdjacentHTML("beforeend", cardHTML);
     });
 
-    const initialCards = 4; // Change to 8 if you want to show 8 cards initially
-    let isExpanded = false;
+  let isExpanded = false;
+  const initialCards = 4; // Shows Cricket, Baseball, Netball, Basketball
 
-    function toggleCards() {
-      const cards = document.querySelectorAll('.card');
-      const buttons = document.querySelectorAll('.view-more-btn');
+  function toggleCards() {
+    const cards = document.querySelectorAll('#categories .card');
+    const buttons = document.querySelectorAll('#categories .view-more-btn');
 
-      if (!isExpanded) {
-        // Show all cards
-        cards.forEach(card => {
-          card.classList.remove('hidden');
-        });
-        buttons[0].classList.add('hidden'); // Hide "View More"
-        buttons[1].classList.remove('hidden'); // Show "Show Less"
-        isExpanded = true;
-      } else {
-        // Hide cards after initial count
-        cards.forEach((card, index) => {
-          if (index >= initialCards) {
-            card.classList.add('hidden');
-          }
-        });
-        buttons[0].classList.remove('hidden'); // Show "View More"
-        buttons[1].classList.add('hidden'); // Hide "Show Less"
-        isExpanded = false;
+    if (!isExpanded) {
+      // Show all cards
+      cards.forEach(card => {
+       card.classList.remove('hidden');
+      });
+      buttons[0].classList.add('hidden'); // Hide "View More Sports"
+      buttons[1].classList.remove('hidden'); // Show "Show Less"
+      isExpanded = true;
+    } else {
+      // Hide cards after initial count (keep first 4 visible)
+      cards.forEach((card, index) => {
+        if (index >= initialCards) {
+          card.classList.add('hidden');
+        }
+      });
+      buttons[0].classList.remove('hidden'); // Show "View More Sports"
+      buttons[1].classList.add('hidden'); // Hide "Show Less"
+      isExpanded = false;
 
-        // Scroll to top of section smoothly
-        document.querySelector('#categories').scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    }
+      // Scroll to top of section smoothly
+      document.querySelector('#categories').scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+}
 
     function gotoBookings() {
       window.location.href = "Booking.php";
