@@ -24,7 +24,7 @@
     .logo-circle img {width: 34px;height: 34px;object-fit: contain;}
     .brand-text {display: flex;flex-direction: column;line-height: 1.1;}
     .brand-title {font-size: 17px;font-weight: 700;color: #fff;}
-    .brand-subtitle {font-size: 13px;color: rgba(255, 255, 255, 0.95);font-weight: 400;}
+    .brand-subtitle {font-size: 14px;color: rgba(255, 255, 255, 0.95);font-weight: 400;}
     .navbar-nav .nav-link {color: rgba(255, 255, 255, 0.95) !important;margin: 0 10px;font-weight: 500;font-size: 15px;}
     .navbar-nav .nav-link.btn-register,
     .navbar-nav .nav-link.btn-login {
@@ -230,8 +230,25 @@
           The Sports Club of Sabaragamuwa University promotes fitness, sportsmanship and competitive excellence among students.
         </p>
         <p class="text-muted" style="line-height:1.8;">
-          Established to nurture athletic talent and a healthy lifestyle, our club offers training programs and facilities to develop well-rounded athletes. Our coaches and facilities support students at all levels.
+          The SUSL Sports Management System is a smart digital platform that brings athletes, coaches, and sports administrators together. 
+          It simplifies sport registrations, training updates, events, and communication—making university sports more organized, accessible, and engaging.
         </p>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="about-stats d-flex justify-content-center gap-5 mt-5 text-center">
+      <div>
+        <h2 class="stat-number" data-target="200">0</h2>
+        <p class="text-muted">Sports Categories</p>
+      </div>
+      <div>
+        <h2 class="stat-number" data-target="500">0</h2>
+        <p class="text-muted">Active Athletes</p>
+      </div>
+      <div>
+        <h2 class="stat-number" data-target="150">0</h2>
+        <p class="text-muted">Championships Won</p>
       </div>
     </div>
 
@@ -262,22 +279,6 @@
             <h5 class="card-title"></h5>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Stats -->
-    <div class="about-stats d-flex justify-content-center gap-5 mt-5 text-center">
-      <div>
-        <h2 class="stat-number" data-target="200">0</h2>
-        <p class="text-muted">Sports Categories</p>
-      </div>
-      <div>
-        <h2 class="stat-number" data-target="500">0</h2>
-        <p class="text-muted">Active Athletes</p>
-      </div>
-      <div>
-        <h2 class="stat-number" data-target="150">0</h2>
-        <p class="text-muted">Championships Won</p>
       </div>
     </div>
 
