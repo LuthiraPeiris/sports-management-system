@@ -541,13 +541,6 @@ $nextNumber = $totalSports + 1;
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Prevent Back Button
-        window.history.pushState(null, "", window.location.href);
-        window.onpopstate = function () {
-        alert("Logout first!");
-        window.history.pushState(null, "", window.location.href);
-        };
-
         // Add interactivity for Add Items button
         document.querySelector('.add-btn').addEventListener('click', function() {
             alert('Add new schedule item functionality');
