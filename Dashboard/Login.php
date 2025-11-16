@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 session_start();
 include 'db.php';
 
@@ -23,10 +23,10 @@ if (isset($_POST['login'])) {
 
             // Redirect based on role
             if ($user['role'] == 'student') {
-                header("Location: Student_Dashboard.php");
+                header("Location: ../Student_Interface/Student_Dashboard.php");
                 exit();
             } else {
-                header("Location: Coach_Dashboard.php");
+                header("Location: ../Coach_Interface/Coach_Dashboard.php");
                 exit();
             }
         } else {
@@ -36,7 +36,7 @@ if (isset($_POST['login'])) {
         echo "<script>alert('Email Not Found');</script>";
     }
 }
-?> -->
+?>
 
 
 <!DOCTYPE html>
@@ -48,67 +48,40 @@ if (isset($_POST['login'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        body {
-        background-image: url("../images/login_4.jpeg"); 
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        min-height: 100vh;
-    }
+        body { background-image: url("../images/login_4.jpeg"); background-size: cover; background-repeat: no-repeat; background-position: center; min-height: 100vh;}
 
-        .login-card input {
-            width: 100%;
-            margin-bottom: 15px;
-        }
-
-        .login-card {
-            color: white;
-            max-width: 450px;
-            padding: 35px 40px;
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0px 2px 8px rgb(70, 140, 252);
-            backdrop-filter: blur(10px);
-            text-align: center;
-            height: 50vh;     /* ← This sets the card height */
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* Centers form content vertically */
-            text-decoration-color: blue;
-        }
-        .btn{
-            transition: 0.7s;
-        }
-        .btn:hover{
-            box-shadow: 1px 2px 6px rgb(78, 78, 78);
-        }
-
-
-
-
+        .login-card input { width: 100%; margin-bottom: 15px;}
+        .login-card {color: white;max-width: 450px;padding: 35px 40px;border-radius: 15px;background: rgba(255, 255, 255, 0.2);box-shadow: 0px 2px 8px rgb(70, 140, 252);backdrop-filter: blur(10px);text-align: center;height: 50vh;     display: flex;flex-direction: column;justify-content: center; text-decoration-color: blue;}
+        .btn{transition: 0.7s;}
+        .btn:hover{box-shadow: 1px 2px 6px rgb(78, 78, 78);}
+        .register-link {color: #333; text-decoration: none; font-size: 14px; font-weight: 500;}
+        .register-link:hover {color: rgb(70, 140, 252); text-decoration: underline;}
+        .home-btn {position: absolute; top: 20px; left: 20px;}
+        .login-card h2 {color: #1a1a1a;}
     </style>
 </head>
 
 <body class="bg-light">
+    <!-- Back to Homepage Button -->
+    <a href="../Homepage.php" class="btn home-btn">
+        <i class="bi bi-house-door"></i>  ← Back to Home
+    </a>
 
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
         <div class="card login-card w-100">
-
-            <h2 class="text-center mb-4 fw-bold" style="color:white;">Login</h2>
-
+            <h2 class="text-center mb-4 fw-bold">Login</h2>
             <form method="POST">
                 <input class="form-control mb-3" placeholder="Email" name="email" required>
                 <input class="form-control mb-3" type="password" placeholder="Password" name="password" required>
-                
-                    <div class="text-center">
-                        <button class="btn btn-primary px-5" name="login">Login</button>
-                    </div>
-
-                
+                <div class="text-center">
+                    <button class="btn btn-primary px-5" name="login">Login</button>
+                </div>
             </form>
-
+            <!-- Register Link -->
+            <div class="mt-3">
+                <a href="Register.php" class="register-link">Don't have an account? Register here</a>
+            </div>
         </div>
     </div>
-
 </body>
 </html>

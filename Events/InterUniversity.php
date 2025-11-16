@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SLUG COMPETITION</title>
+    <title>Inter University Championship</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -42,7 +42,7 @@
             border-radius: 12px;
             overflow: hidden;
             height: 400px;
-            background: url('images/sports.png') center/cover no-repeat;
+            background: url('images/Inter_University_Championship.png') center/cover no-repeat;
         }
 
         .overlay {
@@ -242,13 +242,13 @@
 <body>
     <!--Back button-->
     <div class="top-bar">
-        <button class="back-btn">← Back to Home</button>
+        <button class="back-btn" onclick="gotoHomepage()">← Back to Home</button>
     </div>
 
     <!--header section-->
     <div class="section-header">
         <div class="overlay">
-            <h1 class="title">Slug Competition</h1>
+            <h1 class="title">Inter University Championship</h1>
         </div>
     </div>
 
@@ -263,8 +263,8 @@
     <div id="home" class="section active">
         <div class="card">
             <h2>Event Overview</h2>
-            <p>The annual slug race competition brings together the best teams from across the university in an exciting
-                display of speed, strategy, and team coordination.</p>
+            <p>A prestigious multi-sport championship where universities from across the nation compete in various
+                sporting disciplines for the ultimate glory.</p>
             <div class="info-grid">
                 <div class="info-item"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         fill="currentColor" class="icon">
@@ -280,13 +280,13 @@
                         fill="currentColor" class="icon">
                         <path
                             d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zM8 11c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
-                    </svg>Teams: 12 registered</div>
+                    </svg>Teams: 25 registered</div>
             </div>
         </div>
         <div class="card">
             <h2>History</h2>
-            <p>Started in 2018, the Slug Competition has become one of the most anticipated events on campus, showcasing
-                incredible athletic prowess and team spirit.</p>
+            <p>Established in 2010, this championship has grown to become the premier inter-university sporting event,
+                fostering excellence and sportsmanship among institutions.</p>
         </div>
     </div>
 
@@ -299,33 +299,33 @@
 
             <div class="achievement-card">
                 <div class="icon">
-                    <img src="images/inter-uni-champion.jpg" alt="Inter University Champion">
+                    <img src="images/medal_record.jpeg" alt="Inter University Champion">
                 </div>
                 <div class="content">
-                    <h3>Inter-University Champion</h3>
-                    <p>Dominated 3 consecutive years with Alpha Team.</p>
+                    <h3>Medal Record</h3>
+                    <p>Most medals: 15 (Gold: 7, Silver: 5, Bronze: 3)</p>
                 </div>
             </div>
 
 
             <div class="achievement-card">
                 <div class="icon">
-                    <img src="images/speed_race.jpg" alt="Speed Record">
+                    <img src="images/Champions.jpeg" alt="Speed Record">
                 </div>
                 <div class="content">
-                    <h3>Speed Record</h3>
-                    <p>Fastest completion time: 2.45 seconds.</p>
+                    <h3>Champions</h3>
+                    <p>2024 Overall Champions: Metropolitan University</p>
                 </div>
             </div>
 
 
             <div class="achievement-card">
                 <div class="icon">
-                    <img src="images/fairplay.jpg" alt="Popularity Award">
+                    <img src="images/attendance.jpeg" alt="Popularity Award">
                 </div>
                 <div class="content">
-                    <h3>Fair Play Award</h3>
-                    <p>Recognized for outstanding sportsmanship and discipline</p>
+                    <h3>Attendance</h3>
+                    <p>Record attendance: 10,000+ spectators</p>
                 </div>
             </div>
 
@@ -337,21 +337,21 @@
         <div class="card">
             <h2>Event Schedule</h2>
             <ul class="schedule-list">
-                <li><span>09:00 AM</span>Registration & Team Check-in</li>
-                <li><span>10:30 AM</span>Opening Ceremony</li>
-                <li><span>11:00 AM</span>Qualifying Rounds</li>
-                <li><span>02:00 PM</span>Semi-Finals</li>
-                <li><span>04:00 PM</span>Finals & Awards</li>
+                <li><span>Dec 10</span>Opening Ceremony & Basketball</li>
+                <li><span>Dec 11</span>Cricket & Tennis Matches</li>
+                <li><span>Dec 12</span>Swimming & Track Events</li>
+                <li><span>Dec 13</span>Semi-Finals(All Sports)</li>
+                <li><span>Dec 14</span>Finals & Closing Ceremony</li>
             </ul>
         </div>
         <div class="card">
-            <h2>Upcoming Slug Competition Dates</h2>
+            <h2>Upcoming Inter University Championship Dates</h2>
             <p><span style="background:#e9f0ff;padding:5px 10px;border-radius:6px;color:#007bff;font-weight:bold;">November
-                    15, 2025</span> Annual Slug Competition 2025</p>
-            <p><span style="background:#e9f0ff;padding:5px 10px;border-radius:6px;color:#007bff;font-weight:bold;">November
-                    15, 2025</span> Annual Slug Competition 2025</p>
-            <p><span style="background:#e9f0ff;padding:5px 10px;border-radius:6px;color:#007bff;font-weight:bold;">November
-                    15, 2025</span> Annual Slug Competition 2025</p>
+                    15, 2025</span> Inter University Championship 2025</p>
+            <p><span style="background:#e9f0ff;padding:5px 10px;border-radius:6px;color:#007bff;font-weight:bold;">December
+                    15, 2025</span> Annual Competition 2025</p>
+            <p><span style="background:#e9f0ff;padding:5px 10px;border-radius:6px;color:#007bff;font-weight:bold;">December
+                    15, 2025</span> Summer Inter University Games</p>
         </div>
     </div>
 
@@ -361,6 +361,10 @@
             document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
             tabElement.classList.add('active');
+        }
+
+        function gotoHomepage() {
+            window.location.href = "../Homepage.php";
         }
     </script>
 </body>
