@@ -236,7 +236,7 @@
     <!-- Stats -->
     <div class="about-stats d-flex justify-content-center gap-5 mt-5 text-center">
       <div>
-        <h2 class="stat-number" data-target="200">0</h2>
+        <h2 class="stat-number" data-target="15">0</h2>
         <p class="text-muted">Sports Categories</p>
       </div>
       <div>
