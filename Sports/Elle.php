@@ -95,7 +95,7 @@
       <p class="text-gray-800 text-lg mb-8">
         Join the Elle Team to improve your skills, participate in competitions, and represent SUSL with pride in regional and inter-university matches.
       </p>
-      <a href="Register.html">
+      <a href="../Dashboard/Login.php">
         <button class="bg-blue-600 text-white px-8 py-3 rounded-full font-bold hover:bg-blue-700 transition w-full">
           Register Now
         </button>
