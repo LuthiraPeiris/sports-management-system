@@ -8,22 +8,29 @@
 </head>
 <body class="bg-blue-50 text-gray-800 font-sans scroll-smooth">
 
-  <!-- Navbar -->
-  <header class="bg-[#3e6991] text-white py-4 shadow fixed w-full top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
-      <div class="flex items-center space-x-3">
-        <img src="../images/Favicon.png" alt="SUSL Logo" class="w-12 h-12 rounded-full bg-white p-1" />
-        <div>
-          <h1 class="text-lg font-bold leading-tight">Sports Club</h1>
-          <p class="text-sm text-gray-200 -mt-1">Sabaragamuwa University of Sri Lanka</p>
-        </div>
+ <!-- Navbar -->
+<header class="bg-[#3e6991] text-white py-4 shadow fixed w-full top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 flex justify-between items-center gap-3 sm:gap-0">
+    <div class="flex items-center space-x-2 sm:space-x-3">
+      <img src="../images/Favicon.png" alt="SUSL Logo" class="w-12 h-12 rounded-full bg-white p-1" />
+      <div>
+        <h1 class="text-base sm:text-lg font-bold leading-tight">Sports Club</h1>
+        <p class="text-sm text-gray-200 -mt-1">Sabaragamuwa University of Sri Lanka</p>
       </div>
-      <nav class="space-x-4">
-        <a href="#introduction" class="hover:underline transition duration-300">Introduction</a>
-        <a href="#details" class="hover:underline transition duration-300">Team Highlights</a>
-      </nav>
     </div>
-  </header>
+    <nav class="flex flex-wrap justify-center gap-2 sm:gap-4 text-sm sm:text-base">
+      <a href="#introduction" class="hover:underline transition duration-300">Introduction</a>
+      <a href="#details" class="hover:underline transition duration-300">Team Highlights</a>
+      <a href="../Homepage.php#categories"
+      class="px-3 py-1.5 rounded-md bg-white/10 border border-white/20 
+          text-white text-sm backdrop-blur-sm
+          hover:bg-white/20 hover:border-white/30 hover:shadow-sm
+          transition duration-300 ease-out">
+          ⬅ Back
+      </a>
+    </nav>
+  </div>
+</header>
 
   <!-- Hero Section -->
   <section

@@ -381,26 +381,6 @@
         </div>
 
         <div class="card hidden">
-          <img src="Sports/images/carrom.jpeg" alt="Carrom" width="550px">
-          <div class="card-content">
-            <h3>Carrom</h3>
-            <p>Indoor carrom tournaments and skill-building sessions</p>
-            <p class="participants">Participants: <span>140</span></p>
-            <button class="btn" onclick="gotoPage('Carrom')">View Details</button>
-          </div>
-        </div>
-
-        <div class="card hidden">
-          <img src="Sports/images/chess.jpeg" alt="Chess" width="550px">
-          <div class="card-content">
-            <h3>Chess</h3>
-            <p>Sharpen your mind with strategic chess competitions</p>
-            <p class="participants">Participants: <span>155</span></p>
-            <button class="btn" onclick="gotoPage('Chess')">View Details</button>
-          </div>
-        </div>
-
-        <div class="card hidden">
           <img src="Sports/images/hockey.jpeg" alt="Hockey" width="550px">
           <div class="card-content">
             <h3>Hockey</h3>
@@ -427,16 +407,6 @@
             <p>Professional martial arts and self-defense programs</p>
             <p class="participants">Participants: <span>190</span></p>
             <button class="btn" onclick="gotoPage('Karate')">View Details</button>
-          </div>
-        </div>
-
-        <div class="card hidden">
-          <img src="Sports/images/roadrace.jpeg" alt="Road Race" width="550px">
-          <div class="card-content">
-            <h3>Road Race</h3>
-            <p>Endurance-based road races and competitions</p>
-            <p class="participants">Participants: <span>130</span></p>
-            <button class="btn" onclick="gotoPage('Roadrace')">View Details</button>
           </div>
         </div>
 
@@ -730,7 +700,7 @@
 
     // Pages in the Sports categories
     function gotoPage(sport) {
-      window.location.href = `Sports/${sport}.html`;
+      window.location.href = `Sports/${sport}.php`;
     }
 
     // Pages in the Sports events
