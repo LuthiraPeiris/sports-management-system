@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inter University Championship</title>
-    <link rel="icon" type="image/x-icon" href="images/Favicon.png">
+    <link rel="icon" type="image/x-icon" href="../images/Favicon.png">
     <style>
         body {font-family: Arial, sans-serif;background: #f8f9fc;margin: 0;padding: 0;}
 
