@@ -160,6 +160,7 @@ $nextNumber = $totalSports + 1;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sports Club Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="images/Favicon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -234,7 +235,10 @@ $nextNumber = $totalSports + 1;
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center">
-                    <div class="logo-icon me-3">S</div>
+                    <div class="bg-white rounded-circle d-flex align-items-center justify-content-center overflow-hidden flex-shrink-0"
+                    style="width: 60px; height: 60px;">
+                    <img src="../images/Favicon.png" alt="Sports Club Logo" class="w-100 h-100 object-fit-cover">
+                </div>
                     <div>
                         <h6 class="mb-0 fw-semibold">Sports Club</h6>
                         <p class="mb-0 small">Sabaragamuwa University of Sri Lanka</p>
@@ -535,7 +539,7 @@ $nextNumber = $totalSports + 1;
     <!-- Footer -->
     <footer class="footer py-3 text-center">
         <div class="container">
-            <p class="mb-0">© 2025 Group2. All rights reserved.</p>
+            <p class="mb-0">© 2025 Sabaragamuwa University Of Sri Lanka. All rights reserved.</p>
         </div>
     </footer>
 
