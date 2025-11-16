@@ -5,74 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coach Interface</title>
-    <link rel="icon" href="..\images\Favicon.png" type="image/x-icon">
+    <link rel="icon" href="../images/Favicon.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        body {
-            background-color: #d1d5db;
-        }
-
-        .info-bar {
+       
+        .bg-info-bar {
             background-color: #a8e6ff;
         }
 
-        .nav-bar {
+        .bg-nav-bar {
             background-color: #8b7bd8;
         }
 
-        .nav-bar .nav-link {
-            color: white !important;
-            transition: background-color 0.3s ease;
+        .bg-nav-hover:hover {
+            background-color: #7a6bc7 !important;
         }
 
-        .nav-bar .nav-link:hover {
-            background-color: #7a6bc7;
-        }
-
-        .nav-bar .nav-link.active {
+        .bg-nav-active {
             background-color: #6a5bb7 !important;
         }
 
-        .logo-circle {
-            width: 60px;
-            height: 60px;
-            background-color: white;
-        }
-
-        .profile-placeholder {
+        .bg-profile {
             background-color: #ff9999;
-            font-size: 12px;
-            line-height: 1.3;
-        }
-
-        .dropdown-menu {
-            background-color: #8b7bd8;
-            border: none;
-            width: 100%;
-            margin: 0;
-        }
-
-        .dropdown-menu .dropdown-item {
-            color: white;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .dropdown-menu .dropdown-item:hover {
-            background-color: #7a6bc7;
-        }
-
-        .dropdown-menu .dropdown-item.active {
-            background-color: #6a5bb7;
-        }
-
-        .mobile-menu-btn {
-            text-decoration: none !important;
-        }
-
-        .mobile-menu-btn:hover {
-            background-color: rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
         }
 
         .bg-custom-blue {
@@ -82,170 +37,165 @@
         .bg-custom-dark-blue {
             background-color: #0000CC;
         }
-
-        .border-custom {
-            border: 3px solid white;
-        }
     </style>
 </head>
 
-<body>
+<body class="bg-secondary bg-opacity-25">
 
-
-
-    <!-- header section -->
-    <div class="info-bar py-3 px-3 px-md-4">
+    <!-- Header Section -->
+    <div class="bg-info-bar py-3 px-3 px-md-4">
         <div class="d-flex justify-content-between align-items-center">
-
             <div class="d-flex align-items-center gap-3">
-                <div
-                    class="logo-circle rounded-circle d-flex align-items-center justify-content-center overflow-hidden flex-shrink-0">
-                    <img src="../images/Favicon.png" alt="Sports Club Logo" class="w-100 h-100"
-                        style="object-fit: cover;">
+                <div class="bg-white rounded-circle d-flex align-items-center justify-content-center overflow-hidden flex-shrink-0"
+                    style="width: 60px; height: 60px;">
+                    <img src="../images/Favicon.png" alt="Sports Club Logo" class="w-100 h-100 object-fit-cover">
                 </div>
                 <div class="d-none d-md-block">
-                    <div class="fw-bold" style="font-size: 14px; color: #333;">Sports Club</div>
-                    <div class="fw-semibold" style="font-size: 14px; color: #333;">Sabaragamuwa University Of Sri Lanka
-                    </div>
+                    <div class="fw-bold small text-dark">Sports Club</div>
+                    <div class="fw-semibold small text-dark">Sabaragamuwa University Of Sri Lanka</div>
                 </div>
             </div>
 
             <div class="d-none d-md-flex align-items-center gap-3">
-                <div class="profile-placeholder text-white rounded text-center px-3 py-2">
-                    <div style="font-size: 40px;">👤</div>
+                <div class="bg-profile text-white rounded text-center px-3 py-2">
+                    <div class="fs-1">👤</div>
                 </div>
                 <div class="text-end">
-                    <p class="fw-bold mb-0" style="color: #333;">Coach Name</p>
-                    <p class="mb-0" style="font-size: 12px; color: #555;">#########</p>
+                    <p class="fw-bold mb-0 text-dark">Coach Name</p>
+                    <p class="mb-0 small text-secondary">#########</p>
                 </div>
             </div>
 
-            <!-- mobile nav button -->
+            <!-- Mobile nav button -->
             <div class="d-md-none">
-                <button class="btn btn-link text-dark fs-3 p-0 mobile-menu-btn" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
+                <button class="btn btn-link text-dark fs-3 p-0 text-decoration-none" type="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
                     ☰
                 </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li class="px-3 py-2 border-bottom border-light">
+                <ul class="dropdown-menu dropdown-menu-end bg-nav-bar border-0 w-100 m-0">
+                    <li class="px-3 py-2 border-bottom border-light border-opacity-25">
                         <div class="d-flex align-items-center gap-2">
-                            <div style="font-size: 40px;">👤</div>
+                            <div class="fs-1">👤</div>
                             <div>
-                                <div class="fw-bold text-white" style="font-size: 14px;">Coach Name</div>
-                                <div class="text-white" style="font-size: 12px;">#########</div>
+                                <div class="fw-bold text-white small">Coach Name</div>
+                                <div class="text-white small">#########</div>
                             </div>
                         </div>
                     </li>
-                    <li><a class="dropdown-item active" href="#">Home</a></li>
-                    <li><a class="dropdown-item" href="#">Dashboard</a></li>
-                    <li><a class="dropdown-item" href="#">Matches</a></li>
-                    <li><a class="dropdown-item" href="#">Players</a></li>
-                    <li><a class="dropdown-item" href="#">Requests</a></li>
+                    <li><a class="dropdown-item text-white border-bottom border-light border-opacity-10 bg-nav-active"
+                            href="#">Home</a></li>
+                    <li><a class="dropdown-item text-white border-bottom border-light border-opacity-10 bg-nav-hover"
+                            href="#">Dashboard</a></li>
+                    <li><a class="dropdown-item text-white border-bottom border-light border-opacity-10 bg-nav-hover"
+                            href="#">Matches</a></li>
+                    <li><a class="dropdown-item text-white border-bottom border-light border-opacity-10 bg-nav-hover"
+                            href="#">Players</a></li>
+                    <li><a class="dropdown-item text-white bg-nav-hover" href="#">Requests</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
     <!-- Desktop Navigation Bar -->
-    <nav class="nav-bar d-none d-md-block">
+    <nav class="bg-nav-bar d-none d-md-block">
         <ul class="nav nav-fill">
             <li class="nav-item">
-                <a class="nav-link active py-3" href="#">Home</a>
+                <a class="nav-link text-white py-3 bg-nav-active" href="#">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link py-3" href="#">Dashboard</a>
+                <a class="nav-link text-white py-3 bg-nav-hover" href="#">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link py-3" href="#">Matches</a>
+                <a class="nav-link text-white py-3 bg-nav-hover" href="#">Matches</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link py-3" href="#">Players</a>
+                <a class="nav-link text-white py-3 bg-nav-hover" href="#">Players</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link py-3" href="#">Requests</a>
+                <a class="nav-link text-white py-3 bg-nav-hover" href="#">Requests</a>
             </li>
         </ul>
     </nav>
 
     <div class="container py-4">
         <!-- Welcome Card -->
-        <div class="card bg-primary text-white text-center shadow mb-4" style="border-radius: 15px;">
+        <div class="card bg-primary text-white text-center shadow mb-4 rounded-4 border-0">
             <div class="card-body py-4">
-                <h1 class="card-title h2 mb-2">Welcome back Coach !</h1>
+                <h1 class="h2 mb-2">Welcome back Coach!</h1>
                 <p class="mb-1">Let's make today's training count!</p>
-                <p class="mb-0"><strong>Volleyball</strong></p>
+                <p class="mb-0 fw-bold">Volleyball</p>
             </div>
         </div>
 
         <!-- Stats Cards -->
         <div class="row g-3 mb-4 justify-content-center">
             <div class="col-6 col-sm-4 col-md-4">
-                <div class="card shadow-sm h-100">
+                <div class="card shadow-sm h-100 border-0">
                     <div class="card-body py-3">
                         <div class="d-none d-md-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                                <div class="bg-primary text-white rounded d-flex align-items-center justify-content-center me-3"
-                                    style="width: 45px; height: 45px; font-size: 20px; flex-shrink: 0;">
+                                <div class="bg-primary text-white rounded d-flex align-items-center justify-content-center me-3 flex-shrink-0"
+                                    style="width: 45px; height: 45px; font-size: 20px;">
                                     👥
                                 </div>
                                 <p class="text-muted mb-0 small">Students</p>
                             </div>
-                            <h2 class="h1 fw-bold mb-0">5</h2>
+                            <h2 class="display-6 fw-bold mb-0">5</h2>
                         </div>
                         <div class="d-md-none text-center">
                             <div class="bg-primary text-white rounded d-flex align-items-center justify-content-center mx-auto mb-3"
                                 style="width: 50px; height: 50px; font-size: 24px;">
                                 👥
                             </div>
-                            <h2 class="h1 fw-bold mb-1">5</h2>
+                            <h2 class="display-6 fw-bold mb-1">5</h2>
                             <p class="text-muted mb-0 small">Students</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-6 col-sm-4 col-md-4">
-                <div class="card shadow-sm h-100">
+                <div class="card shadow-sm h-100 border-0">
                     <div class="card-body py-3">
                         <div class="d-none d-md-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                                <div class="bg-primary text-white rounded d-flex align-items-center justify-content-center me-3"
-                                    style="width: 45px; height: 45px; font-size: 20px; flex-shrink: 0;">
+                                <div class="bg-primary text-white rounded d-flex align-items-center justify-content-center me-3 flex-shrink-0"
+                                    style="width: 45px; height: 45px; font-size: 20px;">
                                     📅
                                 </div>
                                 <p class="text-muted mb-0 small">Schedules</p>
                             </div>
-                            <h2 class="h1 fw-bold mb-0">20</h2>
+                            <h2 class="display-6 fw-bold mb-0">20</h2>
                         </div>
                         <div class="d-md-none text-center">
                             <div class="bg-primary text-white rounded d-flex align-items-center justify-content-center mx-auto mb-3"
                                 style="width: 50px; height: 50px; font-size: 24px;">
                                 📅
                             </div>
-                            <h2 class="h1 fw-bold mb-1">20</h2>
+                            <h2 class="display-6 fw-bold mb-1">20</h2>
                             <p class="text-muted mb-0 small">Schedules</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-6 col-sm-4 col-md-4">
-                <div class="card shadow-sm h-100">
+                <div class="card shadow-sm h-100 border-0">
                     <div class="card-body py-3">
                         <div class="d-none d-md-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                                <div class="bg-primary text-white rounded d-flex align-items-center justify-content-center me-3"
-                                    style="width: 45px; height: 45px; font-size: 20px; flex-shrink: 0;">
+                                <div class="bg-primary text-white rounded d-flex align-items-center justify-content-center me-3 flex-shrink-0"
+                                    style="width: 45px; height: 45px; font-size: 20px;">
                                     ⚽
                                 </div>
                                 <p class="text-muted mb-0 small">Bookings</p>
                             </div>
-                            <h2 class="h1 fw-bold mb-0">5</h2>
+                            <h2 class="display-6 fw-bold mb-0">5</h2>
                         </div>
                         <div class="d-md-none text-center">
                             <div class="bg-primary text-white rounded d-flex align-items-center justify-content-center mx-auto mb-3"
                                 style="width: 50px; height: 50px; font-size: 24px;">
                                 ⚽
                             </div>
-                            <h2 class="h1 fw-bold mb-1">5</h2>
+                            <h2 class="display-6 fw-bold mb-1">5</h2>
                             <p class="text-muted mb-0 small">Bookings</p>
                         </div>
                     </div>
@@ -257,20 +207,20 @@
         <div class="row g-3">
             <!-- My Schedule -->
             <div class="col-12 col-lg-8">
-                <div class="card shadow-sm">
+                <div class="card shadow-sm border-0">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <h2 class="h4 fw-bold mb-0">My Schedule</h2>
                             <button class="btn btn-danger btn-sm rounded-pill px-3">Add Items</button>
                         </div>
 
-                        <div class="list-group list-group-flush">
-                            <div class="list-group-item bg-primary text-white rounded mb-2 p-3">
+                        <div class="vstack gap-2">
+                            <div class="bg-primary text-white rounded-3 p-3">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="d-flex align-items-center">
                                         <div class="bg-white bg-opacity-25 rounded text-center px-3 py-2 me-3">
                                             <div class="fw-bold fs-4">28</div>
-                                            <div style="font-size: 0.7rem;">OCT</div>
+                                            <div class="small">OCT</div>
                                         </div>
                                         <div class="d-md-none fw-semibold fs-5">Football Practice</div>
                                     </div>
@@ -278,12 +228,12 @@
                                 </div>
                             </div>
 
-                            <div class="list-group-item bg-primary text-white rounded mb-2 p-3">
+                            <div class="bg-primary text-white rounded-3 p-3">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="d-flex align-items-center">
                                         <div class="bg-white bg-opacity-25 rounded text-center px-3 py-2 me-3">
                                             <div class="fw-bold fs-4">29</div>
-                                            <div style="font-size: 0.7rem;">OCT</div>
+                                            <div class="small">OCT</div>
                                         </div>
                                         <div class="d-md-none fw-semibold fs-5">Basketball Match</div>
                                     </div>
@@ -291,12 +241,12 @@
                                 </div>
                             </div>
 
-                            <div class="list-group-item bg-primary text-white rounded mb-2 p-3">
+                            <div class="bg-primary text-white rounded-3 p-3">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="d-flex align-items-center">
                                         <div class="bg-white bg-opacity-25 rounded text-center px-3 py-2 me-3">
                                             <div class="fw-bold fs-4">30</div>
-                                            <div style="font-size: 0.7rem;">OCT</div>
+                                            <div class="small">OCT</div>
                                         </div>
                                         <div class="d-md-none fw-semibold fs-5">Swimming Training</div>
                                     </div>
@@ -304,12 +254,12 @@
                                 </div>
                             </div>
 
-                            <div class="list-group-item bg-primary text-white rounded mb-2 p-3">
+                            <div class="bg-primary text-white rounded-3 p-3">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="d-flex align-items-center">
                                         <div class="bg-white bg-opacity-25 rounded text-center px-3 py-2 me-3">
                                             <div class="fw-bold fs-4">01</div>
-                                            <div style="font-size: 0.7rem;">NOV</div>
+                                            <div class="small">NOV</div>
                                         </div>
                                         <div class="d-md-none fw-semibold fs-5">Inter-University Cricket</div>
                                     </div>
@@ -323,7 +273,7 @@
 
             <!-- Quick Actions -->
             <div class="col-12 col-lg-4">
-                <div class="card shadow-sm">
+                <div class="card shadow-sm border-0">
                     <div class="card-body">
                         <h2 class="h4 fw-bold mb-4">Quick Actions</h2>
                         <button class="btn btn-primary w-100 py-3 fs-5 fw-semibold">Booking</button>
@@ -333,28 +283,29 @@
         </div>
     </div>
 
-    <!-- Payer section -->
-    <div id="players-section" class="container-fluid p-0">
+    <!-- Players Section -->
+    <div class="container-fluid p-0 mt-5">
         <div class="bg-custom-blue p-4" style="min-height: 400px;">
             <div class="row justify-content-center">
                 <div class="col-10 col-md-8 col-lg-6">
                     <div class="bg-primary text-white text-center fw-bold py-2 mb-3 rounded-top">
                         Players
                     </div>
-                    <div class="bg-white border-custom rounded p-3">
-                        <div class="row g-2 mb-2">
+                    <div class="bg-white border border-white border-3 rounded p-3">
+                        <div class="row g-2 mb-3">
                             <div class="col-4">
                                 <div class="bg-primary text-white text-center py-2 fw-semibold rounded">Name</div>
                             </div>
                             <div class="col-4">
-                                <div class="bg-primary text-white text-center py-2 fw-semibold rounded">Student_ID</div>
+                                <div class="bg-primary text-white text-center py-2 fw-semibold rounded">Student_ID
+                                </div>
                             </div>
                             <div class="col-4">
                                 <div class="bg-primary text-white text-center py-2 fw-semibold rounded">NIC</div>
                             </div>
                         </div>
-                        <div class="p-2">
-                            <div class="row g-2 mb-2">
+                        <div class="vstack gap-2">
+                            <div class="row g-2">
                                 <div class="col-4">
                                     <div class="bg-light rounded shadow-sm p-2 text-center">
                                         <small class="fw-medium text-dark">John Doe</small>
@@ -371,7 +322,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row g-2 mb-2">
+                            <div class="row g-2">
                                 <div class="col-4">
                                     <div class="bg-light rounded shadow-sm p-2 text-center">
                                         <small class="fw-medium text-dark">Jane Smith</small>
@@ -411,13 +362,11 @@
             </div>
         </div>
 
-        <!-- footer section --> 
+        <!-- Footer Section -->
         <div class="bg-custom-dark-blue text-white text-center py-2 small">
             © 2025 Google. All rights reserved.
         </div>
     </div>
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
