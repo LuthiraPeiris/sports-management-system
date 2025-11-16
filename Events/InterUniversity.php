@@ -6,214 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inter University Championship</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f8f9fc;
-            margin: 0;
-            padding: 0;
-        }
+        body {font-family: Arial, sans-serif;background: #f8f9fc;margin: 0;padding: 0;}
 
         /*navigation bar*/
-        .top-bar {
-            padding: 15px;
-            display: flex;
-            justify-content: flex-start;
-        }
+        .top-bar {padding: 15px;display: flex;justify-content: flex-start;}
 
-        .back-btn {
-            background-color: #ffffff;
-            color: #0b0a0a;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: background 0.3s ease;
-            font-weight: 600;
-        }
+        .back-btn {background-color: #ffffff;color: #0b0a0a;border: none;padding: 10px 15px;border-radius: 10px;cursor: pointer;font-size: 12px;transition: background 0.3s ease;font-weight: 600;}
+        .back-btn:hover {background-color: #e85a2a;color: #ffffff;}
 
-        .back-btn:hover {
-            background-color: #e85a2a;
-            color: #ffffff;
-        }
+        .section-header {position: relative;border-radius: 12px;overflow: hidden;height: 400px;background: url('images/Inter_University_Championship.png') center/cover no-repeat;}
 
-        .section-header {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            height: 400px;
-            background: url('images/Inter_University_Championship.png') center/cover no-repeat;
-        }
+        .overlay {position: absolute;width: 100%;height: 100%;background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0.9));display: flex;flex-direction: column;justify-content: flex-end;padding: 20px;}
 
-        .overlay {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0.9));
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 20px;
-        }
-
-        .title {
-            font-size: 45px;
-            font-weight: bold;
-            color: #000;
-        }
+        .title {font-size: 45px;font-weight: bold;color: #000;}
 
         /* Three Tabs */
-        .tabs {
-            display: flex;
-            justify-content: center;
-            background-color: #f3f7fd;
-            border-radius: 10px;
-            padding: 10px;
-            max-width: 700px;
-            margin: 20px auto;
-            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
-        }
-
-        .tab {
-            flex: 1;
-            border: none;
-            background: none;
-            font-size: 16px;
-            font-weight: 500;
-            color: #5a6b7b;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .tab:hover {
-            background-color: #e8efff;
-        }
-
-        .tab.active {
-            background-color: white;
-            color: #007bff;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
+        .tabs {display: flex;justify-content: center;background-color: #f3f7fd;border-radius: 10px;padding: 10px;max-width: 700px;margin: 20px auto;box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);}
+        .tab {flex: 1;border: none;background: none;font-size: 16px;font-weight: 500;color: #5a6b7b;padding: 10px 20px;border-radius: 8px;cursor: pointer;transition: all 0.2s ease;}
+        .tab:hover {background-color: #e8efff;}
+        .tab.active {background-color: white;color: #007bff;box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);}
 
         /* Home Tab*/
-        .section {
-            display: none;
-            margin: 20px;
-        }
+        .section {display: none;margin: 20px;}
+        .section.active {display: block;}
 
-        .section.active {
-            display: block;
-        }
+        .card {background: #fff;margin-bottom: 20px;padding: 20px;border-radius: 8px;box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);}
+        .card h2 {margin-bottom: 10px;font-size: 20px;}
 
-        .card {
-            background: #fff;
-            margin-bottom: 20px;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .card h2 {
-            margin-bottom: 10px;
-            font-size: 20px;
-        }
-
-        .info-grid {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 10px;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: center;
-            font-size: 16px;
-            color: #333;
-        }
-
-        .info-item .icon {
-            margin-right: 8px;
-            color: #007bff;
-            font-size: 18px;
-        }
+        .info-grid {display: flex;justify-content: space-between;flex-wrap: wrap;gap: 1rem;margin-top: 10px;}
+        .info-item {display: flex;align-items: center;font-size: 16px;color: #333;}
+        .info-item .icon {margin-right: 8px;color: #007bff;font-size: 18px;}
 
         /* Achievements Tab */
-        .section {
-            padding: 40px;
-            background: #f9fafb;
-        }
+        .section {padding: 40px;background: #f9fafb;}
 
-        .achievements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            justify-content: center;
-        }
-
-        .achievement-card {
-            background: #fff;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            font-family: "Poppins", sans-serif;
-        }
-
-        .achievement-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .achievement-card .icon {
-            height: 180px;
-            overflow: hidden;
-        }
-
-        .achievement-card .icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .achievement-card .content {
-            padding: 20px;
-            text-align: left;
-        }
-
-        .achievement-card h3 {
-            font-size: 18px;
-            margin-bottom: 8px;
-            color: #222;
-        }
-
-        .achievement-card p {
-            font-size: 14px;
-            color: #555;
-            margin: 0;
-        }
-
+        .achievements-grid {display: grid;grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));gap: 25px;justify-content: center;}
+        .achievement-card {background: #fff;border-radius: 16px;overflow: hidden;box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);transition: transform 0.3s ease, box-shadow 0.3s ease;font-family: "Poppins", sans-serif;}
+        .achievement-card:hover {transform: translateY(-6px);box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);}
+        .achievement-card .icon {height: 180px;overflow: hidden;}
+        .achievement-card .icon img {width: 100%;height: 100%;object-fit: cover;}
+        .achievement-card .content {padding: 20px;text-align: left;}
+        .achievement-card h3 {font-size: 18px;margin-bottom: 8px;color: #222;}
+        .achievement-card p {font-size: 14px;color: #555;margin: 0;}
 
         /* Schedule Tab */
-        .schedule-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .schedule-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-            font-size: 16px;
-        }
-
-        .schedule-list li span {
-            font-weight: bold;
-            color: #007bff;
-            margin-right: 10px;
-        }
+        .schedule-list {list-style: none;padding: 0;}
+        .schedule-list li {padding: 10px 0;border-bottom: 1px solid #eee;font-size: 16px;}
+        .schedule-list li span {font-weight: bold;color: #007bff;margin-right: 10px;}
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -364,7 +203,7 @@
         }
 
         function gotoHomepage() {
-            window.location.href = "../Homepage.php";
+            window.location.href = "../Homepage.php#events";
         }
     </script>
 </body>
