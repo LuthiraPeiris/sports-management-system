@@ -38,78 +38,21 @@
         .info-item .icon {margin-right: 8px;color: #007bff;font-size: 18px;}
 
         /* Achievements Tab */
-        .section {
-            padding: 40px;
-            background: #f9fafb;
-        }
+        .section {padding: 40px;background: #f9fafb;}
 
-        .achievements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            justify-content: center;
-        }
-
-        .achievement-card {
-            background: #fff;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            font-family: "Poppins", sans-serif;
-        }
-
-        .achievement-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .achievement-card .icon {
-            height: 180px;
-            overflow: hidden;
-        }
-
-        .achievement-card .icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .achievement-card .content {
-            padding: 20px;
-            text-align: left;
-        }
-
-        .achievement-card h3 {
-            font-size: 18px;
-            margin-bottom: 8px;
-            color: #222;
-        }
-
-        .achievement-card p {
-            font-size: 14px;
-            color: #555;
-            margin: 0;
-        }
-
+        .achievements-grid {display: grid;grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));gap: 25px;justify-content: center;}
+        .achievement-card {background: #fff;border-radius: 16px;overflow: hidden;box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);transition: transform 0.3s ease, box-shadow 0.3s ease;font-family: "Poppins", sans-serif;}
+        .achievement-card:hover {transform: translateY(-6px);box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);}
+        .achievement-card .icon {height: 180px;overflow: hidden;}
+        .achievement-card .icon img {width: 100%;height: 100%;object-fit: cover;}
+        .achievement-card .content {padding: 20px;text-align: left;}
+        .achievement-card h3 {font-size: 18px;margin-bottom: 8px;color: #222;}
+        .achievement-card p {font-size: 14px;color: #555;margin: 0;}
 
         /* Schedule Tab */
-        .schedule-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .schedule-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-            font-size: 16px;
-        }
-
-        .schedule-list li span {
-            font-weight: bold;
-            color: #007bff;
-            margin-right: 10px;
-        }
+        .schedule-list {list-style: none;padding: 0;}
+        .schedule-list li {padding: 10px 0;border-bottom: 1px solid #eee;font-size: 16px;}
+        .schedule-list li span {font-weight: bold;color: #007bff;margin-right: 10px;}
 
         /* Responsive */
         @media (max-width: 768px) {
