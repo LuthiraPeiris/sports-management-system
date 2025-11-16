@@ -363,7 +363,7 @@
             tabElement.classList.add('active');
         }
         function gotoHomepage() {
-            window.location.href = "../Homepage.php";
+            window.location.href = "../Homepage.php#events";
         }
     </script>
 </body>
