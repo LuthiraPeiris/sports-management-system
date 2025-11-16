@@ -3,41 +3,48 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SUSL Volleyball Team</title>
+  <title>SUSL Wrestling Team</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-blue-50 text-gray-800 font-sans scroll-smooth">
 
-  <!-- Navbar -->
-  <header class="bg-[#3e6991] text-white py-4 shadow fixed w-full top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
-      <div class="flex items-center space-x-3">
-        <img src="../images/Favicon.png" alt="SUSL Logo" class="w-12 h-12 rounded-full bg-white p-1" />
-        <div>
-          <h1 class="text-lg font-bold leading-tight">Sports Club</h1>
-          <p class="text-sm text-gray-200 -mt-1">Sabaragamuwa University of Sri Lanka</p>
-        </div>
+ <!-- Navbar -->
+<header class="bg-[#3e6991] text-white py-4 shadow fixed w-full top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 flex justify-between items-center gap-3 sm:gap-0">
+    <div class="flex items-center space-x-2 sm:space-x-3">
+      <img src="../images/Favicon.png" alt="SUSL Logo" class="w-12 h-12 rounded-full bg-white p-1" />
+      <div>
+        <h1 class="text-base sm:text-lg font-bold leading-tight">Sports Club</h1>
+        <p class="text-sm text-gray-200 -mt-1">Sabaragamuwa University of Sri Lanka</p>
       </div>
-      <nav class="space-x-4">
-        <a href="#introduction" class="hover:underline transition duration-300">Introduction</a>
-        <a href="#details" class="hover:underline transition duration-300">Team Highlights</a>
-      </nav>
     </div>
-  </header>
+    <nav class="flex flex-wrap justify-center gap-2 sm:gap-4 text-sm sm:text-base">
+      <a href="#introduction" class="hover:underline transition duration-300">Introduction</a>
+      <a href="#details" class="hover:underline transition duration-300">Team Highlights</a>
+      <a href="../Homepage.php#categories"
+      class="px-3 py-1.5 rounded-md bg-white/10 border border-white/20 
+          text-white text-sm backdrop-blur-sm
+          hover:bg-white/20 hover:border-white/30 hover:shadow-sm
+          transition duration-300 ease-out">
+          ⬅ Back
+      </a>
+    </nav>
+  </div>
+</header>
 
   <!-- Hero Section -->
   <section
     id="introduction"
     class="relative text-center py-24 h-screen mt-16 bg-cover bg-center bg-no-repeat text-white"
-    style="background-image: url('images/volleyballteam.jpg');"
+    style="background-image: url('images/wrestlingteam.jpg');"
   >
     <div class="relative z-10 max-w-3xl mx-auto px-4 bg-black/40 rounded-xl p-6">
-      <h2 class="text-4xl font-bold mb-6 text-white">🏐 SUSL Volleyball Team</h2>
+      <h2 class="text-4xl font-bold mb-6 text-white">🤼‍♂️ SUSL Wrestling Team</h2>
       <p class="text-lg leading-relaxed text-white/90 mb-4">
-        The SUSL Volleyball Team competes in university and regional leagues, demonstrating strong spiking, blocking, and team coordination.
+        The SUSL Wrestling Team trains in both freestyle and Greco-Roman disciplines, competing at inter-university and national levels with focus on technique, balance, and tactical control.
       </p>
       <p class="text-lg leading-relaxed text-white/90">
-        Training focuses on vertical jump, serve-receive, offensive systems, and on-court communication to build a cohesive and competitive squad.
+        Wrestlers develop strength, agility, takedown techniques, mat strategy, and conditioning to excel in weight-class competitions.
       </p>
 
       <div class="mt-6 relative inline-block group">
@@ -60,12 +67,12 @@
       <div class="relative bg-gradient-to-br from-blue-100 to-blue-200 rounded-3xl shadow-2xl border border-blue-300 p-10 overflow-hidden hover:scale-105 transform transition duration-500">
         <h4 class="text-3xl font-bold text-blue-800 mb-6 flex items-center gap-2">🏆 Achievements</h4>
         <p class="text-gray-800 text-lg mb-6">
-          SUSL Volleyball has a proud record in inter-university competitions, earning podium finishes and developing players for provincial teams.
+          SUSL wrestlers have achieved podium finishes at inter-university tournaments and contributed athletes to provincial and national squads through disciplined training and competition.
         </p>
         <ul class="list-disc list-inside text-gray-700 font-medium space-y-2">
-          <li>Inter-University Volleyball Silver – 2023</li>
-          <li>Regional League Finalists – 2022</li>
-          <li>Several players selected for provincial squads</li>
+          <li>Inter-University Wrestling Medalists – 2023</li>
+          <li>Provincial Championship Representatives – multiple years</li>
+          <li>Wrestlers selected for national junior camps</li>
         </ul>
       </div>
 
@@ -73,21 +80,24 @@
       <div class="relative bg-gradient-to-br from-blue-100 to-blue-200 rounded-3xl shadow-2xl border border-blue-300 p-10 overflow-hidden hover:scale-105 transform transition duration-500">
         <h4 class="text-3xl font-bold text-blue-800 mb-6 flex items-center gap-2">👨‍🏫 Coaches & Captains</h4>
         <p class="text-gray-800 text-lg mb-6">
-          Coaches work on tactical rotations, defensive systems, setter-run offense, and strength & conditioning to optimize team performance.
+          Coaches emphasize takedown defense, clinch work, escapes, pinning combinations, and match tactics. Team leaders ensure consistent practice intensity and sportsmanship.
         </p>
         <ul class="list-disc list-inside text-gray-700 font-medium space-y-2">
-          <li>Head Coach: Mr. Ranjith Perera</li>
-          <li>Assistant Coach: Ms. Himashi Fernando</li>
-          <li>Team Captain: Ms. Sanduni Rathnayake</li>
-          <li>Vice-Captain: Mr. Dilan Karunarathne</li>
+          <li>Head Coach: Mr. Ruwan Jayawardena</li>
+          <li>Assistant Coach: Ms. Chamari De Silva</li>
+          <li>Team Captain: Ms. Inoshi Perera</li>
+          <li>Vice-Captain: Mr. Sandun Wickramasinghe</li>
         </ul>
       </div>
 
-      <!-- Registration Card -->
+      <!-- Training & Registration Card -->
       <div class="relative bg-gradient-to-br from-blue-100 to-blue-200 rounded-3xl shadow-2xl border border-blue-300 p-10 overflow-hidden hover:scale-105 transform transition duration-500">
-        <h4 class="text-3xl font-bold text-blue-800 mb-6 flex items-center gap-2">📝 Registration</h4>
-        <p class="text-gray-800 text-lg mb-8">
-          Want to spike, block, and serve for SUSL? Register to join training sessions, enhance your skills, and represent the university in competitions.
+        <h4 class="text-3xl font-bold text-blue-800 mb-6 flex items-center gap-2">🤼 Training & Registration</h4>
+        <p class="text-gray-800 text-lg mb-6">
+          Training sessions include technique drills, live rolling, strength & conditioning, weight-class management, and recovery protocols. Beginners receive fundamentals before competitive progression.
+        </p>
+        <p class="text-gray-800 text-lg mb-6">
+          Prospective team members should complete a short physical screening and attend trial sessions. We welcome athletes of all levels who are committed to improvement.
         </p>
         <a href="Register.html">
           <button class="bg-blue-600 text-white px-8 py-3 rounded-full font-bold hover:bg-blue-700 transition w-full">
