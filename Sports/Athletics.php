@@ -105,7 +105,7 @@
 
 <!-- Footer -->
 <footer class="bg-[#3e6991] text-gray-200 py-6 text-center mt-12">
-  <p>&copy; 2025 Sabaragamuwa University Sports Management System. All rights reserved.</p>
+  <p>&copy; 2025 Sabaragamuwa University Of Sri Lanka. All rights reserved.</p>
 </footer>
 
 </body>

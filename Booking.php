@@ -426,7 +426,7 @@
 
   <!-- Footer -->
   <footer class="bg-gray-800 text-gray-300 py-4 text-center">
-    <p>&copy; 2025 Sabaragamuwa University of Sri Lanka. All rights reserved.</p>
+    <p>&copy; 2025 Sabaragamuwa University Of Sri Lanka. All rights reserved.</p>
   </footer>
 
 </body>
