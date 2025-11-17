@@ -10,10 +10,15 @@
         body {font-family: Arial, sans-serif;background: #f8f9fc;margin: 0;padding: 0;}
 
         /*navigation bar*/
-        .top-bar {padding: 15px;display: flex;justify-content: flex-start;}
+        .top-bar {padding: 10px;}
 
-        .back-btn {background-color: #ffffff;color: #0b0a0a;border: none;padding: 10px 15px;border-radius: 10px;cursor: pointer;font-size: 12px;transition: background 0.3s ease;font-weight: 600;}
-        .back-btn:hover {background-color: #e85a2a;color: #ffffff;}
+        .back-btn {display: flex;align-items: center;gap: 8px;background-color: #e4572e;color: #fff;padding: 10px 20px;border: none;border-radius: 30px;cursor: pointer;font-size: 16px;font-weight: bold;transition: background 0.3s ease, transform 0.2s ease;}
+
+        .back-btn:hover {background-color: #cf431e;transform: translateX(-3px);}
+
+        .back-btn:active {transform: scale(0.98);}
+
+        .arrow-icon {margin-right: 5px;}
 
         .section-header {position: relative;border-radius: 12px;overflow: hidden;height: 400px;background: url('images/Inter_University_Championship.png') center/cover no-repeat;}
 
@@ -80,15 +85,21 @@
 </head>
 
 <body>
-    <!--Back button-->
-    <div class="top-bar">
-        <button class="back-btn" onclick="gotoHomepage()">← Back to Home</button>
-    </div>
+    <!-- Back button -->
+<div class="top-bar">
+    <button class="back-btn" onclick="gotoHomepage()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" class="arrow-icon">
+            <path d="M15 18l-6-6 6-6" />
+        </svg>
+        Back to Home
+    </button>
+</div>
 
     <!--header section-->
     <div class="section-header">
         <div class="overlay">
-            <h1 class="title">Inter University Championship</h1>
+            <h1 class="title">Inter University Games</h1>
         </div>
     </div>
 
