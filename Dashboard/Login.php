@@ -72,7 +72,7 @@ if (isset($_POST['login'])) {
         <div class="card login-card w-100">
             <h2 class="text-center mb-4 fw-bold">Login</h2>
             <form method="POST">
-                <input class="form-control mb-3" placeholder="Email" name="email" required>
+                <input class="form-control mb-3" placeholder="Email" name="email" required type="email">
                 <input class="form-control mb-3" type="password" placeholder="Password" name="password" required>
                 <div class="text-center">
                     <button class="btn btn-primary px-5" name="login">Login</button>
