@@ -10,35 +10,15 @@
         body {font-family: Arial, sans-serif;background: #f8f9fc;margin: 0;padding: 0;}
 
         /*navigation bar*/
-.top-bar {padding: 10px;}
+         .top-bar {padding: 10px;}
 
-.back-btn {    display: flex;
-    align-items: center;
-    gap: 8px;
-    background-color: #e4572e;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    transition: background 0.3s ease, transform 0.2s ease;
-}
+        .back-btn {display: flex;align-items: center;gap: 8px;background-color: #e4572e;color: #fff;padding: 10px 20px;border: none;border-radius: 30px;cursor: pointer;font-size: 16px;font-weight: bold;transition: background 0.3s ease, transform 0.2s ease;}
 
-.back-btn:hover {
-    background-color: #cf431e;
-    transform: translateX(-3px);
-}
+        .back-btn:hover {background-color: #cf431e;transform: translateX(-3px);}
 
-.back-btn:active {
-    transform: scale(0.98);
-}
+        .back-btn:active {transform: scale(0.98);}
 
-.arrow-icon {
-    margin-right: 5px;
-}
-
+        .arrow-icon {margin-right: 5px;}
 
         .section-header {position: relative;border-radius: 12px;overflow: hidden;height: 400px;background: url('images/sports.png') center/cover no-repeat;}
 
@@ -81,26 +61,10 @@
         .schedule-list li span {font-weight: bold;color: #007bff;margin-right: 10px;}
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .title {
-                font-size: 28px;
-            }
+        @media (max-width: 768px) {.title {font-size: 28px; }.info-grid {flex-direction: column;}}
 
-            .info-grid {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .back-btn {
-                font-size: 12px;
-                padding: 8px 12px;
-            }
-
-            .title {
-                font-size: 22px;
-            }
-        }
+        @media (max-width: 480px) {.back-btn {font-size: 12px;padding: 8px 12px;}.title {font-size: 22px;}}
+        
     </style>
 </head>
 
