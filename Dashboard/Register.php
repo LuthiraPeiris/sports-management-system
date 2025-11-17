@@ -77,7 +77,7 @@ $conn->close();
     <style>
         
         body {
-        background-image: url("../images/sports-tools.jpg"); 
+        background-image: url("../images/register.avif"); 
         background-size: cover;background-position: center;background-attachment: fixed;height: 100vh;overflow: hidden;margin: 0;padding: 0;
         }
 
@@ -108,7 +108,7 @@ $conn->close();
     </a>
  
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh; padding: 20px; overflow-y: auto;">
-        <div class="card shadow-sm p-4 w-100 rounded-4" style="max-width: 650px; background: rgba(255, 255, 255, 0.2);box-shadow: 0px 2px 8px rgb(70, 140, 252);backdrop-filter: blur(10px); ">
+        <div class="card shadow-sm p-4 w-100 rounded-4" style="max-width: 650px; background: rgba(255, 255, 255, 0.81);box-shadow: 0px 2px 8px rgb(70, 140, 252);backdrop-filter: blur(10px); ">
             <h2 class="text-center mb-4 fw-bold" style="color:#1a1a1a;" id="formTitle"> Registration Form</h2>
 
             <!-- Role Selection -->
