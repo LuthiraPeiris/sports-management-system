@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2025 at 02:13 PM
+-- Generation Time: Nov 17, 2025 at 03:21 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sport_manag_test`
+-- Database: `sport_management`
 --
 
 -- --------------------------------------------------------
@@ -40,7 +40,6 @@ CREATE TABLE `achievements` (
 --
 
 INSERT INTO `achievements` (`id`, `user_id`, `title`, `date`, `event_name`) VALUES
-(1, 11, 'My leg day', '2025-11-19', 'Faculty of Engineering'),
 (2, 13, 'Homerun', '2025-11-13', 'Slug');
 
 -- --------------------------------------------------------
@@ -118,12 +117,9 @@ INSERT INTO `sports` (`sport_id`, `name`, `created_at`) VALUES
 (7, 'Swimming', '2025-11-06'),
 (8, 'Table Tennis', '2025-11-06'),
 (9, 'Athletics', '2025-11-06'),
-(10, 'Carrom', '2025-11-06'),
-(11, 'Chess', '2025-11-06'),
 (12, 'Hockey', '2025-11-06'),
 (13, 'Elle', '2025-11-06'),
 (14, 'Karate', '2025-11-06'),
-(15, 'Road Race', '2025-11-06'),
 (16, 'Rugby', '2025-11-06'),
 (17, 'Volleyball', '2025-11-06'),
 (18, 'Weight Lifting', '2025-11-06'),
@@ -172,8 +168,9 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`id`, `user_id`, `name`, `nic`, `sport_id`, `student_id`, `created_at`) VALUES
-(3, 11, 'Luthira', '5678', 15, '5678', '2025-11-07'),
-(4, 13, 'Malith', '0987', 17, '0987', '2025-11-09');
+(4, 13, 'Malith', '0987', 17, '0987', '2025-11-09'),
+(5, 16, 'Avishka', '12345', 14, '12345', '2025-11-12'),
+(7, 18, 'Shehan', '21345', 14, '12345', '2025-11-16');
 
 -- --------------------------------------------------------
 
@@ -243,9 +240,10 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `nic`, `sport_id`, `student_id`, `coach_id`, `created_at`) VALUES
 (10, 'Sanka', 'sanka@gmail.com', '$2y$10$X.yplUFYhN.70clYmve6ceWewc5MSbUCYEeWdbgAzZPJjk1YcIj1C', 'coach', '4321', 20, NULL, '4321', '2025-11-06 18:03:57'),
-(11, 'Luthira', 'luthi@gmail.com', '$2y$10$YnyGJnSHEH6/dXTK2/qHJ.FXjMgCnLhfZ7HTSzPvm431zrXFKRKWq', 'student', '5678', 15, '5678', NULL, '2025-11-07 12:59:06'),
 (12, 'Githmi', 'githmi@gmail.com', '$2y$10$rrPdXFLCTjXKqwxE7cHmnu0Z6b.U.fyy3DJMOIhjIM/Vi1nEmLwHi', 'coach', '1234', 17, NULL, '1234', '2025-11-07 13:07:18'),
-(13, 'Malith', 'malith@gmail.com', '$2y$10$W0CTtqVwG8EQ.Cfkk1xVm.B78I2DiK7zQS5QVwp31Eh0w/PXU.vKa', 'student', '0987', 17, '987', NULL, '2025-11-09 07:42:40');
+(13, 'Malith', 'malith@gmail.com', '$2y$10$W0CTtqVwG8EQ.Cfkk1xVm.B78I2DiK7zQS5QVwp31Eh0w/PXU.vKa', 'student', '0987', 17, '987', NULL, '2025-11-09 07:42:40'),
+(16, 'Avishka', 'avishka@gmail.com', '$2y$10$1nOUZcxVwlOLsK2izRcNSeFIyrFGv.fV3gEEsndwhQaMAKpluP.N2', 'student', '12345', 14, '12345', NULL, '2025-11-12 13:53:42'),
+(18, 'Shehan', 'shehan@gmail.com', '$2y$10$YVBJ23h5IKa47Q3hbYq14O04cyquz8/2sHn0lVhHgHxM26GdZvJVK', 'student', '21345', 14, '12345', NULL, '2025-11-16 16:11:02');
 
 --
 -- Indexes for dumped tables
@@ -356,7 +354,7 @@ ALTER TABLE `sport_coach`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `student_sport`
@@ -374,7 +372,7 @@ ALTER TABLE `student_sport_registration`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
