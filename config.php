@@ -1,6 +1,11 @@
 <?php
+// Start session only if not already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 // Database connection parameters
-define('DB_HOST', '127.0.0.0');
+define('DB_HOST', '127.0.0.1');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'sport_management');
@@ -17,9 +22,17 @@ if ($conn->connect_error) {
 // Set charset to utf8mb4
 $conn->set_charset("utf8mb4");
 
+// Helper function for escaping HTML
+function h($str) {
+    return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+}
+
 // Sanitization function
 function sanitize_input($data) {
     global $conn;
+    if (!isset($conn)) {
+        return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
+    }
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
@@ -47,5 +60,6 @@ function redirect($url) {
     header("Location: " . $url);
     exit();
 }
-?>
 
+
+?>
