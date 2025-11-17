@@ -140,6 +140,8 @@ section#stats .container{
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
+    margin-left: 20px;
+    margin-right: 20px; 
 }
 
 .stat-card h3{
@@ -180,6 +182,7 @@ section#dashboard-columns .container{
 
 .schedule-header h2{
     font-size: 20px;
+    
 }
 
 .add-button{
@@ -258,5 +261,29 @@ section#dashboard-columns .container{
 
 .action-button:last-child{
     margin-bottom: 0;
+}
+
+section#my-sports {
+    background-color : #6a89cc;
+    padding: 20px 0;
+}
+
+#my-sports h2{
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.sports-container{
+    display: grid;
+    grid-template-columns: repeat(3 1fr);
+    gap: 20px;
+}
+
+.sport-card{
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
