@@ -217,6 +217,25 @@ $bookingCount = $bookingResult['booking_count'] ?? 0;
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #d9d9d9;
+        }
+
+        /* Header */
+        .top-header { background-color:  #b3e5fc; box-shadow: 0 2px 4px rgba(0,0,0,0.1);}
+        .logo-icon { width: 40px;height: 40px;background: linear-gradient(135deg, #ff6b9d 0%, #ffa07a 100%);border-radius: 50%;display: flex;align-items: center;justify-content: center;color: white;font-weight: bold;}
+
+        /* Navigation */
+        .navbar-custom {background: linear-gradient(135deg, #7e8ef5 0%, #9b9ef5 100%);}
+        .navbar-custom .nav-link {color: rgba(255, 255, 255, 0.85);font-weight: 500; transition: all 0.3s;}
+        .navbar-custom .nav-link:hover,
+        .navbar-custom .nav-link.active {color: white;background-color: rgba(255, 255, 255, 0.1);border-radius: 5px;}
+
+        /* Logout button */
+        .logout-btn {color: white;font-weight: 500;padding: 6px 15px;}
+        .logout-btn:hover {background-color: #fd0000ff;}
+
         .bg-info-bar {
             background-color: #a8e6ff;
         }
@@ -315,23 +334,36 @@ $bookingCount = $bookingResult['booking_count'] ?? 0;
         </div>
     </div>
 
-    <!-- Desktop Navigation Bar -->
-    <nav class="bg-nav-bar d-none d-md-block">
-        <ul class="nav nav-fill">
-            <li class="nav-item">
-                <a class="nav-link text-white py-3 bg-nav-hover" href="#schedule">Schedules</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white py-3 bg-nav-hover" href="#players">Players</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white py-3 bg-nav-hover" href="#requests">Requests</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white py-3 bg-nav-hover" href="../Dashboard/logout.php">Logout</a>
-            </li>
-        </ul>
-    </nav>
+    <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-custom py-3">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Center Nav Items -->
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                <a class="nav-link px-3" href="../Homepage.php#home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3" href="#schedules">Schedules</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3" href="#players">Players</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3" href="#requests">Requests</a>
+                </li>
+                <!-- Logout Button Right-Aligned -->
+            <a href="../Dashboard/logout.php" class="btn btn-danger logout-btn ms-lg-3">
+                Logout
+            </a>
+            </ul>
+        </div>
+    </div>
+</nav>
 
     <div class="container py-4">
         <!-- Welcome Card -->
@@ -379,7 +411,7 @@ $bookingCount = $bookingResult['booking_count'] ?? 0;
                                     style="width: 45px; height: 45px; font-size: 20px;">
                                     📅
                                 </div>
-                                <p class="text-muted mb-0 small">Schedules</p>
+                                <p class="text-muted mb-0 small" id="schedules">Schedules</p>
                             </div>
                             <h2 class="display-6 fw-bold mb-0"><?= $scheduleCount ?></h2>
                         </div>
