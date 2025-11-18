@@ -1,127 +1,133 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
+    background-color: #d6e6f2;
     color: #333;
 }
 
-header{
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; 
+}
+
+header {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 100%;
 }
 
-.top-bar{
-    background-color: #7bc9eb;
-    color: #333;
+.top-bar {
+    background-color: #7bc9eb; 
+    color: #333; 
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.nav-bar{
-    background-color: #6a89cc;
+.nav-bar {
+    background-color: #6a89cc; 
     padding: 10px 20px;
     display: flex;
-    justify-content: flex-start; /* align logo + nav to the left */
+    justify-content: center; 
     align-items: center;
-    gap: 30px; /* space between logo and nav */
 }
 
-header .logo{
+header .logo {
     display: flex;
     align-items: center;
 }
 
-header .logo img{
+header .logo img {
     height: 50px;
-    margin-right: 20px;
+    margin-right: 15px;
 }
 
-header .logo span{
+header .logo span {
     font-size: 15px;
     line-height: 1.3;
     font-weight: bold;
-    color: #333;
+    color: #333; 
 }
 
-header nav ul{
+.nav-bar nav {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-bar nav ul {
     list-style: none;
     display: flex;
-    gap: 20px; /* replace nav li margins with gap for consistent spacing */
-    margin: 0;
-    padding: 0;
 }
 
-header nav li{
-    margin: 0; /* remove extra margins so "Home" begins at the left edge */
+.nav-bar nav li {
+    margin: 0 20px; 
 }
 
-header nav a{
+.nav-bar nav a {
     text-decoration: none;
     color: white;
     font-weight: bold;
     font-size: 16px;
-    display: inline-block;
-    text-align: left;
 }
 
-header .user-profile{
-    margin-left: auto; /* push the user profile area to the far right while keeping logo+nav left */
+.nav-bar nav a:hover {
+    color: #ddd;
+}
+
+header .user-profile {
     display: flex;
     align-items: center;
-    cursor: pointer;
 }
 
-header .user-profile #profile-pic-preview{
+header .user-profile #profile-pic-preview {
     height: 50px;
     width: 50px;
     border-radius: 50%;
     margin-right: 15px;
-    object-fit: cover;
+    object-fit: cover; 
 }
 
-header .user-profile-text{
+header .user-profile-text {
     font-size: 16px;
-    line-height: 1.3;
-    color: #333;
+    line-height: 1.4;
+    color: #333; 
     font-weight: bold;
 }
 
-header .user-profile-text span{
-    display: block;
+header .user-profile-text span {
+    display: block; 
 }
 
-header .user-profile-text #profile-status{
-    font-weight: normal;;
+header .user-profile-text #profile-status {
+    font-weight: normal; 
 }
+
 
 section#welcome {
-    padding: 20px 0;
+    padding: 20px 0; 
 }
 
-.welcome-box{
-    background-color: #6a89cc;
+.welcome-box {
+    background-color: #6a89cc; 
     color: white;
     padding: 25px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin: 10px 20px; /* same horizontal padding as header (20px) */
-    text-align: center; /* start-align text instead of center */
-    max-width: calc(100% - 40px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.welcome-box h2{
+.welcome-box h2 {
     font-size: 24px;
     margin-bottom: 5px;
 }
 
-.welcome-box p{
-    font-size:16px;
+.welcome-box p {
+    font-size: 16px;
 }
 
 section#stats {
@@ -140,8 +146,6 @@ section#stats .container{
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-left: 20px;
-    margin-right: 20px; 
 }
 
 .stat-card h3{
@@ -170,7 +174,7 @@ section#dashboard-columns .container{
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow:0 2px 4px rgba(0, 0, 0, 0.1)
+    box-shadow:0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .schedule-header{
@@ -237,7 +241,7 @@ section#dashboard-columns .container{
     min-height: 100%;
 }
 
-#quick-action h2{
+#quick-actions h2{
     font-size: 20px;
     margin-bottom: 15px;
 }
@@ -247,7 +251,7 @@ section#dashboard-columns .container{
     background-color: #4a69bb;
     color: white;
     text-decoration:none;
-    padding: 20px;
+    padding: 12px;
     border-radius: 5px;
     text-align: center;
     font-size: 16px;
@@ -272,11 +276,12 @@ section#my-sports {
     font-size: 20px;
     margin-bottom: 15px;
     color: white;
+    text-align: center;
 }
 
 .sports-container{
     display: grid;
-    grid-template-columns: repeat(3 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
 
@@ -285,5 +290,145 @@ section#my-sports {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sport-card h3{
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.sport-card p{
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 5px;
+}
+
+.details-button{
+    display: inline-block;
+    background-color: #d9534f;
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+section#achievements {
+    background-color: #f5f5dc;
+    padding: 20px 0;
+}
+
+#achievements h2{
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.achievements-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.achievement-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.achievement-card h4{
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.achievement-card p{
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+}
+
+footer{
+    text-align: center;
+    padding: 20px;
+    background-color: #3b5998;
+    color: white;
+    margin-top: 0;
+}
+
+@media (max-width: 768px){
+
+    .top-bar {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .nav-bar nav ul {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        width: 100%;
+    }
+
+    .nav-bar nav li{
+        margin: 5px 0;
+    }
+
+    section#stats .container,
+    section#dashboard-columns .container,
+    .sports-container,
+    .achievements-container {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 0 10px;
+    }
+
+    section#welcome,
+    section#stats,
+    section#dashboard-columns,
+    section#my-sports,
+    section#achievements {
+        padding: 15px 0;
+    }
+
+    .welcome-box {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .welcome-box h2{
+        font-size: 20px;
+    }
+
+    .welcome-box p{
+        font-size: 14px;
+    }
+
+    .stat-card h3 {
+        font-size: 30px;
+    }
+
+    .stat-card p {
+        font-size: 12px;
+    }
+
+    .schedule-item {
+        font-size: 14px;
+    }
+
+    .schedule-item .date span {
+        font-size: 18px;
+    }
+
+    .schedule-item .date small {
+        font-size: 10px;
+    }
 }
 
