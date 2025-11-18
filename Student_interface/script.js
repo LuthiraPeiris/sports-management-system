@@ -52,7 +52,19 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
 
         achievements: [
-            
+            { title: 'Best Player - Football', date: 'August 2024', event: 'Inter-University Sports Meet'},
+            { title: 'Gold Medal - Swimming', date: 'July 2024', event: 'Inter-University Sports Meet'},
+            { title: 'Best Player - Football', date: 'August 2024', event: 'Inter-Univeesirt Sports Meer'},
+            { title: 'Gold Medal - Swimming', date: 'July 2024', event: 'Inter-University Sports Meet'}
         ]
-    }
+    };
+
+    loadHeaderProfile(studentData.fullName, studentData.status, studentData.profilePicUrl);
+    loadWelcomeMassage(studentData.name);
+    loadStats(studentData.stats);
+    loadSchedule(studentData.schedule);
+    loadMySports(studentData.sports);
+    loadAchievements(studentData.achievements);
+
+    
 })
