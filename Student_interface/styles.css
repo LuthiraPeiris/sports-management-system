@@ -10,20 +10,63 @@
 }
 
 body.dark-mode {
-    --bg-body: #121212;
-    --bg-card: #1e1e1e;
-    --text-main: #e0e0e0;
-    --text-secondary: #b0b0b0;
+    --bg-body: #0f172a;
+    --bg-card: #1e293b;
+    --text-main: #f1f5f9;
+    --text-secondary: #94a3b8;
     --text-inverse: #e0e0e0;
-    --top-bar-bg: #0f3460;
-    --nav-bg: #16213e;
-    --accent-bg: #2c2c2c;
+    --top-bar-bg: #172754;
+    --nav-bg: #1e3a8a;
+    --accent-bg: #0b1120;
+    --neon-pop: #38bdf8;
+}
+
+body.dark-mode .stat-card h3 {
+    color: var(--neon-pop);
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+body.dark-mode .welcome-box {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    border: 1px solid #3b82f6;
+}
+
+body.dark-mode .schedule-item .date span {
+    color: var(--neon-pop);
+}
+
+body.dark-mode .stat-card, 
+body.dark-mode .sport-card, 
+body.dark-mode #schedule, 
+body.dark-mode #quick-actions, 
+body.dark-mode .achievement-card {
+    border: 1px solid #334155; 
+}
+
+body.dark-mode .nav-bar nav ul {
+    background-color: #1e293b; 
+    border-right: 1px solid #334155;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+.overlay.active {
+    display: block;
 }
 
 body {
@@ -65,7 +108,7 @@ header {
 }
 
 .nav-bar {
-    background-color: var(--nav-bar); 
+    background-color: var(--nav-bg); 
     padding: 10px 20px;
     position: relative;
     display: flex;
@@ -425,23 +468,26 @@ footer{
 
     .menu-toggle {
         display: block;
+        z-index: 1001;
     }
 
     .nav-bar nav ul {
-        display: none;
+        display: flex;
         flex-direction: column;
         gap: 15px;
-        align-items: center;
+        align-items: flex-start;
         width: 100%;
-        padding-top: 20px;
-
+        padding-top: 80px;
         background-color: var(--nav-bar);
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 100;
-        padding-bottom: 20px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        top: 0;
+        left: -300px;
+        height: 100vh;
+        width: 250px;
+        transition: left 0.3s ease;
+        z-index: 1000;
+        padding-left: 20px;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
 
     }
 
@@ -450,11 +496,15 @@ footer{
     }
 
     .nav-bar nav ul.active {
-        display: flex;
+        left: 0;
     }
 
     .nav-bar nav li{
         margin: 5px 0;
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 10px;
     }
 
     section#stats .container,

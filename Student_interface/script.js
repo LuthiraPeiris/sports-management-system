@@ -158,4 +158,45 @@ document.addEventListener('DOMContentLoaded', () => {
             achievementsContainer.appendChild(card);
         });
     }
+
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    if(themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                themeToggleBtn.textContent = '☀️';
+            } else {
+                themeToggleBtn.textContent = '🌙';
+            }
+        });
+    }
+
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('nav-links');
+    const overlay = document.getElementById('overlay');
+
+    if(mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+
+            if(overlay) overlay.classList.toggle('active');
+
+            if(navLinks.classList.contains('active')) {
+                mobileMenuBtn.innerHTML = '&times;';
+            } else {
+                mobileMenuBtn.innerHTML = '&#9776;';
+            }
+        });
+
+        if(overlay) {
+            overlay.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                overlay.classList.remove('active');
+                mobileMenuBtn.innerHTML = '&#9776;';
+            });
+        }
+    }
 });
