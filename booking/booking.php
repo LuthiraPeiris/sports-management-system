@@ -83,7 +83,7 @@ if (isset($_GET['cancel_id'])) {
 // ------------------------------------
 // FETCH BOOKINGS
 // ------------------------------------
-$bookings = $conn->query("SELECT * FROM bookings ORDER BY booking_date DESC, booking_time DESC");
+$bookings = $conn->query("SELECT * FROM bookings WHERE status != 'Cancelled' ORDER BY booking_date DESC, booking_time DESC");
 
 ?>
 <!DOCTYPE html>
@@ -99,295 +99,84 @@ $bookings = $conn->query("SELECT * FROM bookings ORDER BY booking_date DESC, boo
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * {margin: 0;padding: 0;box-sizing: border-box;}
 
-        body {
-            background-color: #f0f4f8;
-            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-        }
+        body {background-color: #f0f4f8;font-family: 'Segoe UI', Roboto, Arial, sans-serif;}
 
-        .font {
-            font-weight: 700;
-        }
+        .font {font-weight: 700;}
 
         /* Header Styles */
-        .top-header {
-            background: linear-gradient(135deg, #d4f1f9 0%, #a8e6f5 100%);
-            padding: 15px 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
+        .top-header {background: linear-gradient(135deg, #d4f1f9 0%, #a8e6f5 100%);padding: 15px 0;box-shadow: 0 2px 8px rgba(0,0,0,0.1);}
 
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        .header-content {display: flex;align-items: center;justify-content: space-between;max-width: 1400px;margin: 0 auto;padding: 0 20px;}
 
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+        .logo-section {display: flex;align-items: center;gap: 15px;}
 
-        .logo-placeholder {
-            width: 70px;
-            height: 70px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-        }
+        .logo-placeholder {width: 70px;height: 70px;background: white;border-radius: 50%;display: flex;align-items: center;justify-content: center;box-shadow: 0 2px 6px rgba(0,0,0,0.15);}
+        .logo-placeholder img {width: 100%;height: 100%;border-radius: 50%;object-fit: cover;}
 
-        .logo-placeholder img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-        }
+        .header-text h1 {font-size: 1.5rem;color: #1a1a1a;margin-bottom: 2px;font-weight: 700;}
+        .header-text p {font-size: 0.9rem;color: #555;margin: 0;}
 
-        .header-text h1 {
-            font-size: 1.5rem;
-            color: #1a1a1a;
-            margin-bottom: 2px;
-            font-weight: 700;
-        }
+        .user-section {display: flex;align-items: center;gap: 10px;color: #1a1a1a;font-weight: 600;}
 
-        .header-text p {
-            font-size: 0.9rem;
-            color: #555;
-            margin: 0;
-        }
-
-        .user-section {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #1a1a1a;
-            font-weight: 600;
-        }
-
-        .back-btn-header {
-            background: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            color: #3e6991;
-            font-weight: 600;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .back-btn-header:hover {
-            background: #3e6991;
-            color: white;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
+        .back-btn-header {background: white;border: none;padding: 8px 16px;border-radius: 6px;color: #3e6991;font-weight: 600;box-shadow: 0 2px 4px rgba(0,0,0,0.1);transition: all 0.3s ease;text-decoration: none;display: inline-block;}
+        .back-btn-header:hover {background: #3e6991;color: white;transform: translateY(-1px);box-shadow: 0 4px 8px rgba(0,0,0,0.15);text-decoration: none;}
 
         /* Remove underline from all links */
-        a {
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: none;
-        }
+        a {text-decoration: none;}
+        a:hover {text-decoration: none;}
 
         /* Blue Banner */
-        .container-fluid {
-            display: flex;
-            justify-content: center;
-            height: 70px;
-            background-color: rgba(62, 105, 145, 0.95);
-            align-items: center;
-            margin-bottom: 30px;
-        }
+        .container-fluid {display: flex;justify-content: center;height: 70px;background-color: rgba(62, 105, 145, 0.95);align-items: center;margin-bottom: 30px;}
 
-        .h1 {
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            margin: 0;
-            font-size: 2rem;
-        }
+        .h1 {color: white;text-shadow: 2px 2px 4px rgba(0,0,0,0.3);margin: 0;font-size: 2rem;}
 
         /* Card Styles */
-        .card-custom {
-            background-color: white !important;
-            border: 2px solid #e0e0e0 !important;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            height: 450px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+        .card-custom {background-color: white !important;border: 2px solid #e0e0e0 !important;border-radius: 12px;transition: all 0.3s ease;height: 450px;overflow: hidden;box-shadow: 0 4px 6px rgba(0,0,0,0.1);}
+        .card-custom:hover {transform: translateY(-8px);box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);border-color: #3e6991 !important;}
+        .card-custom img {width: 100%;height: 220px;object-fit: cover;}
+        .card-body {padding: 1.5rem;}
 
-        .card-custom:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-            border-color: #3e6991 !important;
-        }
-
-        .card-custom img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-
-        .card-body {
-            padding: 1.5rem;
-        }
-
-        .btn-wrapper {
-            text-decoration: none;
-            padding: 0 !important;
-            width: 100%;
-            background: transparent;
-            border: none;
-        }
+        .btn-wrapper {text-decoration: none;padding: 0 !important;width: 100%;background: transparent;border: none;}
 
         /* Modal Styles */
-        .modal-header {
-            background: linear-gradient(135deg, #3e6991 0%, #5a8db8 100%);
-            color: white;
-            border-bottom: none;
-            padding: 1.5rem;
-        }
+        .modal-header {background: linear-gradient(135deg, #3e6991 0%, #5a8db8 100%);color: white;border-bottom: none;padding: 1.5rem;}
+        .modal-title {font-weight: 700;font-size: 1.4rem;}
 
-        .modal-title {
-            font-weight: 700;
-            font-size: 1.4rem;
-        }
+        .btn-close {filter: brightness(0) invert(1);}
 
-        .btn-close {
-            filter: brightness(0) invert(1);
-        }
+        .modal-body {padding: 2rem;background-color: #f8f9fa;}
 
-        .modal-body {
-            padding: 2rem;
-            background-color: #f8f9fa;
-        }
+        .form-label {font-weight: 600;color: #333;margin-bottom: 0.5rem;}
+        .form-control, .form-select {border: 2px solid #e0e0e0;border-radius: 8px;padding: 10px 15px;transition: all 0.3s ease;}
+        .form-control:focus, .form-select:focus {border-color: #3e6991;box-shadow: 0 0 0 0.2rem rgba(62, 105, 145, 0.15);}
 
-        .form-label {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 0.5rem;
-        }
+        textarea.form-control {resize: vertical;min-height: 100px;}
 
-        .form-control, .form-select {
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 10px 15px;
-            transition: all 0.3s ease;
-        }
+        .modal-footer {border-top: 2px solid #e0e0e0;padding: 1.5rem;background-color: white;}
+        .modal-footer .btn {padding: 10px 30px;font-weight: 600;border-radius: 8px;transition: all 0.3s ease;}
 
-        .form-control:focus, .form-select:focus {
-            border-color: #3e6991;
-            box-shadow: 0 0 0 0.2rem rgba(62, 105, 145, 0.15);
-        }
-
-        textarea.form-control {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .modal-footer {
-            border-top: 2px solid #e0e0e0;
-            padding: 1.5rem;
-            background-color: white;
-        }
-
-        .modal-footer .btn {
-            padding: 10px 30px;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-            background: #3e6991;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background: #2d4d6b;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-
-        .btn-secondary {
-            background: #6c757d;
-            border: none;
-        }
-
-        .btn-secondary:hover {
-            background: #545b62;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-
-        .btn-info {
-            background: #17a2b8;
-            border: none;
-        }
-
-        .btn-info:hover {
-            background: #138496;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
+        .btn-primary {background: #3e6991;border: none;}
+        .btn-primary:hover {background: #2d4d6b;transform: translateY(-2px);box-shadow: 0 4px 8px rgba(0,0,0,0.2);}
+        .btn-secondary {background: #6c757d;border: none;}
+        .btn-secondary:hover {background: #545b62;transform: translateY(-2px);box-shadow: 0 4px 8px rgba(0,0,0,0.2);}
+        .btn-info {background: #17a2b8;border: none;}
+        .btn-info:hover {background: #138496;transform: translateY(-2px);box-shadow: 0 4px 8px rgba(0,0,0,0.2);}
 
         /* Table Section */
-        #booked-details {
-            background-color: #ffffff;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+        #booked-details {background-color: #ffffff;border-radius: 12px;padding: 2rem;box-shadow: 0 4px 6px rgba(0,0,0,0.1);}
 
-        .table {
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .table thead {
-            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
-        }
-
-        .table tbody tr {
-            transition: background-color 0.3s ease;
-        }
-
-        .table tbody tr:hover {
-            background-color: #f0f4f8;
-        }
+        .table {border-radius: 8px;overflow: hidden;}
+        .table thead {background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);}
+        .table tbody tr {transition: background-color 0.3s ease;}
+        .table tbody tr:hover {background-color: #f0f4f8;}
 
         /* Alerts */
-        .alert {
-            border-radius: 8px;
-            border: none;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+        .alert {border-radius: 8px;border: none;box-shadow: 0 2px 4px rgba(0,0,0,0.1);}
 
         /* Footer */
-        footer {
-            background-color: #2d3748;
-            color: #cbd5e0;
-            padding: 1.5rem;
-            text-align: center;
-            margin-top: 3rem;
-        }
+        footer {background-color: #2d3748;color: #cbd5e0;padding: 1.5rem;text-align: center;margin-top: 3rem;}
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -526,32 +315,27 @@ $bookings = $conn->query("SELECT * FROM bookings ORDER BY booking_date DESC, boo
                     </thead>
 
                     <tbody>
-                    <?php if ($bookings->num_rows === 0): ?>
+                <?php if ($bookings->num_rows === 0): ?>
+                    <tr>
+                        <td colspan="5" class="text-center">No active bookings!</td>
+                    </tr>
+                <?php else: ?>
+                    <?php while ($b = $bookings->fetch_assoc()): ?>
                         <tr>
-                            <td colspan="5" class="text-center">No bookings yet!</td>
+                            <td><?= h($b['facility_type']) ?></td>
+                            <td><?= h($b['booking_date']) ?></td>
+                            <td><?= date("h:i A", strtotime($b['booking_time'])) ?></td>
+                            <td><?= h($b['duration']) ?> hour(s)</td>
+                            <td>
+                                <a href="booking.php?cancel_id=<?= $b['id'] ?>" class="btn btn-danger btn-sm"
+                                   onclick="return confirm('Are you sure you want to cancel this booking?');">
+                                   Cancel
+                                </a>
+                            </td>
                         </tr>
-                    <?php else: ?>
-                        <?php while ($b = $bookings->fetch_assoc()): ?>
-                            <tr>
-                                <td><?= h($b['facility_type']) ?></td>
-                                <td><?= h($b['booking_date']) ?></td>
-                                <td><?= date("h:i A", strtotime($b['booking_time'])) ?></td>
-                                <td><?= h($b['duration']) ?> hour(s)</td>
-
-                                <td>
-                                    <?php if ($b['status'] !== "Cancelled"): ?>
-                                        <a href="booking.php?cancel_id=<?= $b['id'] ?>" class="btn btn-danger btn-sm"
-                                           onclick="return confirm('Are you sure you want to cancel this booking?');">
-                                           Cancel
-                                        </a>
-                                    <?php else: ?>
-                                        <span class="text-muted">Cancelled</span>
-                                    <?php endif; ?>
-                                </td>
-                            </tr>
-                        <?php endwhile; ?>
-                    <?php endif; ?>
-                    </tbody>
+                    <?php endwhile; ?>
+                <?php endif; ?>
+                </tbody>
 
                 </table>
             </div>
