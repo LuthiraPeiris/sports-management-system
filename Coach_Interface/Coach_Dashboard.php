@@ -251,7 +251,7 @@ $scheduleCount = $schedules->num_rows;
 
     <div class="container py-4">
         <!-- Welcome Card -->
-        <div class="card text-white text-center shadow mb-4 rounded-4 border-0" style="background: linear-gradient(135deg, #7e8ef5 0%, #9b9ef5 100%);">
+        <div class="card bg-primary text-white text-center shadow mb-4 rounded-4 border-0">
             <div class="card-body py-4">
                 <h1 class="h2 mb-2">Welcome back Coach <?php echo $user['name']; ?>!</h1>
                 <p class="mb-1">Let's make today's training count!</p>
@@ -294,7 +294,7 @@ $scheduleCount = $schedules->num_rows;
                                     style="width: 45px; height: 45px; font-size: 20px;">
                                     📅
                                 </div>
-                                <p class="text-muted mb-0 small">Schedules</p>
+                                <p class="text-muted mb-0 small" id="schedules">Schedules</p>
                             </div>
                             <h2 class="display-6 fw-bold mb-0"><?= $scheduleCount ?></h2>
                         </div>
@@ -413,7 +413,7 @@ $scheduleCount = $schedules->num_rows;
     </div>
 
     <!-- Players Section -->
-    <div class="container-fluid p-0 mt-5">
+    <div class="container-fluid p-0 mt-5" id="players">
         <div class="bg-custom-blue p-4" style="min-height: 400px;">
     <div class="row justify-content-center">
         <div class="col-10 col-md-8 col-lg-6">
