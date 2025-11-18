@@ -77,11 +77,11 @@ $conn->close();
     <style>
         
         body {
-        background-image: url("../images/sports-tools.jpg"); 
+        background-image: url("../images/register.webp"); 
         background-size: cover;background-position: center;background-attachment: fixed;height: 100vh;overflow: hidden;margin: 0;padding: 0;
         }
 
-        .role-btn {padding: 10px 20px;font-weight: 600;border-radius: 8px;transition: all 0.25s ease;background-color: #ffffffcc;backdrop-filter: blur(6px);}
+        .role-btn {padding: 10px 20px;font-weight: 600;border-radius: 8px;transition: all 0.25s ease;background-color: #ffffff88;backdrop-filter: blur(6px);}
 
         /* Hover effect */
         .role-btn:hover {background-color: #e6e9ff;border-color: #2937a5;color: #2937a5;}
@@ -89,8 +89,8 @@ $conn->close();
         /* Active (Selected) Button */
         .role-btn.active {background-color: #2937a5 !important;border-color: #2937a5 !important;color: white !important;box-shadow: 0 0 12px rgba(41, 55, 165, 0.4);}
 
-        .home-btn {position: absolute; top: 20px; left: 20px; background-color: rgba(255, 255, 255, 0.95); color: #333; border: 2px solid rgba(255, 255, 255, 1);backdrop-filter: blur(10px);font-weight: 500;padding: 10px 20px;border-radius: 10px;box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);transition: 0.3s;}
-        .home-btn:hover {background-color: white; color: rgb(70, 140, 252);border-color: rgb(70, 140, 252);box-shadow: 0px 4px 15px rgba(70, 140, 252, 0.3);transform: translateY(-2px);}
+        .home-btn {position: absolute; top: 20px; left: 20px; background-color: rgba(198, 220, 228, 0.95); color: #333; border: 2px solid rgba(255, 255, 255, 1);backdrop-filter: blur(10px);font-weight: 500;padding: 10px 20px;border-radius: 10px;box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);transition: 0.3s;}
+        .home-btn:hover {background-color: white; color: rgb(70, 140, 252);border-color: rgba(28, 52, 139, 0.97);box-shadow: 0px 4px 15px rgba(143, 70, 252, 0.85);transform: translateY(-2px);}
         
         .login-link {color: #1a1a1a; text-decoration: none; font-size: 14px; font-weight: 500;}
         .login-link:hover {color: rgb(70, 140, 252); text-decoration: underline;}
@@ -108,7 +108,7 @@ $conn->close();
     </a>
  
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh; padding: 20px; overflow-y: auto;">
-        <div class="card shadow-sm p-4 w-100 rounded-4" style="max-width: 650px; background: rgba(255, 255, 255, 0.2);box-shadow: 0px 2px 8px rgb(70, 140, 252);backdrop-filter: blur(10px); ">
+        <div class="card shadow-lg p-4 w-100 rounded-4" style="max-width: 650px; background:   rgba(198, 220, 228, 0.95);box-shadow: 0px 2px 8px rgb(70, 140, 252);backdrop-filter: blur(10px); ">
             <h2 class="text-center mb-4 fw-bold" style="color:#1a1a1a;" id="formTitle"> Registration Form</h2>
 
             <!-- Role Selection -->
