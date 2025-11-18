@@ -22,7 +22,7 @@ if (isset($_POST['register'])) {
     //  Insert into users table
     $stmt = $conn->prepare("INSERT INTO users (name, email, password, role, nic, sport_id, student_id, coach_id) 
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssiis", $name, $email, $password, $role, $nic, $sport_id, $student_id, $coach_id);
+    $stmt->bind_param("sssssiss", $name, $email, $password, $role, $nic, $sport_id, $student_id, $coach_id);
 
     if ($stmt->execute()) {
 

@@ -54,40 +54,131 @@ $coachData->bind_param("i", $user_id);
 $coachData->execute();
 $coachDataResult = $coachData->get_result()->fetch_assoc();
 
-$sportID = $coachDataResult['sport_id'];
-$sportName = $coachDataResult['sport_name'];
+$sportID = $coachDataResult['sport_id'] ?? null;
+$sportName = $coachDataResult['sport_name'] ?? 'No Sport Assigned';
 
-/* ---------------- Fetch Students Registered in This Sport ---------------- */
-/* Combines:
-   1. Initial registration → student.sport_id
-   2. Later registrations → student_sport_registration
-*/
+/* ---------------- Handle Student Registration Approvals/Rejections ---------------- */
+if(isset($_GET['approve'])){
+    $registration_id = $_GET['approve'];
+    
+    if($sportID) {
+        // Update registration status to Approved
+        $update = $conn->prepare("UPDATE student_sport_registration SET status = 'Approved' WHERE id = ? AND sport_id = ? AND coach_id = ?");
+        $update->bind_param("iii", $registration_id, $sportID, $user_id);
+        $update->execute();
+    }
+    
+    header("Location: Coach_Dashboard.php");
+    exit();
+}
 
-$students = $conn->prepare("
-    (
-        SELECT 
-            u.name, 
-            u.nic, 
-            s.student_id
-        FROM student s
-        JOIN users u ON s.user_id = u.id
-        WHERE s.sport_id = ?
-    )
-    UNION
-    (
-        SELECT 
-            u.name, 
+if(isset($_GET['approve_initial'])){
+    $student_user_id = $_GET['approve_initial'];
+    
+    if($sportID) {
+        // Create new registration record for initial registration
+        $insert = $conn->prepare("INSERT INTO student_sport_registration (user_id, sport_id, coach_id, status) VALUES (?, ?, ?, 'Approved')");
+        $insert->bind_param("iii", $student_user_id, $sportID, $user_id);
+        $insert->execute();
+    }
+    
+    header("Location: Coach_Dashboard.php");
+    exit();
+}
+
+if(isset($_GET['reject'])){
+    $registration_id = $_GET['reject'];
+    
+    if($sportID) {
+        // Delete from registration table
+        $delete = $conn->prepare("DELETE FROM student_sport_registration WHERE id = ? AND sport_id = ? AND coach_id = ?");
+        $delete->bind_param("iii", $registration_id, $sportID, $user_id);
+        $delete->execute();
+    }
+    
+    header("Location: Coach_Dashboard.php");
+    exit();
+}
+
+if(isset($_GET['reject_initial'])){
+    $student_user_id = $_GET['reject_initial'];
+    
+    if($sportID) {
+        // Remove sport_id from user for initial registration rejection
+        $update = $conn->prepare("UPDATE users SET sport_id = NULL WHERE id = ? AND sport_id = ?");
+        $update->bind_param("ii", $student_user_id, $sportID);
+        $update->execute();
+    }
+    
+    header("Location: Coach_Dashboard.php");
+    exit();
+}
+
+/* ---------------- Fetch Pending Student Registrations ---------------- */
+$pendingStudentsResult = null;
+if($sportID) {
+    // Get pending registrations from BOTH systems:
+    // 1. From student_sport_registration table (status = 'Pending')
+    // 2. From users table (initial registration) that don't have approved registration
+    $pendingStudents = $conn->prepare("
+        (SELECT 
+            ssr.id AS registration_id,
+            u.id AS user_id,
+            u.name,
             u.nic,
-            st.student_id
+            u.student_id,
+            'extra' AS registration_type
         FROM student_sport_registration ssr
         JOIN users u ON ssr.user_id = u.id
-        JOIN student st ON st.user_id = u.id
         WHERE ssr.sport_id = ?
-    )
-");
-$students->bind_param("ii", $sportID, $sportID);
-$students->execute();
-$studentsResult = $students->get_result();
+        AND ssr.coach_id = ?
+        AND ssr.status = 'Pending')
+        
+        UNION
+        
+        (SELECT 
+            NULL AS registration_id,
+            u.id AS user_id,
+            u.name,
+            u.nic,
+            u.student_id,
+            'initial' AS registration_type
+        FROM users u
+        WHERE u.sport_id = ? 
+        AND u.role = 'student'
+        AND u.id NOT IN (
+            SELECT ssr.user_id 
+            FROM student_sport_registration ssr 
+            WHERE ssr.sport_id = ? AND ssr.status = 'Approved'
+        ))
+    ");
+    $pendingStudents->bind_param("iiii", $sportID, $user_id, $sportID, $sportID);
+    $pendingStudents->execute();
+    $pendingStudentsResult = $pendingStudents->get_result();
+}
+
+/* ---------------- Fetch Approved Players ---------------- */
+$approvedPlayersResult = null;
+if($sportID) {
+    // Get approved players from student_sport_registration table
+    $approvedPlayers = $conn->prepare("
+        SELECT 
+            u.id AS user_id,
+            u.name,
+            u.nic,
+            u.student_id,
+            ssr.id AS registration_id
+        FROM users u
+        JOIN student_sport_registration ssr ON u.id = ssr.user_id
+        WHERE ssr.sport_id = ? 
+        AND ssr.coach_id = ?
+        AND ssr.status = 'Approved'
+        AND u.role = 'student'
+    ");
+    $approvedPlayers->bind_param("ii", $sportID, $user_id);
+    $approvedPlayers->execute();
+    $approvedPlayersResult = $approvedPlayers->get_result();
+}
 
 /* ---------------- Fetch Coach's Schedule ---------------- */
 $scheduleQuery = $conn->prepare("
@@ -101,8 +192,19 @@ $scheduleQuery->execute();
 $schedules = $scheduleQuery->get_result();
 
 $scheduleCount = $schedules->num_rows;
-?>
 
+/* ---------------- Fetch Booking Count ---------------- */
+$bookingCount = 0;
+$bookingQuery = $conn->prepare("
+    SELECT COUNT(*) as booking_count 
+    FROM bookings 
+    WHERE user_id = ?
+");
+$bookingQuery->bind_param("i", $user_id);
+$bookingQuery->execute();
+$bookingResult = $bookingQuery->get_result()->fetch_assoc();
+$bookingCount = $bookingResult['booking_count'] ?? 0;
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -115,7 +217,6 @@ $scheduleCount = $schedules->num_rows;
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-       
         .bg-info-bar {
             background-color: #a8e6ff;
         }
@@ -143,6 +244,19 @@ $scheduleCount = $schedules->num_rows;
         .bg-custom-dark-blue {
             background-color: #0000CC;
         }
+        
+        .schedule-item {
+            transition: transform 0.2s ease;
+        }
+        
+        .schedule-item:hover {
+            transform: translateY(-2px);
+        }
+        
+        .registration-badge {
+            font-size: 0.7rem;
+            padding: 2px 6px;
+        }
     </style>
 </head>
 
@@ -167,8 +281,8 @@ $scheduleCount = $schedules->num_rows;
                     <div class="fs-1">👤</div>
                 </div>
                 <div class="text-end">
-                    <p class="fw-bold mb-0 text-dark">Coach <?php echo $user['name']; ?>!</p>
-                    <p class="mb-0 small text-secondary"><?php echo $user['coach_id']; ?></p>
+                    <p class="fw-bold mb-0 text-dark">Coach <?php echo htmlspecialchars($user['name']); ?>!</p>
+                    <p class="mb-0 small text-secondary">Sport: <?php echo htmlspecialchars($sportName); ?></p>
                 </div>
             </div>
 
@@ -183,16 +297,17 @@ $scheduleCount = $schedules->num_rows;
                         <div class="d-flex align-items-center gap-2">
                             <div class="fs-1">👤</div>
                             <div>
-                                <div class="fw-bold text-white small">Coach <?php echo $user['name']; ?>!</div>
-                                <div class="text-white small"><?php echo $user['coach_id']; ?></div>
+                                <div class="fw-bold text-white small">Coach <?php echo htmlspecialchars($user['name']); ?>!</div>
+                                <div class="text-white small">Sport: <?php echo htmlspecialchars($sportName); ?></div>
                             </div>
                         </div>
                     </li>
                     <li><a class="dropdown-item text-white border-bottom border-light border-opacity-10 bg-nav-hover"
-                            href="#">Schedules</a></li>
+                            href="#schedule">Schedules</a></li>
                     <li><a class="dropdown-item text-white border-bottom border-light border-opacity-10 bg-nav-hover"
-                            href="#">Players</a></li>
-                    <li><a class="dropdown-item text-white bg-nav-hover" href="#">Requests</a></li>
+                            href="#players">Players</a></li>
+                    <li><a class="dropdown-item text-white border-bottom border-light border-opacity-10 bg-nav-hover"
+                            href="#requests">Requests</a></li>
                     <li><a class="dropdown-item text-white border-bottom border-light border-opacity-10 bg-nav-active"
                             href="../Dashboard/logout.php">Logout</a></li>
                 </ul>
@@ -204,13 +319,13 @@ $scheduleCount = $schedules->num_rows;
     <nav class="bg-nav-bar d-none d-md-block">
         <ul class="nav nav-fill">
             <li class="nav-item">
-                <a class="nav-link text-white py-3 bg-nav-hover" href="#">Schedules</a>
+                <a class="nav-link text-white py-3 bg-nav-hover" href="#schedule">Schedules</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white py-3 bg-nav-hover" href="#">Players</a>
+                <a class="nav-link text-white py-3 bg-nav-hover" href="#players">Players</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white py-3 bg-nav-hover" href="#">Requests</a>
+                <a class="nav-link text-white py-3 bg-nav-hover" href="#requests">Requests</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white py-3 bg-nav-hover" href="../Dashboard/logout.php">Logout</a>
@@ -222,9 +337,9 @@ $scheduleCount = $schedules->num_rows;
         <!-- Welcome Card -->
         <div class="card bg-primary text-white text-center shadow mb-4 rounded-4 border-0">
             <div class="card-body py-4">
-                <h1 class="h2 mb-2">Welcome back Coach <?php echo $user['name']; ?>!</h1>
+                <h1 class="h2 mb-2">Welcome back Coach <?php echo htmlspecialchars($user['name']); ?>!</h1>
                 <p class="mb-1">Let's make today's training count!</p>
-                <p class="mb-0 fw-bold"><?php echo $sportName; ?></p>
+                <p class="mb-0 fw-bold"><?php echo htmlspecialchars($sportName); ?></p>
             </div>
         </div>
 
@@ -241,19 +356,20 @@ $scheduleCount = $schedules->num_rows;
                                 </div>
                                 <p class="text-muted mb-0 small">Students</p>
                             </div>
-                            <h2 class="display-6 fw-bold mb-0"><?= ($studentsResult->num_rows > 0) ? $studentsResult->num_rows : 0 ?></h2>
+                            <h2 class="display-6 fw-bold mb-0"><?= ($approvedPlayersResult && $approvedPlayersResult->num_rows > 0) ? $approvedPlayersResult->num_rows : 0 ?></h2>
                         </div>
                         <div class="d-md-none text-center">
                             <div class="bg-primary text-white rounded d-flex align-items-center justify-content-center mx-auto mb-3"
                                 style="width: 50px; height: 50px; font-size: 24px;">
                                 👥
                             </div>
-                            <h2 class="display-6 fw-bold mb-1"><?= ($studentsResult->num_rows > 0) ? $studentsResult->num_rows : 0 ?></h2>
+                            <h2 class="display-6 fw-bold mb-1"><?= ($approvedPlayersResult && $approvedPlayersResult->num_rows > 0) ? $approvedPlayersResult->num_rows : 0 ?></h2>
                             <p class="text-muted mb-0 small">Students</p>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="col-6 col-sm-4 col-md-4">
                 <div class="card shadow-sm h-100 border-0">
                     <div class="card-body py-3">
@@ -278,6 +394,7 @@ $scheduleCount = $schedules->num_rows;
                     </div>
                 </div>
             </div>
+            
             <div class="col-6 col-sm-4 col-md-4">
                 <div class="card shadow-sm h-100 border-0">
                     <div class="card-body py-3">
@@ -289,14 +406,14 @@ $scheduleCount = $schedules->num_rows;
                                 </div>
                                 <p class="text-muted mb-0 small">Bookings</p>
                             </div>
-                            <h2 class="display-6 fw-bold mb-0">5</h2>
+                            <h2 class="display-6 fw-bold mb-0"><?= $bookingCount ?></h2>
                         </div>
                         <div class="d-md-none text-center">
                             <div class="bg-primary text-white rounded d-flex align-items-center justify-content-center mx-auto mb-3"
                                 style="width: 50px; height: 50px; font-size: 24px;">
                                 ⚽
                             </div>
-                            <h2 class="display-6 fw-bold mb-1">5</h2>
+                            <h2 class="display-6 fw-bold mb-1"><?= $bookingCount ?></h2>
                             <p class="text-muted mb-0 small">Bookings</p>
                         </div>
                     </div>
@@ -305,76 +422,172 @@ $scheduleCount = $schedules->num_rows;
         </div>
 
         <!-- Schedule and Quick Actions -->
-        <div class="row g-3">
+        <div class="row g-3" id="schedule">
             <!-- My Schedule -->
             <div class="col-12 col-lg-8">
-    <div class="card shadow-sm border-0">
-        <div class="card-body">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <!-- Header -->
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h2 class="h4 fw-bold mb-0">My Schedule</h2>
+                            <button class="btn btn-danger btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#addScheduleModal">
+                                Add Items
+                            </button>
+                        </div>
 
-            <!-- Header -->
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="h4 fw-bold mb-0">My Schedule</h2>
-                <button class="btn btn-danger btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#addScheduleModal">
-                    Add Items
-                </button>
-            </div>
+                        <!-- Schedule List -->
+                        <div class="vstack gap-2">
+                            <?php if($schedules->num_rows > 0): ?>
+                                <?php while($row = $schedules->fetch_assoc()): ?>
+                                    <div class="bg-primary text-white rounded-3 p-3 schedule-item">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <!-- Date + Title -->
+                                            <div class="d-flex align-items-center">
+                                                <div class="bg-white bg-opacity-25 rounded text-center px-3 py-2 me-3">
+                                                    <div class="fw-bold fs-4">
+                                                        <?= date("d", strtotime($row['schedule_date'])) ?>
+                                                    </div>
+                                                    <div class="small">
+                                                        <?= strtoupper(date("M", strtotime($row['schedule_date']))) ?>
+                                                    </div>
+                                                </div>
 
-            <!-- Schedule List -->
-            <div class="vstack gap-2">
+                                                <!-- Title for Mobile -->
+                                                <div class="d-md-none fw-semibold fs-5">
+                                                    <?= htmlspecialchars($row['title']) ?>
+                                                    <div class="small text-white-50">
+                                                        <?= date("h:i A", strtotime($row['schedule_time'])) ?>
+                                                    </div>
+                                                    <?php if(!empty($row['description'])): ?>
+                                                        <div class="small text-white-75 mt-1">
+                                                            <?= htmlspecialchars($row['description']) ?>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
 
-                <?php while($row = $schedules->fetch_assoc()): ?>
-                    <div class="bg-primary text-white rounded-3 p-3">
-                        <div class="d-flex align-items-center justify-content-between">
+                                            <!-- Title for Desktop -->
+                                            <div class="d-none d-md-block fw-semibold fs-5">
+                                                <?= htmlspecialchars($row['title']) ?>
+                                                <div class="small text-white-50">
+                                                    <?= date("h:i A", strtotime($row['schedule_time'])) ?>
+                                                </div>
+                                                <?php if(!empty($row['description'])): ?>
+                                                    <div class="small text-white-75 mt-1">
+                                                        <?= htmlspecialchars($row['description']) ?>
+                                                    </div>
+                                                <?php endif; ?>
+                                            </div>
 
-                            <!-- Date + Title -->
-                            <div class="d-flex align-items-center">
-                                <div class="bg-white bg-opacity-25 rounded text-center px-3 py-2 me-3">
-                                    <div class="fw-bold fs-4">
-                                        <?= date("d", strtotime($row['schedule_date'])) ?>
+                                            <!-- Delete Button -->
+                                            <a href="?delete=<?= $row['id'] ?>" class="btn btn-danger btn-sm ms-3" 
+                                               onclick="return confirm('Are you sure you want to delete this schedule?')">
+                                                Delete
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div class="small">
-                                        <?= strtoupper(date("M", strtotime($row['schedule_date']))) ?>
-                                    </div>
+                                <?php endwhile; ?>
+                            <?php else: ?>
+                                <div class="text-center py-4">
+                                    <p class="text-muted">No schedules found. Add your first schedule!</p>
                                 </div>
-
-                                <!-- Title for Mobile -->
-                                <div class="d-md-none fw-semibold fs-5">
-                                    <?= $row['title'] ?>
-                                    <div class="small text-white-50">
-                                        <?= date("h:i A", strtotime($row['schedule_time'])) ?>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Title for Desktop -->
-                            <div class="d-none d-md-block fw-semibold fs-5">
-                                <?= $row['title'] ?>
-                                <div class="small text-white-50">
-                                    <?= date("h:i A", strtotime($row['schedule_time'])) ?>
-                                </div>
-                            </div>
-
-                            <!-- Delete Button -->
-                            <a href="?delete=<?= $row['id'] ?>" class="btn btn-danger btn-sm ms-3">
-                                Delete
-                            </a>
-
+                            <?php endif; ?>
                         </div>
                     </div>
-                <?php endwhile; ?>
-
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-
 
             <!-- Quick Actions -->
             <div class="col-12 col-lg-4">
                 <div class="card shadow-sm border-0">
                     <div class="card-body">
                         <h2 class="h4 fw-bold mb-4">Quick Actions</h2>
-                        <button class="btn btn-primary w-100 py-3 fs-5 fw-semibold" onclick="gotoBookings()">Book Facility</button>
+                        <button class="btn btn-primary w-100 py-3 fs-5 fw-semibold mb-3" onclick="gotoBookings()">Book Facility</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pending Registrations Section -->
+    <div class="container-fluid p-0 mt-5" id="requests">
+        <div class="bg-custom-blue p-4" style="min-height: 400px;">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 col-lg-8">
+                    <!-- Header -->
+                    <div class="bg-primary text-white text-center fw-bold py-2 mb-3 rounded-top">
+                        Pending Student Registrations - <?php echo htmlspecialchars($sportName); ?>
+                    </div>
+
+                    <div class="bg-white border border-white border-3 rounded p-3">
+                        <?php if(!$sportID): ?>
+                            <div class="alert alert-warning text-center">
+                                No sport assigned to you. Please contact administrator.
+                            </div>
+                        <?php else: ?>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover mb-0 text-center align-middle">
+                                    <thead class="table-primary">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>NIC</th>
+                                            <th>Student ID</th>
+                                            <th>Type</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if($pendingStudentsResult && $pendingStudentsResult->num_rows > 0): ?>
+                                            <?php while($row = $pendingStudentsResult->fetch_assoc()): ?>
+                                            <tr>
+                                                <td><?= htmlspecialchars($row['name']) ?></td>
+                                                <td><?= htmlspecialchars($row['nic']) ?></td>
+                                                <td><?= htmlspecialchars($row['student_id'] ?? 'N/A') ?></td>
+                                                <td>
+                                                    <?php if($row['registration_type'] == 'extra'): ?>
+                                                        <span class="badge bg-warning registration-badge">Extra</span>
+                                                    <?php else: ?>
+                                                        <span class="badge bg-info registration-badge">Initial</span>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td>
+                                                    <?php if($row['registration_type'] == 'extra'): ?>
+                                                        <a href="Coach_Dashboard.php?approve=<?= $row['registration_id'] ?>" 
+                                                           class="btn btn-success btn-sm me-1"
+                                                           onclick="return confirm('Approve <?= htmlspecialchars($row['name']) ?> for <?= htmlspecialchars($sportName) ?>?')">
+                                                           Approve
+                                                        </a>
+                                                        <a href="Coach_Dashboard.php?reject=<?= $row['registration_id'] ?>" 
+                                                           class="btn btn-danger btn-sm"
+                                                           onclick="return confirm('Reject <?= htmlspecialchars($row['name']) ?> from <?= htmlspecialchars($sportName) ?>?')">
+                                                           Reject
+                                                        </a>
+                                                    <?php else: ?>
+                                                        <a href="Coach_Dashboard.php?approve_initial=<?= $row['user_id'] ?>" 
+                                                           class="btn btn-success btn-sm me-1"
+                                                           onclick="return confirm('Approve <?= htmlspecialchars($row['name']) ?> for <?= htmlspecialchars($sportName) ?>?')">
+                                                           Approve
+                                                        </a>
+                                                        <a href="Coach_Dashboard.php?reject_initial=<?= $row['user_id'] ?>" 
+                                                           class="btn btn-danger btn-sm"
+                                                           onclick="return confirm('Reject <?= htmlspecialchars($row['name']) ?> from <?= htmlspecialchars($sportName) ?>?')">
+                                                           Reject
+                                                        </a>
+                                                    <?php endif; ?>
+                                                </td>
+                                            </tr>
+                                            <?php endwhile; ?>
+                                        <?php else: ?>
+                                            <tr>
+                                                <td colspan="5" class="text-muted py-3">
+                                                    No pending registrations found.
+                                                </td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -382,82 +595,61 @@ $scheduleCount = $schedules->num_rows;
     </div>
 
     <!-- Players Section -->
-    <div class="container-fluid p-0 mt-5">
+    <div class="container-fluid p-0 mt-5" id="players">
         <div class="bg-custom-blue p-4" style="min-height: 400px;">
-    <div class="row justify-content-center">
-        <div class="col-10 col-md-8 col-lg-6">
-
-            <!-- Header -->
-            <div class="bg-primary text-white text-center fw-bold py-2 mb-3 rounded-top">
-                Players
-            </div>
-
-            <div class="bg-white border border-white border-3 rounded p-3">
-
-                <!-- Table Head -->
-                <div class="row g-2 mb-3">
-                    <div class="col-4">
-                        <div class="bg-primary text-white text-center py-2 fw-semibold rounded">Name</div>
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 col-lg-8">
+                    <!-- Header -->
+                    <div class="bg-primary text-white text-center fw-bold py-2 mb-3 rounded-top">
+                        Approved Players - <?php echo htmlspecialchars($sportName); ?>
                     </div>
-                    <div class="col-4">
-                        <div class="bg-primary text-white text-center py-2 fw-semibold rounded">Student_ID</div>
-                    </div>
-                    <div class="col-4">
-                        <div class="bg-primary text-white text-center py-2 fw-semibold rounded">NIC</div>
-                    </div>
-                </div>
 
-                <div class="vstack gap-2">
-
-                    <?php if($studentsResult->num_rows > 0): ?>
-
-                        <?php while($row = $studentsResult->fetch_assoc()): ?>
-                        <div class="row g-2">
-                            <div class="col-4">
-                                <div class="bg-light rounded shadow-sm p-2 text-center">
-                                    <small class="fw-medium text-dark">
-                                        <?= htmlspecialchars($row['name']) ?>
-                                    </small>
-                                </div>
-                            </div>
-
-                            <div class="col-4">
-                                <div class="bg-light rounded shadow-sm p-2 text-center">
-                                    <small class="fw-medium text-dark">
-                                        <?= htmlspecialchars($row['student_id']) ?>
-                                    </small>
-                                </div>
-                            </div>
-
-                            <div class="col-4">
-                                <div class="bg-light rounded shadow-sm p-2 text-center">
-                                    <small class="fw-medium text-dark">
-                                        <?= htmlspecialchars($row['nic']) ?>
-                                    </small>
-                                </div>
-                            </div>
+                    <div class="bg-white border border-white border-3 rounded p-3">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover mb-0 text-center align-middle">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Student ID</th>
+                                        <th>NIC</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if($approvedPlayersResult && $approvedPlayersResult->num_rows > 0): ?>
+                                        <?php while($row = $approvedPlayersResult->fetch_assoc()): ?>
+                                        <tr>
+                                            <td><?= htmlspecialchars($row['name']) ?></td>
+                                            <td><?= htmlspecialchars($row['student_id']) ?></td>
+                                            <td><?= htmlspecialchars($row['nic']) ?></td>
+                                            <td>
+                                                <a href="Coach_Dashboard.php?reject=<?= $row['registration_id'] ?>" 
+                                                   class="btn btn-danger btn-sm"
+                                                   onclick="return confirm('Remove <?= htmlspecialchars($row['name']) ?> from <?= htmlspecialchars($sportName) ?>?')">
+                                                   Remove
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <?php endwhile; ?>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td colspan="4" class="text-muted py-3">No approved players yet.</td>
+                                        </tr>
+                                    <?php endif; ?>
+                                </tbody>
+                            </table>
                         </div>
-                        <?php endwhile; ?>
-
-                    <?php else: ?>
-
-                        <p class="text-center text-muted mt-3">No students registered to this sport yet.</p>
-
-                    <?php endif; ?>
-
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>
-</div>
 
-
-        <!-- Footer Section -->
-        <div class="bg-custom-dark-blue text-white text-center py-2 small">
-            © 2025 Sabaragamuwa University Of Sri Lanka. All rights reserved.
-        </div>
+    <!-- Footer Section -->
+    <div class="bg-custom-dark-blue text-white text-center py-2 small">
+        © 2025 Sabaragamuwa University Of Sri Lanka. All rights reserved.
     </div>
+
     <!-- Add Schedule Modal -->
     <div class="modal fade" id="addScheduleModal" tabindex="-1">
         <div class="modal-dialog">
@@ -468,13 +660,26 @@ $scheduleCount = $schedules->num_rows;
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" name="title" class="form-control mb-2" placeholder="Title" required>
-                        <input type="date" name="schedule_date" class="form-control mb-2" required>
-                        <input type="time" name="schedule_time" class="form-control mb-2">
-                        <textarea name="description" class="form-control" placeholder="Description"></textarea>
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" name="title" class="form-control" placeholder="Enter schedule title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="schedule_date" class="form-label">Date</label>
+                            <input type="date" name="schedule_date" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="schedule_time" class="form-label">Time</label>
+                            <input type="time" name="schedule_time" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea name="description" class="form-control" placeholder="Enter schedule description" rows="3"></textarea>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" name="add_schedule" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" name="add_schedule" class="btn btn-primary">Save Schedule</button>
                     </div>
                 </form>
             </div>
@@ -483,17 +688,27 @@ $scheduleCount = $schedules->num_rows;
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>  
-        // Add interactivity for Quick Action buttons
-        document.querySelectorAll('.action-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                alert(this.textContent + ' clicked!');
-            });
-        });
-
         function gotoBookings(){
             window.location.href="../booking/booking.php";
         }
+        
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Add confirmation for delete actions
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteButtons = document.querySelectorAll('a[href*="delete"]');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if(!confirm('Are you sure you want to delete this schedule?')) {
+                        e.preventDefault();
+                    }
+                });
+            });
+        });
     </script>
 </body>
-
 </html>
