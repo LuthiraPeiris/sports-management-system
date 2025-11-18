@@ -104,213 +104,360 @@ $scheduleCount = $schedules->num_rows;
 ?>
 
 
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coach Dashboard - Sports Club</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Coach Interface</title>
+    <link rel="icon" href="../images/Favicon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
-        body {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;background-color: #d9d9d9;}
+       
+        .bg-info-bar {
+            background-color: #a8e6ff;
+        }
 
-        /* Header */
-        .top-header {background-color:  #b3e5fc;box-shadow: 0 2px 4px rgba(0,0,0,0.1);}
-        .logo-icon {width: 40px;height: 40px;background: linear-gradient(135deg, #ff6b9d 0%, #ffa07a 100%);border-radius: 50%;display: flex;align-items: center;justify-content: center;color: white;font-weight: bold;}
+        .bg-nav-bar {
+            background-color: #8b7bd8;
+        }
 
-        /* Navigation */
-        .navbar-custom {background: linear-gradient(135deg, #7e8ef5 0%, #9b9ef5 100%);}
-        .navbar-custom .nav-link {color: rgba(255, 255, 255, 0.85);font-weight: 500;transition: all 0.3s;}
-        .navbar-custom .nav-link:hover,
-        .navbar-custom .nav-link.active {color: white;background-color: rgba(255, 255, 255, 0.15);border-radius: 5px;}
+        .bg-nav-hover:hover {
+            background-color: #7a6bc7 !important;
+        }
 
-        /* Welcome Banner */
-        .welcome-banner {background: linear-gradient(135deg, #7e8ef5 0%, #9b9ef5 100%);border-radius: 15px;color: white;box-shadow: 0 4px 12px rgba(0,0,0,0.15);}
+        .bg-nav-active {
+            background-color: #6a5bb7 !important;
+        }
 
-        /* Stats Cards */
-        .stat-card {box-shadow: 0 3px 10px rgba(0,0,0,0.12);}
-        .stat-icon {width: 55px;height: 55px;border-radius: 50%;display: flex;align-items: center;justify-content: center;font-size: 26px;background: linear-gradient(135deg, #7e8ef5 0%, #9b9ef5 100%);color: white;}
+        .bg-profile {
+            background-color: #ff9999;
+        }
 
-        /* Schedule Section */
-        .schedule-section {box-shadow: 0 3px 10px rgba(0,0,0,0.12);}
-        .add-btn {background-color: #ff3333;color: white;border: none;border-radius: 20px;font-weight: 600;transition: background-color 0.3s}
-        .add-btn:hover {background-color: #e62e2e;}
-        .schedule-item {background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px;color: white;}
-        .schedule-date .day {font-size: 26px;font-weight: 700;line-height: 1;}
-        .schedule-date .month {font-size: 12px;text-transform: uppercase;font-weight: 600;}
+        .bg-custom-blue {
+            background-color: #7B9FDB;
+        }
 
-        /* Quick Actions */
-        .quick-actions {box-shadow: 0 3px 10px rgba(0,0,0,0.12);}
-        .action-btn {background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);color: white;border: none;border-radius: 10px;font-weight: 600;transition: transform 0.2s;}
-        .action-btn:hover {transform: translateY(-2px);}
-
-        /* Players Section */
-        .players-section {background: linear-gradient(135deg, #7e8ef5 0%, #9b9ef5 100%);}
-        .players-table-container {box-shadow: 0 5px 20px rgba(0,0,0,0.15);}
-        .players-table thead th {background: linear-gradient(135deg, #7e8ef5 0%, #9b9ef5 100%);color: white;font-weight: 600;text-align: center;}
-        .players-table thead th:first-child {border-radius: 8px 0 0 8px;}
-        .players-table thead th:last-child {border-radius: 0 8px 8px 0;}
-        .players-table tbody tr {background-color: #f0f0f0;}
-        .players-table tbody tr td:first-child {border-radius: 8px 0 0 8px;}
-        .players-table tbody tr td:last-child {border-radius: 0 8px 8px 0;}
-
-        /* Footer */
-        .footer {background-color: #0000cc;color: white;}
+        .bg-custom-dark-blue {
+            background-color: #0000CC;
+        }
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header class="top-header py-3">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="d-flex align-items-center">
-                    <div class="logo-icon me-3">S</div>
-                    <div>
-                        <h6 class="mb-0 fw-semibold">Sports Club</h6>
-                        <p class="mb-0 small">Sabaragamuwa University of Sri Lanka</p>
-                    </div>
+
+<body class="bg-secondary bg-opacity-25">
+
+    <!-- Header Section -->
+    <div class="bg-info-bar py-3 px-3 px-md-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <div class="bg-white rounded-circle d-flex align-items-center justify-content-center overflow-hidden flex-shrink-0"
+                    style="width: 60px; height: 60px;">
+                    <img src="../images/Favicon.png" alt="Sports Club Logo" class="w-100 h-100 object-fit-cover">
                 </div>
-                <div class="d-flex align-items-center">
-                    <div>
-                        <p class="mb-0 fw-semibold"><?php echo $user['name']; ?></p>
-                        <small><?php echo $user['coach_id']; ?></small>
-                    </div>
+                <div class="d-none d-md-block">
+                    <div class="fw-bold small text-dark">Sports Club</div>
+                    <div class="fw-semibold small text-dark">Sabaragamuwa University Of Sri Lanka</div>
                 </div>
             </div>
-        </div>
-    </header>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-custom py-3">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link px-3" href="#">Schedule</a>
+            <div class="d-none d-md-flex align-items-center gap-3">
+                <div class="bg-profile text-white rounded text-center px-3 py-2">
+                    <div class="fs-1">👤</div>
+                </div>
+                <div class="text-end">
+                    <p class="fw-bold mb-0 text-dark">Coach <?php echo $user['name']; ?>!</p>
+                    <p class="mb-0 small text-secondary"><?php echo $user['coach_id']; ?></p>
+                </div>
+            </div>
+
+            <!-- Mobile nav button -->
+            <div class="d-md-none">
+                <button class="btn btn-link text-dark fs-3 p-0 text-decoration-none" type="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    ☰
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end bg-nav-bar border-0 w-100 m-0">
+                    <li class="px-3 py-2 border-bottom border-light border-opacity-25">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="fs-1">👤</div>
+                            <div>
+                                <div class="fw-bold text-white small">Coach <?php echo $user['name']; ?>!</div>
+                                <div class="text-white small"><?php echo $user['coach_id']; ?></div>
+                            </div>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-3" href="#">Players</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-3" href="#"><a href="../Dashboard/logout.php" class="btn btn-danger">Logout</a></a>
-                    </li>
+                    <li><a class="dropdown-item text-white border-bottom border-light border-opacity-10 bg-nav-hover"
+                            href="#">Schedules</a></li>
+                    <li><a class="dropdown-item text-white border-bottom border-light border-opacity-10 bg-nav-hover"
+                            href="#">Players</a></li>
+                    <li><a class="dropdown-item text-white bg-nav-hover" href="#">Requests</a></li>
+                    <li><a class="dropdown-item text-white border-bottom border-light border-opacity-10 bg-nav-active"
+                            href="../Dashboard/logout.php">Logout</a></li>
                 </ul>
             </div>
         </div>
+    </div>
+
+    <!-- Desktop Navigation Bar -->
+    <nav class="bg-nav-bar d-none d-md-block">
+        <ul class="nav nav-fill">
+            <li class="nav-item">
+                <a class="nav-link text-white py-3 bg-nav-hover" href="#">Schedules</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white py-3 bg-nav-hover" href="#">Players</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white py-3 bg-nav-hover" href="#">Requests</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white py-3 bg-nav-hover" href="../Dashboard/logout.php">Logout</a>
+            </li>
+        </ul>
     </nav>
 
-    <!-- Main Content -->
-    <main class="container my-4">
-        <!-- Welcome Banner -->
-        <div class="welcome-banner text-center py-5 mb-4">
-            <h2 class="display-5 fw-semibold">Welcome back Coach <?php echo $user['name']; ?>!</h2>
-            <p class="fs-5">Let's make today's training count!</p>
-            <p class="fs-5"><?php echo $sportName; ?></p>
+    <div class="container py-4">
+        <!-- Welcome Card -->
+        <div class="card bg-primary text-white text-center shadow mb-4 rounded-4 border-0">
+            <div class="card-body py-4">
+                <h1 class="h2 mb-2">Welcome back Coach <?php echo $user['name']; ?>!</h1>
+                <p class="mb-1">Let's make today's training count!</p>
+                <p class="mb-0 fw-bold"><?php echo $sportName; ?></p>
+            </div>
         </div>
 
         <!-- Stats Cards -->
-        <div class="row g-4 mb-4">
-            <div class="col-md-4">
-                <div class="stat-card bg-white rounded-3 p-4 h-100">
-                    <div class="stat-icon mb-3">👥</div>
-                    <h3 class="display-6 fw-bold"><?= ($studentsResult->num_rows > 0) ? $studentsResult->num_rows : 0 ?></h3>
-                    <p class="text-muted fw-medium">Students</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="stat-card bg-white rounded-3 p-4 h-100">
-                    <div class="stat-icon mb-3">⚽</div>
-                    <h3 class="display-6 fw-bold"> <?= $scheduleCount ?></h3>
-                    <p class="text-muted fw-medium">Schedules</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="stat-card bg-white rounded-3 p-4 h-100">
-                    <div class="stat-icon mb-3">⚽</div>
-                    <h3 class="display-6 fw-bold">5</h3>
-                    <p class="text-muted fw-medium">Bookings</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row g-4">
-            <!-- My Schedule -->
-            <div class="col-lg-8">
-                <div class="schedule-section bg-white rounded-3 p-4 h-100">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h4 class="fw-bold mb-0">My Schedule</h4>
-                        <button class="add-btn btn px-4 py-2" data-bs-toggle="modal" data-bs-target="#addScheduleModal">Add Item</button>
-                    </div>
-
-                    <?php while($row = $schedules->fetch_assoc()): ?>
-                    <div class="schedule-item p-3 mb-3 d-flex justify-content-between align-items-center bg-light rounded">
-                        <div class="d-flex align-items-center">
-                            <div class="schedule-date text-center me-3">
-                                <span class="day"><?= date("d", strtotime($row['schedule_date'])) ?></span>
-                                <span class="month d-block"><?= strtoupper(date("M", strtotime($row['schedule_date']))) ?></span>
+        <div class="row g-3 mb-4 justify-content-center">
+            <div class="col-6 col-sm-4 col-md-4">
+                <div class="card shadow-sm h-100 border-0">
+                    <div class="card-body py-3">
+                        <div class="d-none d-md-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary text-white rounded d-flex align-items-center justify-content-center me-3 flex-shrink-0"
+                                    style="width: 45px; height: 45px; font-size: 20px;">
+                                    👥
+                                </div>
+                                <p class="text-muted mb-0 small">Students</p>
                             </div>
-                            <div>
-                                <div class="schedule-title fw-semibold fs-5"><?= $row['title'] ?></div>
-                                <small class="text-muted"><?= date("h:i A", strtotime($row['schedule_time'])) ?></small>
-                            </div>
+                            <h2 class="display-6 fw-bold mb-0"><?= ($studentsResult->num_rows > 0) ? $studentsResult->num_rows : 0 ?></h2>
                         </div>
-                        <a href="?delete=<?= $row['id'] ?>" class="btn btn-danger btn-sm">Delete</a>
+                        <div class="d-md-none text-center">
+                            <div class="bg-primary text-white rounded d-flex align-items-center justify-content-center mx-auto mb-3"
+                                style="width: 50px; height: 50px; font-size: 24px;">
+                                👥
+                            </div>
+                            <h2 class="display-6 fw-bold mb-1"><?= ($studentsResult->num_rows > 0) ? $studentsResult->num_rows : 0 ?></h2>
+                            <p class="text-muted mb-0 small">Students</p>
+                        </div>
                     </div>
-                    <?php endwhile; ?>     
                 </div>
             </div>
-            
-            <!-- Quick Actions -->
-            <div class="col-lg-4">
-                <div class="quick-actions bg-white rounded-3 p-4 h-100">
-                    <h4 class="fw-bold mb-4">Quick Actions</h4>
-                    <button class="action-btn btn w-100 py-3">Book Facility</button>
+            <div class="col-6 col-sm-4 col-md-4">
+                <div class="card shadow-sm h-100 border-0">
+                    <div class="card-body py-3">
+                        <div class="d-none d-md-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary text-white rounded d-flex align-items-center justify-content-center me-3 flex-shrink-0"
+                                    style="width: 45px; height: 45px; font-size: 20px;">
+                                    📅
+                                </div>
+                                <p class="text-muted mb-0 small">Schedules</p>
+                            </div>
+                            <h2 class="display-6 fw-bold mb-0"><?= $scheduleCount ?></h2>
+                        </div>
+                        <div class="d-md-none text-center">
+                            <div class="bg-primary text-white rounded d-flex align-items-center justify-content-center mx-auto mb-3"
+                                style="width: 50px; height: 50px; font-size: 24px;">
+                                📅
+                            </div>
+                            <h2 class="display-6 fw-bold mb-1"><?= $scheduleCount ?></h2>
+                            <p class="text-muted mb-0 small">Schedules</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-4">
+                <div class="card shadow-sm h-100 border-0">
+                    <div class="card-body py-3">
+                        <div class="d-none d-md-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary text-white rounded d-flex align-items-center justify-content-center me-3 flex-shrink-0"
+                                    style="width: 45px; height: 45px; font-size: 20px;">
+                                    ⚽
+                                </div>
+                                <p class="text-muted mb-0 small">Bookings</p>
+                            </div>
+                            <h2 class="display-6 fw-bold mb-0">5</h2>
+                        </div>
+                        <div class="d-md-none text-center">
+                            <div class="bg-primary text-white rounded d-flex align-items-center justify-content-center mx-auto mb-3"
+                                style="width: 50px; height: 50px; font-size: 24px;">
+                                ⚽
+                            </div>
+                            <h2 class="display-6 fw-bold mb-1">5</h2>
+                            <p class="text-muted mb-0 small">Bookings</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </main>
 
-    <!-- Players Section -->
-<section class="players-section py-5 mt-5">
-    <div class="container">
-        <h3 class="text-center fw-bold mb-4">Players</h3>
-        <div class="players-table-container bg-white rounded-3 p-4">
-            <div class="table-responsive">
-                <?php if($studentsResult->num_rows > 0): ?>
-                <table class="players-table table table-borderless">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Student_ID</th>
-                            <th>NIC</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php 
-                        $count = 1;
-                        while($row = $studentsResult->fetch_assoc()): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($row['name']); ?></td>
-                            <td><?php echo htmlspecialchars($row['student_id']); ?></td>
-                            <td><?php echo htmlspecialchars($row['nic']); ?></td>
-                        </tr>
-                        <?php endwhile; ?>
-                    </tbody>
-                </table>
-                <?php else: ?>
-                    <p class="text-muted">No students registered to this sport yet.</p>
-                <?php endif; ?>
+        <!-- Schedule and Quick Actions -->
+        <div class="row g-3">
+            <!-- My Schedule -->
+            <div class="col-12 col-lg-8">
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="h4 fw-bold mb-0">My Schedule</h2>
+                <button class="btn btn-danger btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#addScheduleModal">
+                    Add Items
+                </button>
+            </div>
+
+            <!-- Schedule List -->
+            <div class="vstack gap-2">
+
+                <?php while($row = $schedules->fetch_assoc()): ?>
+                    <div class="bg-primary text-white rounded-3 p-3">
+                        <div class="d-flex align-items-center justify-content-between">
+
+                            <!-- Date + Title -->
+                            <div class="d-flex align-items-center">
+                                <div class="bg-white bg-opacity-25 rounded text-center px-3 py-2 me-3">
+                                    <div class="fw-bold fs-4">
+                                        <?= date("d", strtotime($row['schedule_date'])) ?>
+                                    </div>
+                                    <div class="small">
+                                        <?= strtoupper(date("M", strtotime($row['schedule_date']))) ?>
+                                    </div>
+                                </div>
+
+                                <!-- Title for Mobile -->
+                                <div class="d-md-none fw-semibold fs-5">
+                                    <?= $row['title'] ?>
+                                    <div class="small text-white-50">
+                                        <?= date("h:i A", strtotime($row['schedule_time'])) ?>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Title for Desktop -->
+                            <div class="d-none d-md-block fw-semibold fs-5">
+                                <?= $row['title'] ?>
+                                <div class="small text-white-50">
+                                    <?= date("h:i A", strtotime($row['schedule_time'])) ?>
+                                </div>
+                            </div>
+
+                            <!-- Delete Button -->
+                            <a href="?delete=<?= $row['id'] ?>" class="btn btn-danger btn-sm ms-3">
+                                Delete
+                            </a>
+
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+
             </div>
         </div>
     </div>
-</section>
+</div>
 
-    
+
+            <!-- Quick Actions -->
+            <div class="col-12 col-lg-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h2 class="h4 fw-bold mb-4">Quick Actions</h2>
+                        <button class="btn btn-primary w-100 py-3 fs-5 fw-semibold" onclick="gotoBookings()">Book Facility</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Players Section -->
+    <div class="container-fluid p-0 mt-5">
+        <div class="bg-custom-blue p-4" style="min-height: 400px;">
+    <div class="row justify-content-center">
+        <div class="col-10 col-md-8 col-lg-6">
+
+            <!-- Header -->
+            <div class="bg-primary text-white text-center fw-bold py-2 mb-3 rounded-top">
+                Players
+            </div>
+
+            <div class="bg-white border border-white border-3 rounded p-3">
+
+                <!-- Table Head -->
+                <div class="row g-2 mb-3">
+                    <div class="col-4">
+                        <div class="bg-primary text-white text-center py-2 fw-semibold rounded">Name</div>
+                    </div>
+                    <div class="col-4">
+                        <div class="bg-primary text-white text-center py-2 fw-semibold rounded">Student_ID</div>
+                    </div>
+                    <div class="col-4">
+                        <div class="bg-primary text-white text-center py-2 fw-semibold rounded">NIC</div>
+                    </div>
+                </div>
+
+                <div class="vstack gap-2">
+
+                    <?php if($studentsResult->num_rows > 0): ?>
+
+                        <?php while($row = $studentsResult->fetch_assoc()): ?>
+                        <div class="row g-2">
+                            <div class="col-4">
+                                <div class="bg-light rounded shadow-sm p-2 text-center">
+                                    <small class="fw-medium text-dark">
+                                        <?= htmlspecialchars($row['name']) ?>
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="bg-light rounded shadow-sm p-2 text-center">
+                                    <small class="fw-medium text-dark">
+                                        <?= htmlspecialchars($row['student_id']) ?>
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="bg-light rounded shadow-sm p-2 text-center">
+                                    <small class="fw-medium text-dark">
+                                        <?= htmlspecialchars($row['nic']) ?>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endwhile; ?>
+
+                    <?php else: ?>
+
+                        <p class="text-center text-muted mt-3">No students registered to this sport yet.</p>
+
+                    <?php endif; ?>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <!-- Footer Section -->
+        <div class="bg-custom-dark-blue text-white text-center py-2 small">
+            © 2025 Sabaragamuwa University Of Sri Lanka. All rights reserved.
+        </div>
+    </div>
     <!-- Add Schedule Modal -->
     <div class="modal fade" id="addScheduleModal" tabindex="-1">
         <div class="modal-dialog">
@@ -334,29 +481,19 @@ $scheduleCount = $schedules->num_rows;
         </div>
     </div>
 
-
-    <!-- Footer -->
-    <footer class="footer py-3 text-center">
-        <div class="container">
-            <p class="mb-0">© 2025 Group2. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Prevent Back Button
-        window.history.pushState(null, "", window.location.href);
-        window.onpopstate = function () {
-        alert("Logout first!");
-        window.history.pushState(null, "", window.location.href);
-        };
-        
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>  
         // Add interactivity for Quick Action buttons
         document.querySelectorAll('.action-btn').forEach(button => {
             button.addEventListener('click', function() {
                 alert(this.textContent + ' clicked!');
             });
         });
+
+        function gotoBookings(){
+            window.location.href="../booking/booking.php";
+        }
     </script>
 </body>
+
 </html>

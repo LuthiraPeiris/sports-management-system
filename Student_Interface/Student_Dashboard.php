@@ -273,12 +273,11 @@ $nextNumber = $totalSports + 1;
                 <li class="nav-item">
                     <a class="nav-link px-3" href="#achievements">Achievements</a>
                 </li>
-            </ul>
-
-            <!-- Logout Button Right-Aligned -->
+                <!-- Logout Button Right-Aligned -->
             <a href="../Dashboard/logout.php" class="btn btn-danger logout-btn ms-lg-3">
                 Logout
             </a>
+            </ul>
         </div>
     </div>
 </nav>

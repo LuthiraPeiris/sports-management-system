@@ -5,24 +5,24 @@ USE sport_management;
 -- Create bookings table
 CREATE TABLE IF NOT EXISTS `bookings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL COMMENT 'References users.id - nullable for non-logged-in bookings',
-  `facility_type` varchar(50) NOT NULL COMMENT 'Type of facility: Ground Booking, Gym Booking, Indoor Booking',
-  `name` varchar(100) NOT NULL COMMENT 'Name of person making the booking',
-  `email` varchar(100) NOT NULL COMMENT 'Email address for confirmation',
-  `phone` varchar(20) NOT NULL COMMENT 'Contact phone number',
-  `booking_date` date NOT NULL COMMENT 'Date of the booking',
-  `booking_time` time NOT NULL COMMENT 'Start time of the booking',
-  `duration` int(11) NOT NULL COMMENT 'Duration in hours',
-  `facility_details` text DEFAULT NULL COMMENT 'JSON field storing facility-specific details',
-  `status` enum('Pending','Confirmed','Cancelled','Completed') NOT NULL DEFAULT 'Pending' COMMENT 'Booking status',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'When booking was created',
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Last update time',
+  `user_id` int(11) DEFAULT NULL,
+  `facility_type` varchar(50) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `booking_date` date NOT NULL,
+  `booking_time` time NOT NULL,
+  `duration` int(11) NOT NULL,
+  `facility_details` text DEFAULT NULL,
+  `status` enum('Pending','Confirmed','Cancelled','Completed') NOT NULL DEFAULT 'Pending',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `fk_booking_user` (`user_id`),
   KEY `idx_booking_date` (`booking_date`),
   KEY `idx_facility_type` (`facility_type`),
   KEY `idx_status` (`status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Table for storing facility bookings';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Add foreign key constraint
 ALTER TABLE `bookings`
