@@ -20,8 +20,6 @@ $scheduleQuery->bind_param("i", $user_id);
 $scheduleQuery->execute();
 $schedules = $scheduleQuery->get_result();
 
-
-
 $sports = $conn->query("
     SELECT * FROM student_sport
     WHERE user_id = $user_id
@@ -116,24 +114,51 @@ if(isset($_POST['register_sport'])){
     $user_id = $_SESSION['user_id'];
     $sport_id = intval($_POST['sport_id']);
 
-    //  Fetch coach for this sport
+    // CHECK IF STUDENT IS ALREADY REGISTERED FOR THIS SPORT
+    $checkDuplicate = $conn->prepare("SELECT id FROM student_sport_registration WHERE user_id = ? AND sport_id = ?");
+    $checkDuplicate->bind_param("ii", $user_id, $sport_id);
+    $checkDuplicate->execute();
+    $checkDuplicate->store_result();
+    
+    if($checkDuplicate->num_rows > 0) {
+        // Student is already registered for this sport
+        $_SESSION['error_message'] = "You are already registered for this sport!";
+        $checkDuplicate->close();
+        header("Location: Student_Dashboard.php");
+        exit();
+    }
+    $checkDuplicate->close();
+
+    // Fetch coach for this sport - CHECK IF COACH EXISTS
     $coachData = $conn->prepare("SELECT user_id AS coach_id FROM coach WHERE sport_id = ?");
     $coachData->bind_param("i", $sport_id);
     $coachData->execute();
     $coachResult = $coachData->get_result()->fetch_assoc();
+    
+    if(!$coachResult || $coachResult['coach_id'] === null) {
+        // No coach assigned to this sport
+        $_SESSION['error_message'] = "This sport currently has no coach assigned. Please try again later or contact administration.";
+        $coachData->close();
+        header("Location: Student_Dashboard.php");
+        exit();
+    }
+    
     $coach_id = $coachResult['coach_id'];
     $coachData->close();
 
-    //  Insert into student_sport_registration
+    // Insert into student_sport_registration
     $insert = $conn->prepare("INSERT INTO student_sport_registration (user_id, sport_id, coach_id) VALUES (?, ?, ?)");
     $insert->bind_param("iii", $user_id, $sport_id, $coach_id);
     
     if($insert->execute()){
-        echo "<script>alert('Sport Registered Successfully!'); window.location='Student_Dashboard.php';</script>";
+        $_SESSION['success_message'] = "Sport Registered Successfully!";
     } else {
-        echo "<script>alert('Error: Could not register sport.'); window.location='Student_Dashboard.php';</script>";
+        $_SESSION['error_message'] = "Error: Could not register sport.";
     }
     $insert->close();
+    
+    header("Location: Student_Dashboard.php");
+    exit();
 }
 
 // Schedule number counting
@@ -151,8 +176,35 @@ $totalSports = $result['total'];
 // The next number to display should be total + 1
 $nextNumber = $totalSports + 1;
 
-?>
+// Fetch registered sports for the current student to display in dropdown
+$registeredSportsQuery = $conn->prepare("
+    SELECT sport_id 
+    FROM student_sport_registration 
+    WHERE user_id = ?
+");
+$registeredSportsQuery->bind_param("i", $user_id);
+$registeredSportsQuery->execute();
+$registeredSportsResult = $registeredSportsQuery->get_result();
 
+$registeredSportIds = [];
+while($row = $registeredSportsResult->fetch_assoc()) {
+    $registeredSportIds[] = $row['sport_id'];
+}
+$registeredSportsQuery->close();
+
+// Fetch sports with coach information to display in dropdown
+$sportsWithCoaches = $conn->query("
+    SELECT s.sport_id, s.name, c.user_id AS coach_id 
+    FROM sports s 
+    LEFT JOIN coach c ON s.sport_id = c.sport_id
+");
+
+$sportsData = [];
+while($row = $sportsWithCoaches->fetch_assoc()) {
+    $sportsData[] = $row;
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -512,20 +564,50 @@ $nextNumber = $totalSports + 1;
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
 
-      <form action="" method="POST">
+      <form action="" method="POST" id="sportRegistrationForm">
         <div class="modal-body">
+          <!-- Display error/success messages -->
+          <?php if(isset($_SESSION['error_message'])): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <i class="bi bi-exclamation-triangle-fill me-2"></i>
+              <?php echo $_SESSION['error_message']; ?>
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            <?php unset($_SESSION['error_message']); ?>
+          <?php endif; ?>
+          
+          <?php if(isset($_SESSION['success_message'])): ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <i class="bi bi-check-circle-fill me-2"></i>
+              <?php echo $_SESSION['success_message']; ?>
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            <?php unset($_SESSION['success_message']); ?>
+          <?php endif; ?>
+          
           <div class="mb-3">
             <label class="form-label">Select Sport</label>
             <select name="sport_id" class="form-select" required>
               <option value="">-- Choose Sport --</option>
               <?php
-              include 'db.php';
-              $sports = $conn->query("SELECT * FROM sports");
-              while ($sport = $sports->fetch_assoc()) {
-                  echo "<option value='{$sport['sport_id']}'>{$sport['name']}</option>";
+              foreach($sportsData as $sport) {
+                  $isRegistered = in_array($sport['sport_id'], $registeredSportIds);
+                  $hasCoach = !empty($sport['coach_id']);
+                  $disabled = $isRegistered || !$hasCoach;
+                  
+                  $registeredText = $isRegistered ? ' (Already Registered)' : '';
+                  $noCoachText = !$hasCoach ? ' (No Coach Available)' : '';
+                  
+                  echo "<option value='{$sport['sport_id']}' {$disabled}>{$sport['name']}{$registeredText}{$noCoachText}</option>";
               }
               ?>
             </select>
+            <div class="form-text text-muted">
+              <ul class="small mb-0">
+                <li>Sports marked with "(Already Registered)" are ones you're already enrolled in.</li>
+                <li>Sports marked with "(No Coach Available)" cannot be registered at this time.</li>
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -575,6 +657,57 @@ $nextNumber = $totalSports + 1;
 document.querySelector('.add-btn').addEventListener('click', function() {
     alert('Add Achievement functionality');
     // You can replace this with a modal or form to add new achievements
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const sportSelect = document.querySelector('select[name="sport_id"]');
+    const registerButton = document.querySelector('button[name="register_sport"]');
+    const form = document.getElementById('sportRegistrationForm');
+    
+    // Check if selected sport is already registered or has no coach
+    sportSelect.addEventListener('change', function() {
+        const selectedOption = this.options[this.selectedIndex];
+        const isDisabled = selectedOption.disabled;
+        const optionText = selectedOption.textContent;
+        const hasNoCoach = optionText.includes('(No Coach Available)');
+        
+        if (isDisabled) {
+            registerButton.disabled = true;
+            registerButton.classList.add('btn-secondary');
+            registerButton.classList.remove('btn-primary');
+            
+            if (hasNoCoach) {
+                registerButton.title = "This sport has no coach assigned";
+            } else {
+                registerButton.title = "You are already registered for this sport";
+            }
+        } else {
+            registerButton.disabled = false;
+            registerButton.classList.remove('btn-secondary');
+            registerButton.classList.add('btn-primary');
+            registerButton.title = "Register for this sport";
+        }
+    });
+    
+    // Prevent form submission for disabled options
+    form.addEventListener('submit', function(e) {
+        const selectedOption = sportSelect.options[sportSelect.selectedIndex];
+        const isDisabled = selectedOption.disabled;
+        const optionText = selectedOption.textContent;
+        const hasNoCoach = optionText.includes('(No Coach Available)');
+        
+        if (isDisabled) {
+            e.preventDefault();
+            if (hasNoCoach) {
+                alert('This sport currently has no coach assigned. Please choose a different sport or contact administration.');
+            } else {
+                alert('You are already registered for this sport! Please choose a different sport.');
+            }
+            return false;
+        }
+        
+        return true;
+    });
 });
 
     </script>
