@@ -638,7 +638,7 @@ $bookings = $conn->query("SELECT * FROM bookings WHERE status != 'Cancelled' ORD
 
 <!-- Footer -->
 <footer>
-    <p>&copy;© 2025 Sabaragamuwa University Of Sri Lanka. All rights reserved.</p>
+    <p>&copy;2025 Sabaragamuwa University Of Sri Lanka. All rights reserved.</p>
 </footer>
 
 </body>
