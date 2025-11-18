@@ -265,6 +265,9 @@ $nextNumber = $totalSports + 1;
             <!-- Center Nav Items -->
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
+                <a class="nav-link px-3" href="../Homepage.php#home">Home</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link px-3" href="#sports">My Sports</a>
                 </li>
                 <li class="nav-item">
@@ -286,9 +289,11 @@ $nextNumber = $totalSports + 1;
     <!-- Main Content -->
     <main class="container my-4">
         <!-- Welcome Banner -->
-        <div class="welcome-banner text-center py-5 mb-4">
-            <h2 class="display-5 fw-semibold">Welcome back <?php echo $user['name']; ?>!</h2>
-            <p class="fs-5">Ready to achieve your sports goals today?</p>
+        <div class="card bg-primary text-white text-center shadow mb-4 rounded-4 border-0">
+            <div class="card-body py-4">
+                <h1 class="h2 mb-2">Welcome back <?php echo $user['name']; ?>!</h1>
+                <p class="mb-0">Ready to achieve your sports goals today?</p>
+            </div>
         </div>
 
         <!-- Stats Cards -->
