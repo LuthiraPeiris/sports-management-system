@@ -54,7 +54,7 @@ if (isset($_POST['login'])) {
         .login-card input { width: 100%; margin-bottom: 15px;}
         .login-card {color: white;max-width: 450px;padding: 35px 40px;border-radius: 15px;background: rgba(255, 255, 255, 0.2);box-shadow: 0px 2px 8px rgb(70, 140, 252);backdrop-filter: blur(10px);text-align: center;height: 50vh;     display: flex;flex-direction: column;justify-content: center; text-decoration-color: blue;}
         .btn{transition: 0.7s;}
-        .btn:hover{box-shadow: 1px 2px 6px rgb(78, 78, 78);}
+        .btn:hover{box-shadow: 0px 4px 15px rgba(70, 122, 252, 0.85); }
         .register-link {color: #333; text-decoration: none; font-size: 14px; font-weight: 500;}
         .register-link:hover {color: rgb(70, 140, 252); text-decoration: underline;}
         .home-btn {position: absolute; top: 20px; left: 20px;}
