@@ -687,7 +687,7 @@
 }
 
     function gotoBookings() {
-      window.location.href = "Booking.php";
+      window.location.href = "Dashboard/Login.php";
     }
 
     function gotoRegister() {
