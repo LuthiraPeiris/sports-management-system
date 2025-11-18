@@ -92,7 +92,7 @@ $bookings = $conn->query("SELECT * FROM bookings WHERE status != 'Cancelled' ORD
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookings</title>
-
+    <link rel="icon" type="image/x-icon" href="../images/Favicon.png">
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -216,7 +216,7 @@ $bookings = $conn->query("SELECT * FROM bookings WHERE status != 'Cancelled' ORD
             </div>
         </div>
         <div class="user-section">
-            <a href="../Coach_Interface/coach_dashboard.php" class="back-btn-header">
+            <a href="../Coach_Interface/Coach_Dashboard.php" class="back-btn-header">
                 <i class="bi bi-arrow-left"></i> Back to Coach
             </a>
         </div>
@@ -638,7 +638,7 @@ $bookings = $conn->query("SELECT * FROM bookings WHERE status != 'Cancelled' ORD
 
 <!-- Footer -->
 <footer>
-    <p>&copy; 2025 Sabaragamuwa University Of Sri Lanka. All rights reserved.</p>
+    <p>&copy;© 2025 Sabaragamuwa University Of Sri Lanka. All rights reserved.</p>
 </footer>
 
 </body>
