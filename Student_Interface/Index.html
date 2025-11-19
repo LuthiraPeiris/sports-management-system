@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang ="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Student Sport Dashboard</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div id="overlay" class="overlay"></div>
+        <header>
+            <div class="top-bar">
+                <div class="logo">
+                    <img src="images/logo.png" alt="uni-logo">
+                    <span>Sport Club<br>Sabaragamuwa University of Sri Lanka</span>
+                </div>
+
+                <div class="user-profile">
+                    <img src="images/profile-pic.png" alt="profile-pic" id="profile-pic-preview">
+
+                    <div class="user-profile-text">
+                        <span id="profile-name">Amal Kumara</span>
+                        <span id="profile-status">21CSE102</span>
+                    </div>
+                    <button id="theme-toggle" style="margin-left: 15px; cursor: pointer; background: none; border: none; font-size: 20px;">🌙</button>
+                </div>
+            </div>
+
+            <div class="nav-bar">
+                <button class="menu-toggle" id="mobileMenuBtn">&#9776;</button>
+                <nav>
+                    <ul id="nav-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="#">My Sports</a></li>
+                        <li><a href="#">My Events</a></li>
+                        <li><a href="#">My Teams</a></li>
+                        <li><a href="#">Achievements</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <section id="welcome">
+                <div class="container">
+                    <div class="welcome-box">
+                        <h2 id="welcome-header">Welcome Back!</h2>
+                        <p>Ready to continue your sports goal today?</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="stats">
+                <div class="container">
+                    <div class="stat-card">
+                        <h3 id="stats-enrolled">0</h3>
+                        <p>Sports Enrolled</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3 id="stats-registered">0</h3>
+                        <p>Events Registered</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3 id="stats-achievements">0</h3>
+                        <p>Achievements Earned</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="dashboard-columns">
+                <div class="container">
+                    <div id="schedule">
+                        <div class="schedule-header">
+                            <h2>My Schedule</h2>
+                            <a href="#" class="add-button">Add Item</a>
+                        </div>
+
+                        <div class="schedule-list" id="schedule-list">
+
+                        </div>
+                    </div>
+
+                    <div id="quick-actions">
+                        <h2>Quick Actions</h2>
+                        <a href="E:\sports-management-system\Dashboard\Register.html" class="action-button">Register for sport</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="my-sports">
+                <div class="container">
+                    <h2>My Sports</h2>
+                    <div class="sports-container" id="sports-container"> 
+                    </div>
+                </div>
+            </section>
+
+            <section id="achievements">
+                <div class="container">
+                    <h2>Achievements</h2>
+                    <div class="achievements-container" id="achievements-container"> 
+
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <p>© 2025 Group 2. All Right Reserved.</p>
+        </footer>
+
+        <script src="script.js"></script>
+    </body>
+</html>
