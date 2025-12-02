@@ -77,7 +77,7 @@ $conn->close();
     <style>
         
         body {
-        background-image: url("../images/register.webp"); 
+        background-image: url("../images/register.png"); 
         background-size: cover;background-position: center;background-attachment: fixed;height: 100vh;overflow: hidden;margin: 0;padding: 0;
         }
 
