@@ -134,7 +134,7 @@ if ($result->num_rows > 0) {
     .help-card {position: relative;transition: transform 0.3s ease, box-shadow 0.3s ease;}
     .help-card:hover {transform: translateY(-8px); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15) !important;}
     .help-icon {font-size: 2.6rem;color: #1e3a55;margin-bottom: 14px;}
-    .contact-info {background: #0b52d7;color: #fff;padding: 28px;border-radius: 10px;margin-top: 22px;}
+    .contact-info {background: rgba(244, 245, 246, 1);color: black;padding: 28px;border-radius: 10px;margin-top: 22px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);}
     .map-container {margin-top: 25px;border-radius: 8px;overflow: hidden;box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);border: 3px solid rgba(255, 255, 255, 0.2);}
     .map-container iframe {width: 100%;height: 300px;display: block;border: 0;}
     .map-caption {background: rgba(255, 255, 255, 0.1);color: #fff;padding: 10px 15px;font-size: 0.9rem;text-align: center;border-top: 1px solid rgba(255, 255, 255, 0.2);}
@@ -631,24 +631,18 @@ if ($result->num_rows > 0) {
         id: "Slug",
         title: "Slug Competition",
         description: "Annual slug race competition between university teams",
-        date: "November 15, 2025",
-        teams: "12 teams registered",
         image: "Events/images/image 01.jpeg"
       },
       {
         id: "InterUniversity",
         title: "Inter University Games",
         description: "Multi-sport championship with universities nationwide",
-        date: "December 10 to 15, 2025",
-        teams: "25 teams registered",
         image: "Events/images/image 02.jpeg"
       },
       {
         id: "InterFaculty",
         title: "Inter Faculty Sports Meet",
         description: "Annual sports meet between university faculties",
-        date: "January 20, 2026",
-        teams: "18 teams registered",
         image: "Events/images/image 03.jpeg"
       }
     ];
@@ -664,10 +658,6 @@ if ($result->num_rows > 0) {
             <div class="card-body">
               <h5 class="card-title text-dark fw-bold">${event.title}</h5>
               <p class="card-text">${event.description}</p>
-              <div class="event-info mb-3">
-                <p class="mb-1"><i class="bi bi-calendar-event text-primary"></i> ${event.date}</p>
-                <p><i class="bi bi-people-fill text-primary"></i> ${event.teams}</p>
-              </div>
               <a href="#" class="btn btn-primary w-100" onclick="gotoPageEvent('${event.id}')">View Event Details</a>
             </div>
           </div>
