@@ -215,76 +215,27 @@ while($row = $sportsWithCoaches->fetch_assoc()) {
     <link rel="icon" type="image/x-icon" href="../images/Favicon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #d9d9d9;
-        }
+        body {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;background-color: #d9d9d9;}
 
         /* Header */
-        
         .logo-icon { width: 40px;height: 40px;background: linear-gradient(135deg, #ff6b9d 0%, #ffa07a 100%);border-radius: 50%;display: flex;align-items: center;justify-content: center;color: white;font-weight: bold;}
-        .top-header { 
-    background-color: rgba(62, 105, 145, 0.95); 
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    backdrop-filter: blur(8px);
-}
+        .top-header { background-color: rgba(62, 105, 145, 0.95); box-shadow: 0 2px 4px rgba(0,0,0,0.1);backdrop-filter: blur(8px);}
 
-        /* Navigation - with higher specificity */
-nav.navbar.navbar-custom {
-    background: rgba(40, 70, 100, 0.95) !important;
-    backdrop-filter: blur(8px) !important;
-}
+        /* Navigation */
+        nav.navbar.navbar-custom {background: rgba(40, 70, 100, 0.95) !important;backdrop-filter: blur(8px) !important;}
+        .navbar-custom .navbar-toggler-icon {background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;}
+        .navbar-custom .navbar-toggler {border-color: rgba(255, 255, 255, 0.3) !important;}
 
-/* Make sure toggler icon is visible on dark background */
-.navbar-custom .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-}
+        /* Navigation links */
+        .navbar-custom .nav-link {color: rgba(255, 255, 255, 0.85) !important;font-weight: 500; transition: all 0.3s;border-radius: 4px;padding: 0.5rem 1rem !important;margin: 0 0.25rem;}
 
-.navbar-custom .navbar-toggler {
-    border-color: rgba(255, 255, 255, 0.3) !important;
-}
+        /* Hover state */
+        .navbar-custom .nav-link:hover {color: white !important;background-color: rgba(255, 255, 255, 0.1) !important;}
+        .navbar-custom .nav-link.active {color: white !important;background-color: rgba(255, 255, 255, 0.15) !important;font-weight: 600;}
 
-/* Navigation links */
-.navbar-custom .nav-link {
-    color: rgba(255, 255, 255, 0.85) !important;
-    font-weight: 500; 
-    transition: all 0.3s;
-    border-radius: 4px;
-    padding: 0.5rem 1rem !important;
-    margin: 0 0.25rem;
-}
-
-/* Hover state */
-.navbar-custom .nav-link:hover {
-    color: white !important;
-    background-color: rgba(255, 255, 255, 0.1) !important;
-}
-
-/* ACTIVE state - this is what you're missing */
-.navbar-custom .nav-link.active {
-    color: white !important;
-    background-color: rgba(255, 255, 255, 0.15) !important;
-    font-weight: 600;
-}
-
-/* Logout button */
-.logout-btn {
-    background-color: rgba(220, 53, 69, 0.2) !important;
-    color: white !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-    padding: 0.5rem 1.5rem !important;
-    border-radius: 4px;
-    font-weight: 500;
-    transition: all 0.2s;
-}
-
-.logout-btn:hover {
-    background-color: rgba(220, 53, 69, 0.3) !important;
-    border-color: rgba(255, 255, 255, 0.4) !important;
-    color: white !important;
-}
-
-
+        /* Logout button */
+        .logout-btn {background-color: rgba(220, 53, 69, 0.2) !important;color: white !important;border: 1px solid rgba(255, 255, 255, 0.3) !important;padding: 0.5rem 1.5rem !important;border-radius: 4px;font-weight: 500;transition: all 0.2s;}
+        .logout-btn:hover {background-color: rgba(220, 53, 69, 0.3) !important;border-color: rgba(255, 255, 255, 0.4) !important;color: white !important;}
 
         /* Welcome Banner */
         .welcome-banner {background: linear-gradient(135deg, #7e8ef5 0%, #9b9ef5 100%);border-radius: 15px;color: white;box-shadow: 0 4px 12px rgba(0,0,0,0.15);}
@@ -314,12 +265,12 @@ nav.navbar.navbar-custom {
         .action-btn:hover {transform: translateY(-2px);}
 
         /* My Sports Section */
-        .my-sports-section {background: linear-gradient(135deg, #7e8ef5 0%, #9b9ef5 100%);}
+        .my-sports-section {background: rgba(223, 211, 211, 1);}
         .sport-card {box-shadow: 0 4px 12px rgba(0,0,0,0.1);}
         .leave-btn {background-color: #ff3333;color: white;border: none;border-radius: 20px;font-weight: 600;}
         .leave-btn:hover {background-color: #e62e2e;}
 
-        .achievements-section {background: #f5e6d3;padding: 40px 0;}
+        .achievements-section {background: rgb(217, 217, 217);padding: 40px 0;}
         .section-header {display: flex;justify-content: space-between;align-items: center;margin-bottom: 20px;}
         .section-header h3 {font-size: 28px;font-weight: 600;margin: 0;color: #333;}
         .add-btn {background-color: #ff3333;color: white;border: none;padding: 8px 20px;border-radius: 20px;font-size: 12px;font-weight: 600;cursor: pointer;transition: background-color 0.3s;}
@@ -329,7 +280,7 @@ nav.navbar.navbar-custom {
         .achievement-card p {font-size: 13px;color: #666;margin: 5px 0;}
 
         /* Footer */
-        .footer {background-color: #0000cc;color: white;}
+        .footer {background-color: rgb(30, 58, 85);color: white;}
     </style>
 </head>
 <body>
@@ -478,7 +429,7 @@ nav.navbar.navbar-custom {
     <!-- My Sports Section -->
     <section class="my-sports-section py-5 mt-5" id="sports">
         <div class="container">
-            <h3 class="text-center fw-semibold text-white mb-4">My Sports</h3>
+            <h3 class="text-center fw-semibold text-black mb-4">My Sports</h3>
 
             <div class="text-center mb-4">
                 <button class="btn btn-light px-4 py-2" data-bs-toggle="modal" data-bs-target="#addSportModal">+ Add Sport</button>

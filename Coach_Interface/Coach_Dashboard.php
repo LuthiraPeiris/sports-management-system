@@ -244,6 +244,55 @@ $bookingCount = $bookingResult['booking_count'] ?? 0;
         .schedule-item:hover {transform: translateY(-2px);}
         .registration-badge {font-size: 0.7rem;padding: 2px 6px;}
 
+        /* Table styling enhancements */
+.table-primary {
+    background-color: rgba(62, 105, 145, 0.9) !important;
+    color: white !important;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(62, 105, 145, 0.05) !important;
+    transition: background-color 0.2s ease;
+}
+
+.border-light {
+    border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.badge {
+    font-size: 0.75rem !important;
+    font-weight: 500 !important;
+    padding: 0.4rem 0.8rem !important;
+    border-radius: 20px !important;
+}
+
+.btn-success {
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+}
+
+.btn-outline-danger {
+    color: #dc3545 !important;
+    border-color: #dc3545 !important;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545 !important;
+    color: white !important;
+}
+
+.bg-custom-blue {
+    background-color: rgba(62, 105, 145, 0.05) !important;
+}
+
+.rounded {
+    border-radius: 10px !important;
+}
+
+
+        /* Footer */
+        .footer {background-color: rgb(30, 58, 85);color: white;}
+
     </style>
 </head>
 
@@ -384,7 +433,7 @@ $bookingCount = $bookingResult['booking_count'] ?? 0;
             <div class="card-body py-4">
                 <h1 class="h2 mb-2">Welcome back Coach <?php echo htmlspecialchars($user['name']); ?>!</h1>
                 <p class="mb-1">Let's make today's training count!</p>
-                <p class="mb-0 fw-bold"><?php echo htmlspecialchars($sportName); ?></p>
+                <p class="mb-0 fw-bold" style="font-size: 27px;"><?php echo htmlspecialchars($sportName); ?></p>
             </div>
         </div>
 
@@ -554,146 +603,156 @@ $bookingCount = $bookingResult['booking_count'] ?? 0;
         </div>
     </div>
 
-    <!-- Pending Registrations Section -->
-    <div class="container-fluid p-0 mt-5" id="requests">
-        <div class="bg-custom-blue p-4" style="min-height: 400px;">
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-10 col-lg-8">
-                    <!-- Header -->
-                    <div class="bg-primary text-white text-center fw-bold py-2 mb-3 rounded-top">
-                        Pending Student Registrations - <?php echo htmlspecialchars($sportName); ?>
-                    </div>
+<!-- Pending Registrations Section -->
+<div class="container-fluid p-0 mt-5" id="requests">
+    <div class="bg-custom-blue p-4" style="min-height: 400px;">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <!-- Header -->
+                <div class="bg-primary text-white text-center fw-bold py-3 mb-4 rounded-top shadow-sm">
+                    <h5 class="mb-0">Pending Student Registrations - <?php echo htmlspecialchars($sportName); ?></h5>
+                </div>
 
-                    <div class="bg-white border border-white border-3 rounded p-3">
-                        <?php if(!$sportID): ?>
-                            <div class="alert alert-warning text-center">
-                                No sport assigned to you. Please contact administrator.
-                            </div>
-                        <?php else: ?>
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 text-center align-middle">
-                                    <thead class="table-primary">
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>NIC</th>
-                                            <th>Student ID</th>
-                                            <th>Type</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php if($pendingStudentsResult && $pendingStudentsResult->num_rows > 0): ?>
-                                            <?php while($row = $pendingStudentsResult->fetch_assoc()): ?>
-                                            <tr>
-                                                <td><?= htmlspecialchars($row['name']) ?></td>
-                                                <td><?= htmlspecialchars($row['nic']) ?></td>
-                                                <td><?= htmlspecialchars($row['student_id'] ?? 'N/A') ?></td>
-                                                <td>
-                                                    <?php if($row['registration_type'] == 'extra'): ?>
-                                                        <span class="badge bg-warning registration-badge">Extra</span>
-                                                    <?php else: ?>
-                                                        <span class="badge bg-info registration-badge">Initial</span>
-                                                    <?php endif; ?>
-                                                </td>
-                                                <td>
+                <div class="bg-white rounded shadow-sm border-0 overflow-hidden">
+                    <?php if(!$sportID): ?>
+                        <div class="alert alert-warning text-center m-3">
+                            No sport assigned to you. Please contact administrator.
+                        </div>
+                    <?php else: ?>
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0 align-middle" style="border-collapse: separate; border-spacing: 0;">
+                                <thead>
+                                    <tr class="table-primary">
+                                        <th class="border-0 py-3 text-start ps-4" style="border-top-left-radius: 8px;">Name</th>
+                                        <th class="border-0 py-3">NIC</th>
+                                        <th class="border-0 py-3">Student ID</th>
+                                        <th class="border-0 py-3">Type</th>
+                                        <th class="border-0 py-3" style="border-top-right-radius: 8px;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if($pendingStudentsResult && $pendingStudentsResult->num_rows > 0): ?>
+                                        <?php while($row = $pendingStudentsResult->fetch_assoc()): ?>
+                                        <tr class="border-bottom border-light">
+                                            <td class="py-3 ps-4 fw-medium"><?= htmlspecialchars($row['name']) ?></td>
+                                            <td class="py-3"><?= htmlspecialchars($row['nic']) ?></td>
+                                            <td class="py-3"><?= htmlspecialchars($row['student_id'] ?? 'N/A') ?></td>
+                                            <td class="py-3">
+                                                <?php if($row['registration_type'] == 'extra'): ?>
+                                                    <span class="badge bg-warning text-dark px-3 py-1 registration-badge">Extra</span>
+                                                <?php else: ?>
+                                                    <span class="badge bg-info text-white px-3 py-1 registration-badge">Initial</span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td class="py-3">
+                                                <div class="d-flex justify-content-center gap-2 flex-wrap">
                                                     <?php if($row['registration_type'] == 'extra'): ?>
                                                         <a href="Coach_Dashboard.php?approve=<?= $row['registration_id'] ?>" 
-                                                           class="btn btn-success btn-sm me-1"
+                                                           class="btn btn-success btn-sm px-3"
                                                            onclick="return confirm('Approve <?= htmlspecialchars($row['name']) ?> for <?= htmlspecialchars($sportName) ?>?')">
                                                            Approve
                                                         </a>
                                                         <a href="Coach_Dashboard.php?reject=<?= $row['registration_id'] ?>" 
-                                                           class="btn btn-danger btn-sm"
+                                                           class="btn btn-outline-danger btn-sm px-3"
                                                            onclick="return confirm('Reject <?= htmlspecialchars($row['name']) ?> from <?= htmlspecialchars($sportName) ?>?')">
                                                            Reject
                                                         </a>
                                                     <?php else: ?>
                                                         <a href="Coach_Dashboard.php?approve_initial=<?= $row['user_id'] ?>" 
-                                                           class="btn btn-success btn-sm me-1"
+                                                           class="btn btn-success btn-sm px-3"
                                                            onclick="return confirm('Approve <?= htmlspecialchars($row['name']) ?> for <?= htmlspecialchars($sportName) ?>?')">
                                                            Approve
                                                         </a>
                                                         <a href="Coach_Dashboard.php?reject_initial=<?= $row['user_id'] ?>" 
-                                                           class="btn btn-danger btn-sm"
+                                                           class="btn btn-outline-danger btn-sm px-3"
                                                            onclick="return confirm('Reject <?= htmlspecialchars($row['name']) ?> from <?= htmlspecialchars($sportName) ?>?')">
                                                            Reject
                                                         </a>
                                                     <?php endif; ?>
-                                                </td>
-                                            </tr>
-                                            <?php endwhile; ?>
-                                        <?php else: ?>
-                                            <tr>
-                                                <td colspan="5" class="text-muted py-3">
-                                                    No pending registrations found.
-                                                </td>
-                                            </tr>
-                                        <?php endif; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Players Section -->
-    <div class="container-fluid p-0 mt-5" id="players">
-        <div class="bg-custom-blue p-4" style="min-height: 400px;">
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-10 col-lg-8">
-                    <!-- Header -->
-                    <div class="bg-primary text-white text-center fw-bold py-2 mb-3 rounded-top">
-                        Approved Players - <?php echo htmlspecialchars($sportName); ?>
-                    </div>
-
-                    <div class="bg-white border border-white border-3 rounded p-3">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover mb-0 text-center align-middle">
-                                <thead class="table-primary">
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Student ID</th>
-                                        <th>NIC</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php if($approvedPlayersResult && $approvedPlayersResult->num_rows > 0): ?>
-                                        <?php while($row = $approvedPlayersResult->fetch_assoc()): ?>
-                                        <tr>
-                                            <td><?= htmlspecialchars($row['name']) ?></td>
-                                            <td><?= htmlspecialchars($row['student_id']) ?></td>
-                                            <td><?= htmlspecialchars($row['nic']) ?></td>
-                                            <td>
-                                                <a href="Coach_Dashboard.php?reject=<?= $row['registration_id'] ?>" 
-                                                   class="btn btn-danger btn-sm"
-                                                   onclick="return confirm('Remove <?= htmlspecialchars($row['name']) ?> from <?= htmlspecialchars($sportName) ?>?')">
-                                                   Remove
-                                                </a>
+                                                </div>
                                             </td>
                                         </tr>
                                         <?php endwhile; ?>
                                     <?php else: ?>
                                         <tr>
-                                            <td colspan="4" class="text-muted py-3">No approved players yet.</td>
+                                            <td colspan="5" class="text-muted py-5 text-center">
+                                                <i class="bi bi-people fs-4 d-block mb-2"></i>
+                                                No pending registrations found.
+                                            </td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Players Section -->
+<div class="container-fluid p-0 mt-5" id="players">
+    <div class="bg-custom-blue p-4" style="min-height: 400px;">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <!-- Header -->
+                <div class="bg-primary text-white text-center fw-bold py-3 mb-4 rounded-top shadow-sm">
+                    <h5 class="mb-0">Approved Players - <?php echo htmlspecialchars($sportName); ?></h5>
+                </div>
+
+                <div class="bg-white rounded shadow-sm border-0 overflow-hidden">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0 align-middle" style="border-collapse: separate; border-spacing: 0;">
+                            <thead>
+                                <tr class="table-primary">
+                                    <th class="border-0 py-3 text-start ps-4" style="border-top-left-radius: 8px;">Name</th>
+                                    <th class="border-0 py-3">Student ID</th>
+                                    <th class="border-0 py-3">NIC</th>
+                                    <th class="border-0 py-3" style="border-top-right-radius: 8px;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if($approvedPlayersResult && $approvedPlayersResult->num_rows > 0): ?>
+                                    <?php while($row = $approvedPlayersResult->fetch_assoc()): ?>
+                                    <tr class="border-bottom border-light">
+                                        <td class="py-3 ps-4 fw-medium"><?= htmlspecialchars($row['name']) ?></td>
+                                        <td class="py-3"><?= htmlspecialchars($row['student_id']) ?></td>
+                                        <td class="py-3"><?= htmlspecialchars($row['nic']) ?></td>
+                                        <td class="py-3">
+                                            <div class="d-flex justify-content-center">
+                                                <a href="Coach_Dashboard.php?reject=<?= $row['registration_id'] ?>" 
+                                                   class="btn btn-outline-danger btn-sm px-3"
+                                                   onclick="return confirm('Remove <?= htmlspecialchars($row['name']) ?> from <?= htmlspecialchars($sportName) ?>?')">
+                                                   Remove
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <?php endwhile; ?>
+                                <?php else: ?>
+                                    <tr>
+                                        <td colspan="4" class="text-muted py-5 text-center">
+                                            <i class="bi bi-person-check fs-4 d-block mb-2"></i>
+                                            No approved players yet.
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Footer Section -->
-    <div class="bg-custom-dark-blue text-white text-center py-2 small">
-        © 2025 Sabaragamuwa University Of Sri Lanka. All rights reserved.
-    </div>
+    <!-- Footer -->
+    <footer class="footer py-3 text-center">
+        <div class="container">
+            <p class="mb-0">© 2025 Sabaragamuwa University Of Sri Lanka. All rights reserved.</p>
+        </div>
+    </footer>
 
     <!-- Add Schedule Modal -->
     <div class="modal fade" id="addScheduleModal" tabindex="-1">
