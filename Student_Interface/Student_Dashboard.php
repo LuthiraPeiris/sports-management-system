@@ -215,25 +215,27 @@ while($row = $sportsWithCoaches->fetch_assoc()) {
     <link rel="icon" type="image/x-icon" href="../images/Favicon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #d9d9d9;
-        }
+        body {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;background-color: #d9d9d9;}
 
         /* Header */
-        .top-header { background-color:  #b3e5fc; box-shadow: 0 2px 4px rgba(0,0,0,0.1);}
         .logo-icon { width: 40px;height: 40px;background: linear-gradient(135deg, #ff6b9d 0%, #ffa07a 100%);border-radius: 50%;display: flex;align-items: center;justify-content: center;color: white;font-weight: bold;}
+        .top-header { background-color: rgba(62, 105, 145, 0.95); box-shadow: 0 2px 4px rgba(0,0,0,0.1);backdrop-filter: blur(8px);}
 
         /* Navigation */
-        .navbar-custom {background: linear-gradient(135deg, #7e8ef5 0%, #9b9ef5 100%);}
-        .navbar-custom .nav-link {color: rgba(255, 255, 255, 0.85);font-weight: 500; transition: all 0.3s;}
-        .navbar-custom .nav-link:hover,
-        .navbar-custom .nav-link.active {color: white;background-color: rgba(255, 255, 255, 0.1);border-radius: 5px;}
+        nav.navbar.navbar-custom {background: rgba(40, 70, 100, 0.95) !important;backdrop-filter: blur(8px) !important;}
+        .navbar-custom .navbar-toggler-icon {background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;}
+        .navbar-custom .navbar-toggler {border-color: rgba(255, 255, 255, 0.3) !important;}
+
+        /* Navigation links */
+        .navbar-custom .nav-link {color: rgba(255, 255, 255, 0.85) !important;font-weight: 500; transition: all 0.3s;border-radius: 4px;padding: 0.5rem 1rem !important;margin: 0 0.25rem;}
+
+        /* Hover state */
+        .navbar-custom .nav-link:hover {color: white !important;background-color: rgba(255, 255, 255, 0.1) !important;}
+        .navbar-custom .nav-link.active {color: white !important;background-color: rgba(255, 255, 255, 0.15) !important;font-weight: 600;}
 
         /* Logout button */
-        .logout-btn {color: white;font-weight: 500;padding: 6px 15px;}
-        .logout-btn:hover {background-color: #fd0000ff;}
-
+        .logout-btn {background-color: rgba(220, 53, 69, 0.2) !important;color: white !important;border: 1px solid rgba(255, 255, 255, 0.3) !important;padding: 0.5rem 1.5rem !important;border-radius: 4px;font-weight: 500;transition: all 0.2s;}
+        .logout-btn:hover {background-color: rgba(220, 53, 69, 0.3) !important;border-color: rgba(255, 255, 255, 0.4) !important;color: white !important;}
 
         /* Welcome Banner */
         .welcome-banner {background: linear-gradient(135deg, #7e8ef5 0%, #9b9ef5 100%);border-radius: 15px;color: white;box-shadow: 0 4px 12px rgba(0,0,0,0.15);}
@@ -263,12 +265,12 @@ while($row = $sportsWithCoaches->fetch_assoc()) {
         .action-btn:hover {transform: translateY(-2px);}
 
         /* My Sports Section */
-        .my-sports-section {background: linear-gradient(135deg, #7e8ef5 0%, #9b9ef5 100%);}
+        .my-sports-section {background: rgba(223, 211, 211, 1);}
         .sport-card {box-shadow: 0 4px 12px rgba(0,0,0,0.1);}
         .leave-btn {background-color: #ff3333;color: white;border: none;border-radius: 20px;font-weight: 600;}
         .leave-btn:hover {background-color: #e62e2e;}
 
-        .achievements-section {background: #f5e6d3;padding: 40px 0;}
+        .achievements-section {background: rgb(217, 217, 217);padding: 40px 0;}
         .section-header {display: flex;justify-content: space-between;align-items: center;margin-bottom: 20px;}
         .section-header h3 {font-size: 28px;font-weight: 600;margin: 0;color: #333;}
         .add-btn {background-color: #ff3333;color: white;border: none;padding: 8px 20px;border-radius: 20px;font-size: 12px;font-weight: 600;cursor: pointer;transition: background-color 0.3s;}
@@ -278,35 +280,40 @@ while($row = $sportsWithCoaches->fetch_assoc()) {
         .achievement-card p {font-size: 13px;color: #666;margin: 5px 0;}
 
         /* Footer */
-        .footer {background-color: #0000cc;color: white;}
+        .footer {background-color: rgb(30, 58, 85);color: white;}
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header class="top-header py-3">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="d-flex align-items-center">
-                    <div class="bg-white rounded-circle d-flex align-items-center justify-content-center overflow-hidden flex-shrink-0"
-                    style="width: 60px; height: 60px;">
-                    <img src="../images/Favicon.png" alt="Sports Club Logo" class="w-100 h-100 object-fit-cover">
+<header class="py-3" style="background-color: rgba(62, 105, 145, 0.95); backdrop-filter: blur(8px);">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <!-- Logo & Brand -->
+            <div class="d-flex align-items-center gap-3">
+                <div class="bg-white rounded-circle d-flex align-items-center justify-content-center overflow-hidden flex-shrink-0 shadow-sm"
+                    style="width: 56px; height: 56px; border: 1.5px solid rgba(255, 255, 255, 0.25);">
+                    <img src="../images/Favicon.png" alt="Sports Club Logo" class="w-100 h-100 object-fit-cover p-1">
                 </div>
-                    <div>
-                        <h6 class="mb-0 fw-semibold">Sports Club</h6>
-                        <p class="mb-0 small">Sabaragamuwa University of Sri Lanka</p>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center">
-                    <div>
-                        <p class="mb-0 fw-semibold"><?php echo $user['name']; ?></p>
-                        <small><?php echo $user['student_id']; ?></small>
-                    </div>
+                <div>
+                    <h6 class="mb-0 fw-semibold text-white">Sports Club</h6>
+                    <p class="mb-0 small text-white opacity-85">Sabaragamuwa University of Sri Lanka</p>
                 </div>
             </div>
+            
+            <!-- Student Info -->
+            <div class="d-flex align-items-center">
+    <div class="text-end ps-3">
+        <p class="mb-0 fw-semibold text-white" style="font-size: 0.95rem;">
+            <?php echo htmlspecialchars($user['name']); ?>
+        </p>
+        <small class="text-white opacity-85"><?php echo htmlspecialchars($user['student_id']); ?></small>
+    </div>
+</div>
         </div>
-    </header>
+    </div>
+</header>
 
-    <!-- Navigation -->
+<!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-custom py-3">
     <div class="container">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -317,26 +324,29 @@ while($row = $sportsWithCoaches->fetch_assoc()) {
             <!-- Center Nav Items -->
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                <a class="nav-link px-3" href="../Homepage.php#home">Home</a>
+                    <a class="nav-link px-3" 
+                       href="../Homepage.php#home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-3" href="#sports">My Sports</a>
+                    <a class="nav-link px-3" 
+                       href="#sports">My Sports</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-3" href="#schedules">My Schedules</a>
+                    <a class="nav-link px-3" 
+                       href="#schedules">My Schedules</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-3" href="#achievements">Achievements</a>
+                    <a class="nav-link px-3" 
+                       href="#achievements">Achievements</a>
                 </li>
-                <!-- Logout Button Right-Aligned -->
-            <a href="../Dashboard/logout.php" class="btn btn-danger logout-btn ms-lg-3">
-                Logout
-            </a>
             </ul>
+            
+            <!-- Logout Button Right-Aligned -->
+            <a href="../Dashboard/logout.php" 
+               class="btn ms-lg-3 logout-btn">Logout</a>
         </div>
     </div>
 </nav>
-
 
     <!-- Main Content -->
     <main class="container my-4">
@@ -383,24 +393,29 @@ while($row = $sportsWithCoaches->fetch_assoc()) {
         </div>
 
         <?php if($scheduleCount > 0): ?>
-            <?php while($row = $schedules->fetch_assoc()): ?>
-            <div class="schedule-item p-3 mb-3 d-flex justify-content-between align-items-center bg-light rounded">
-                <div class="d-flex align-items-center">
-                    <div class="schedule-date text-center me-3">
-                        <span class="day"><?= date("d", strtotime($row['schedule_date'])) ?></span>
-                        <span class="month d-block"><?= strtoupper(date("M", strtotime($row['schedule_date']))) ?></span>
-                    </div>
-                    <div>
-                        <div class="schedule-title fw-semibold fs-5"><?= htmlspecialchars($row['title']) ?></div>
-                        <small class="text-muted"><?= date("h:i A", strtotime($row['schedule_time'])) ?></small>
-                    </div>
-                </div>
-                <a href="?delete=<?= $row['id'] ?>" class="btn btn-danger btn-sm">Delete</a>
+    <?php while($row = $schedules->fetch_assoc()): ?>
+    <div class="schedule-item p-3 mb-3 d-flex justify-content-between align-items-center bg-light rounded">
+        <div class="d-flex align-items-center flex-grow-1">
+            <div class="schedule-date text-center me-3">
+                <span class="day"><?= date("d", strtotime($row['schedule_date'])) ?></span>
+                <span class="month d-block"><?= strtoupper(date("M", strtotime($row['schedule_date']))) ?></span>
             </div>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <p class="text-muted">No schedules added yet.</p>
-        <?php endif; ?>
+            <div class="flex-grow-1">
+                <div class="schedule-title fw-semibold fs-5 mb-1"><?= htmlspecialchars($row['title']) ?></div>
+                <small class="text-muted"><?= date("h:i A", strtotime($row['schedule_time'])) ?></small>
+                <?php if(!empty($row['description'])): ?>
+                    <div class="schedule-description text-muted mb-1" style="font-size: 1.2rem;">
+                        <?= htmlspecialchars($row['description']) ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+        <a href="?delete=<?= $row['id'] ?>" class="btn btn-danger btn-sm ms-3">Delete</a>
+    </div>
+    <?php endwhile; ?>
+<?php else: ?>
+    <p class="text-muted">No schedules added yet.</p>
+<?php endif; ?>
     </div>
 </div>
             
@@ -419,7 +434,7 @@ while($row = $sportsWithCoaches->fetch_assoc()) {
     <!-- My Sports Section -->
     <section class="my-sports-section py-5 mt-5" id="sports">
         <div class="container">
-            <h3 class="text-center fw-semibold text-white mb-4">My Sports</h3>
+            <h3 class="text-center fw-semibold text-black mb-4">My Sports</h3>
 
             <div class="text-center mb-4">
                 <button class="btn btn-light px-4 py-2" data-bs-toggle="modal" data-bs-target="#addSportModal">+ Add Sport</button>

@@ -134,11 +134,31 @@ $bookings = $conn->query("SELECT * FROM bookings WHERE status != 'Cancelled' ORD
 
         /* Card Styles */
         .card-custom {background-color: white !important;border: 2px solid #e0e0e0 !important;border-radius: 12px;transition: all 0.3s ease;height: 450px;overflow: hidden;box-shadow: 0 4px 6px rgba(0,0,0,0.1);}
-        .card-custom:hover {transform: translateY(-8px);box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);border-color: #3e6991 !important;}
-        .card-custom img {width: 100%;height: 220px;object-fit: cover;}
-        .card-body {padding: 1.5rem;}
+        .card-custom:hover {transform: translateY(-12px) scale(1.02);box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);border-color: #3e6991 !important;}
+        .card-image-container {width: 100%;height: 220px;overflow: hidden;transition: transform 0.3s ease;}
+        .card-custom:hover .card-image-container {transform: scale(1.05);}
+        .card-custom img {width: 100%;height: 100%;object-fit: cover;transition: transform 0.3s ease;}
+        .card-custom:hover img {transform: scale(1.08);}
+        .card-body {padding: 1.5rem;transition: transform 0.3s ease;}
+        .card-custom:hover .card-body {transform: translateY(-5px);}
 
-        .btn-wrapper {text-decoration: none;padding: 0 !important;width: 100%;background: transparent;border: none;}
+        /* Enhanced Heading Styles */
+        .card-heading {color: #1e3a55 !important; font-weight: 700 !important;font-size: 1.5rem !important;margin-bottom: 0.75rem !important;letter-spacing: -0.3px;line-height: 1.3;transition: color 0.3s ease;}
+        .card-custom:hover .card-heading {color: #3e6991 !important; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);}
+
+        /* Enhanced Description Styles */
+        .card-description {color: #5a6c7d !important; font-size: 0.95rem !important;line-height: 1.5 !important;margin-bottom: 0 !important;font-weight: 400;letter-spacing: 0.2px;transition: color 0.3s ease, transform 0.3s ease;padding: 0 0.5rem;}
+        .card-custom:hover .card-description {color: #4a5a6d !important; transform: translateY(-2px);}
+        .btn-wrapper {text-decoration: none;padding: 0 !important;width: 100%;background: transparent;border: none;outline: none !important;}
+        .btn-wrapper:focus,
+        .btn-wrapper:active {
+            outline: none !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+
+        /* Remove any default button borders that might appear */
+        button.btn-wrapper {border: none !important;box-shadow: none !important;}
 
         /* Modal Styles */
         .modal-header {background: linear-gradient(135deg, #3e6991 0%, #5a8db8 100%);color: white;border-bottom: none;padding: 1.5rem;}
@@ -180,23 +200,13 @@ $bookings = $conn->query("SELECT * FROM bookings WHERE status != 'Cancelled' ORD
 
         /* Responsive */
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
+            .header-content {flex-direction: column;gap: 15px;text-align: center;}
 
-            .h1 {
-                font-size: 1.5rem;
-            }
+            .h1 {font-size: 1.5rem;}
 
-            .card-custom {
-                height: auto;
-            }
+            .card-custom {height: auto;}
 
-            .modal-body {
-                padding: 1rem;
-            }
+            .modal-body {padding: 1rem;}
         }
     </style>
 </head>
@@ -246,53 +256,59 @@ $bookings = $conn->query("SELECT * FROM bookings WHERE status != 'Cancelled' ORD
         <div class="alert alert-warning">Booking cancelled.</div>
     <?php endif; ?>
 
-    <!-- Buttons -->
-    <div class="row justify-content-center align-items-center">
-        <!-- Ground Booking Card -->
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-            <button type="button" class="btn btn-wrapper" data-bs-toggle="modal" data-bs-target="#groundModal">
-                <div class="card text-center card-custom">
+ <!-- Buttons -->
+<div class="row justify-content-center align-items-center">
+    <!-- Ground Booking Card -->
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+        <button type="button" class="btn btn-wrapper" data-bs-toggle="modal" data-bs-target="#groundModal">
+            <div class="card text-center card-custom">
+                <div class="card-image-container">
                     <img src="../images/Football.webp" alt="Football" class="img-fluid">
-                    <div class="card-body d-flex flex-column justify-content-center">
-                        <h4 class="card-title text-dark"><b>Ground Booking</b></h4>
-                        <p class="card-text text-muted">
-                            Book outdoor sports grounds for football, cricket, and athletics
-                        </p>
-                    </div>
                 </div>
-            </button>
-        </div>
-
-        <!-- Gym Booking Card -->
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-            <button type="button" class="btn btn-wrapper" data-bs-toggle="modal" data-bs-target="#gymModal">
-                <div class="card text-center card-custom">
-                    <img src="../images/weightlifting.jpeg" alt="Weightlifting" class="img-fluid">
-                    <div class="card-body d-flex flex-column justify-content-center">
-                        <h4 class="card-title text-dark"><b>Gym Booking</b></h4>
-                        <p class="card-text text-muted">
-                            Access our fully-equipped gym with modern equipment
-                        </p>
-                    </div>
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h4 class="card-title card-heading"><b>Ground Booking</b></h4>
+                    <p class="card-text card-description">
+                        Book outdoor sports grounds for football, cricket, and athletics
+                    </p>
                 </div>
-            </button>
-        </div>
-
-        <!-- Indoor Booking Card -->
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-            <button type="button" class="btn btn-wrapper" data-bs-toggle="modal" data-bs-target="#indoorModal">
-                <div class="card text-center card-custom">
-                    <img src="../images/badminton.webp" alt="Badminton" class="img-fluid">
-                    <div class="card-body d-flex flex-column justify-content-center">
-                        <h4 class="card-title text-dark"><b>Indoor Booking</b></h4>
-                        <p class="card-text text-muted">
-                            Book indoor courts for badminton, basketball, and squash
-                        </p>
-                    </div>
-                </div>
-            </button>
-        </div>
+            </div>
+        </button>
     </div>
+
+    <!-- Gym Booking Card -->
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+        <button type="button" class="btn btn-wrapper" data-bs-toggle="modal" data-bs-target="#gymModal">
+            <div class="card text-center card-custom">
+                <div class="card-image-container">
+                    <img src="../images/weightlifting.jpeg" alt="Weightlifting" class="img-fluid">
+                </div>
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h4 class="card-title card-heading"><b>Gym Booking</b></h4>
+                    <p class="card-text card-description">
+                        Access our fully-equipped gym with modern equipment
+                    </p>
+                </div>
+            </div>
+        </button>
+    </div>
+
+    <!-- Indoor Booking Card -->
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+        <button type="button" class="btn btn-wrapper" data-bs-toggle="modal" data-bs-target="#indoorModal">
+            <div class="card text-center card-custom">
+                <div class="card-image-container">
+                    <img src="../images/badminton.webp" alt="Badminton" class="img-fluid">
+                </div>
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h4 class="card-title card-heading"><b>Indoor Booking</b></h4>
+                    <p class="card-text card-description">
+                        Book indoor courts for badminton, basketball, and squash
+                    </p>
+                </div>
+            </div>
+        </button>
+    </div>
+</div>
 </div>
 </section>
 
@@ -306,6 +322,8 @@ $bookings = $conn->query("SELECT * FROM bookings WHERE status != 'Cancelled' ORD
                 <table class="table table-striped table-bordered align-middle">
                     <thead style="background:red; color:white;">
                         <tr>
+                            <th>Coach Name</th>
+                            <th>Contact</th>
                             <th>Facility</th>
                             <th>Date</th>
                             <th>Time</th>
@@ -317,11 +335,13 @@ $bookings = $conn->query("SELECT * FROM bookings WHERE status != 'Cancelled' ORD
                     <tbody>
                 <?php if ($bookings->num_rows === 0): ?>
                     <tr>
-                        <td colspan="5" class="text-center">No active bookings!</td>
+                        <td colspan="7" class="text-center">No active bookings!</td>
                     </tr>
                 <?php else: ?>
                     <?php while ($b = $bookings->fetch_assoc()): ?>
                         <tr>
+                            <td><?= h($b['name']) ?></td>
+                            <td><?= h($b['phone']) ?></td>
                             <td><?= h($b['facility_type']) ?></td>
                             <td><?= h($b['booking_date']) ?></td>
                             <td><?= date("h:i A", strtotime($b['booking_time'])) ?></td>

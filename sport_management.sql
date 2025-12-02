@@ -114,14 +114,14 @@ INSERT INTO `sports` (`sport_id`, `name`, `created_at`) VALUES
 (7, 'Swimming', '2025-11-06'),
 (8, 'Table Tennis', '2025-11-06'),
 (9, 'Athletics', '2025-11-06'),
-(12, 'Hockey', '2025-11-06'),
-(13, 'Elle', '2025-11-06'),
-(14, 'Karate', '2025-11-06'),
-(16, 'Rugby', '2025-11-06'),
-(17, 'Volleyball', '2025-11-06'),
-(18, 'Weight Lifting', '2025-11-06'),
-(19, 'Wrestling', '2025-11-06'),
-(20, 'Badminton', '2025-11-06');
+(10, 'Hockey', '2025-11-06'),
+(11, 'Elle', '2025-11-06'),
+(12, 'Karate', '2025-11-06'),
+(13, 'Rugby', '2025-11-06'),
+(14, 'Volleyball', '2025-11-06'),
+(15, 'Weight Lifting', '2025-11-06'),
+(16, 'Wrestling', '2025-11-06'),
+(17, 'Badminton', '2025-11-06');
 
 -- --------------------------------------------------------
 
@@ -146,6 +146,7 @@ CREATE TABLE `student` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
+  `contact` varchar(20) DEFAULT NULL,
   `nic` varchar(20) DEFAULT NULL,
   `sport_id` int(11) DEFAULT NULL,
   `student_id` varchar(50) DEFAULT NULL,
@@ -192,6 +193,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `contact` varchar(20) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` enum('student','coach') NOT NULL,
   `nic` varchar(20) NOT NULL,
