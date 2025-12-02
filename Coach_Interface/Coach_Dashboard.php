@@ -217,10 +217,7 @@ $bookingCount = $bookingResult['booking_count'] ?? 0;
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #d9d9d9;
-        }
+        body {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;background-color: #d9d9d9;}
 
         /* Header */
         .top-header { background-color:  #b3e5fc; box-shadow: 0 2px 4px rgba(0,0,0,0.1);}
@@ -236,131 +233,147 @@ $bookingCount = $bookingResult['booking_count'] ?? 0;
         .logout-btn {color: white;font-weight: 500;padding: 6px 15px;}
         .logout-btn:hover {background-color: #fd0000ff;}
 
-        .bg-info-bar {
-            background-color: #a8e6ff;
-        }
+        .bg-info-bar {background-color: #a8e6ff;}
+        .bg-nav-bar {background-color: #8b7bd8;}
+        .bg-nav-hover:hover {background-color: #7a6bc7 !important;}
+        .bg-nav-active {background-color: #6a5bb7 !important;}
+        .bg-profile {background-color: #ff9999;}
+        .bg-custom-blue {background-color: #7B9FDB;}
+        .bg-custom-dark-blue {background-color: #0000CC;}
+        .schedule-item {transition: transform 0.2s ease;}
+        .schedule-item:hover {transform: translateY(-2px);}
+        .registration-badge {font-size: 0.7rem;padding: 2px 6px;}
 
-        .bg-nav-bar {
-            background-color: #8b7bd8;
-        }
-
-        .bg-nav-hover:hover {
-            background-color: #7a6bc7 !important;
-        }
-
-        .bg-nav-active {
-            background-color: #6a5bb7 !important;
-        }
-
-        .bg-profile {
-            background-color: #ff9999;
-        }
-
-        .bg-custom-blue {
-            background-color: #7B9FDB;
-        }
-
-        .bg-custom-dark-blue {
-            background-color: #0000CC;
-        }
-        
-        .schedule-item {
-            transition: transform 0.2s ease;
-        }
-        
-        .schedule-item:hover {
-            transform: translateY(-2px);
-        }
-        
-        .registration-badge {
-            font-size: 0.7rem;
-            padding: 2px 6px;
-        }
     </style>
 </head>
 
 <body class="bg-secondary bg-opacity-25">
 
     <!-- Header Section -->
-    <div class="bg-info-bar py-3 px-3 px-md-4">
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center gap-3">
-                <div class="bg-white rounded-circle d-flex align-items-center justify-content-center overflow-hidden flex-shrink-0"
-                    style="width: 60px; height: 60px;">
-                    <img src="../images/Favicon.png" alt="Sports Club Logo" class="w-100 h-100 object-fit-cover">
-                </div>
-                <div class="d-none d-md-block">
-                    <div class="fw-bold small text-dark">Sports Club</div>
-                    <div class="fw-semibold small text-dark">Sabaragamuwa University Of Sri Lanka</div>
-                </div>
+    <div class="py-3 px-3 px-md-4" style="background-color: rgba(62, 105, 145, 0.95); backdrop-filter: blur(8px);">
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-3">
+            <div class="bg-white rounded-circle d-flex align-items-center justify-content-center overflow-hidden flex-shrink-0 shadow-sm"
+                style="width: 60px; height: 60px; border: 2px solid rgba(255, 255, 255, 0.25);">
+                <img src="../images/Favicon.png" alt="Sports Club Logo" class="w-100 h-100 object-fit-cover p-1">
             </div>
-
-            <div class="d-none d-md-flex align-items-center gap-3">
-                <div class="bg-profile text-white rounded text-center px-3 py-2">
-                    <div class="fs-1">👤</div>
+            <div class="d-none d-md-block">
+                <div class="fw-semibold text-white" style="font-size: 0.95rem;">Sports Club</div>
+                <div class="text-white opacity-90" style="font-size: 0.75rem;">
+                    Sabaragamuwa University Of Sri Lanka
                 </div>
-                <div class="text-end">
-                    <p class="fw-bold mb-0 text-dark">Coach <?php echo htmlspecialchars($user['name']); ?>!</p>
-                    <p class="mb-0 small text-secondary">Sport: <?php echo htmlspecialchars($sportName); ?></p>
-                </div>
-            </div>
-
-            <!-- Mobile nav button -->
-            <div class="d-md-none">
-                <button class="btn btn-link text-dark fs-3 p-0 text-decoration-none" type="button"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    ☰
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end bg-nav-bar border-0 w-100 m-0">
-                    <li class="px-3 py-2 border-bottom border-light border-opacity-25">
-                        <div class="d-flex align-items-center gap-2">
-                            <div class="fs-1">👤</div>
-                            <div>
-                                <div class="fw-bold text-white small">Coach <?php echo htmlspecialchars($user['name']); ?>!</div>
-                                <div class="text-white small">Sport: <?php echo htmlspecialchars($sportName); ?></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a class="dropdown-item text-white border-bottom border-light border-opacity-10 bg-nav-hover"
-                            href="#schedule">Schedules</a></li>
-                    <li><a class="dropdown-item text-white border-bottom border-light border-opacity-10 bg-nav-hover"
-                            href="#players">Players</a></li>
-                    <li><a class="dropdown-item text-white border-bottom border-light border-opacity-10 bg-nav-hover"
-                            href="#requests">Requests</a></li>
-                    <li><a class="dropdown-item text-white border-bottom border-light border-opacity-10 bg-nav-active"
-                            href="../Dashboard/logout.php">Logout</a></li>
-                </ul>
             </div>
         </div>
-    </div>
 
-    <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-custom py-3">
+        <div class="d-none d-md-flex align-items-center gap-3">
+            <div class="bg-white/20 border border-white/30 rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 48px; height: 48px;">
+                <div class="fs-5 text-white">👤</div>
+            </div>
+            <div class="text-end">
+                <p class="fw-semibold mb-0 text-white opacity-95" style="font-size: 0.9rem;">
+                    Coach <?php echo htmlspecialchars($user['name']); ?>
+                </p>
+                <p class="mb-0 text-white opacity-85" style="font-size: 0.8rem;">
+                    Sport: <?php echo htmlspecialchars($sportName); ?>
+                </p>
+            </div>
+        </div>
+
+        <!-- Mobile nav button -->
+        <div class="d-md-none">
+            <button class="btn btn-link text-white fs-3 p-0 text-decoration-none" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                ☰
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end border-0 w-100 m-0" 
+                style="background-color: rgba(40, 70, 100, 0.98); backdrop-filter: blur(10px);">
+                <li class="px-3 py-2 border-bottom border-white border-opacity-25">
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="bg-white/20 border border-white/30 rounded-circle d-flex align-items-center justify-content-center"
+                            style="width: 40px; height: 40px;">
+                            <div class="fs-6 text-white">👤</div>
+                        </div>
+                        <div>
+                            <div class="fw-semibold text-white small">Coach <?php echo htmlspecialchars($user['name']); ?></div>
+                            <div class="text-white small opacity-85">Sport: <?php echo htmlspecialchars($sportName); ?></div>
+                        </div>
+                    </div>
+                </li>
+                <li><a class="dropdown-item text-white border-bottom border-white border-opacity-10 py-3"
+                        href="#schedule" 
+                        style="background-color: transparent; transition: all 0.2s;"
+                        onmouseover="this.style.backgroundColor='rgba(255,255,255,0.1)';"
+                        onmouseout="this.style.backgroundColor='transparent';">Schedules</a></li>
+                <li><a class="dropdown-item text-white border-bottom border-white border-opacity-10 py-3"
+                        href="#players" 
+                        style="background-color: transparent; transition: all 0.2s;"
+                        onmouseover="this.style.backgroundColor='rgba(255,255,255,0.1)';"
+                        onmouseout="this.style.backgroundColor='transparent';">Players</a></li>
+                <li><a class="dropdown-item text-white border-bottom border-white border-opacity-10 py-3"
+                        href="#requests" 
+                        style="background-color: transparent; transition: all 0.2s;"
+                        onmouseover="this.style.backgroundColor='rgba(255,255,255,0.1)';"
+                        onmouseout="this.style.backgroundColor='transparent';">Requests</a></li>
+                <li><a class="dropdown-item text-white py-3"
+                        href="../Dashboard/logout.php" 
+                        style="background-color: rgba(220, 53, 69, 0.2); transition: all 0.2s;"
+                        onmouseover="this.style.backgroundColor='rgba(220, 53, 69, 0.3)';"
+                        onmouseout="this.style.backgroundColor='rgba(220, 53, 69, 0.2)';">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg py-3" style="background: rgba(40, 70, 100, 0.95); backdrop-filter: blur(8px);">
     <div class="container">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <!-- Center Nav Items -->
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                <a class="nav-link px-3" href="../Homepage.php#home">Home</a>
+                    <a class="nav-link px-3 text-white opacity-85" 
+                       href="../Homepage.php#home"
+                       style="transition: all 0.2s;"
+                       onmouseover="this.style.opacity='1'; this.style.backgroundColor='rgba(255,255,255,0.1)';"
+                       onmouseout="this.style.opacity='0.85'; this.style.backgroundColor='transparent';">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-3" href="#schedules">Schedules</a>
+                    <a class="nav-link px-3 text-white opacity-85" 
+                       href="#schedules"
+                       style="transition: all 0.2s;"
+                       onmouseover="this.style.opacity='1'; this.style.backgroundColor='rgba(255,255,255,0.1)';"
+                       onmouseout="this.style.opacity='0.85'; this.style.backgroundColor='transparent';">Schedules</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-3" href="#players">Players</a>
+                    <a class="nav-link px-3 text-white opacity-85" 
+                       href="#players"
+                       style="transition: all 0.2s;"
+                       onmouseover="this.style.opacity='1'; this.style.backgroundColor='rgba(255,255,255,0.1)';"
+                       onmouseout="this.style.opacity='0.85'; this.style.backgroundColor='transparent';">Players</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-3" href="#requests">Requests</a>
+                    <a class="nav-link px-3 text-white opacity-85" 
+                       href="#requests"
+                       style="transition: all 0.2s;"
+                       onmouseover="this.style.opacity='1'; this.style.backgroundColor='rgba(255,255,255,0.1)';"
+                       onmouseout="this.style.opacity='0.85'; this.style.backgroundColor='transparent';">Requests</a>
                 </li>
-                <!-- Logout Button Right-Aligned -->
-            <a href="../Dashboard/logout.php" class="btn btn-danger logout-btn ms-lg-3">
-                Logout
-            </a>
             </ul>
+            
+            <!-- Logout Button Right-Aligned -->
+            <a href="../Dashboard/logout.php" 
+               class="btn ms-lg-3" 
+               style="background-color: rgba(220, 53, 69, 0.2); 
+                      color: white; 
+                      border: 1px solid rgba(255, 255, 255, 0.3);
+                      transition: all 0.2s;"
+               onmouseover="this.style.backgroundColor='rgba(220, 53, 69, 0.3)'; this.style.borderColor='rgba(255, 255, 255, 0.4)';"
+               onmouseout="this.style.backgroundColor='rgba(220, 53, 69, 0.2)'; this.style.borderColor='rgba(255, 255, 255, 0.3)';">Logout</a>
         </div>
     </div>
 </nav>

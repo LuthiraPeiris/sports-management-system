@@ -221,18 +221,69 @@ while($row = $sportsWithCoaches->fetch_assoc()) {
         }
 
         /* Header */
-        .top-header { background-color:  #b3e5fc; box-shadow: 0 2px 4px rgba(0,0,0,0.1);}
+        
         .logo-icon { width: 40px;height: 40px;background: linear-gradient(135deg, #ff6b9d 0%, #ffa07a 100%);border-radius: 50%;display: flex;align-items: center;justify-content: center;color: white;font-weight: bold;}
+        .top-header { 
+    background-color: rgba(62, 105, 145, 0.95); 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    backdrop-filter: blur(8px);
+}
 
-        /* Navigation */
-        .navbar-custom {background: linear-gradient(135deg, #7e8ef5 0%, #9b9ef5 100%);}
-        .navbar-custom .nav-link {color: rgba(255, 255, 255, 0.85);font-weight: 500; transition: all 0.3s;}
-        .navbar-custom .nav-link:hover,
-        .navbar-custom .nav-link.active {color: white;background-color: rgba(255, 255, 255, 0.1);border-radius: 5px;}
+        /* Navigation - with higher specificity */
+nav.navbar.navbar-custom {
+    background: rgba(40, 70, 100, 0.95) !important;
+    backdrop-filter: blur(8px) !important;
+}
 
-        /* Logout button */
-        .logout-btn {color: white;font-weight: 500;padding: 6px 15px;}
-        .logout-btn:hover {background-color: #fd0000ff;}
+/* Make sure toggler icon is visible on dark background */
+.navbar-custom .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+.navbar-custom .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Navigation links */
+.navbar-custom .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-weight: 500; 
+    transition: all 0.3s;
+    border-radius: 4px;
+    padding: 0.5rem 1rem !important;
+    margin: 0 0.25rem;
+}
+
+/* Hover state */
+.navbar-custom .nav-link:hover {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ACTIVE state - this is what you're missing */
+.navbar-custom .nav-link.active {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    font-weight: 600;
+}
+
+/* Logout button */
+.logout-btn {
+    background-color: rgba(220, 53, 69, 0.2) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    padding: 0.5rem 1.5rem !important;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.logout-btn:hover {
+    background-color: rgba(220, 53, 69, 0.3) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    color: white !important;
+}
+
 
 
         /* Welcome Banner */
@@ -283,30 +334,35 @@ while($row = $sportsWithCoaches->fetch_assoc()) {
 </head>
 <body>
     <!-- Header -->
-    <header class="top-header py-3">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="d-flex align-items-center">
-                    <div class="bg-white rounded-circle d-flex align-items-center justify-content-center overflow-hidden flex-shrink-0"
-                    style="width: 60px; height: 60px;">
-                    <img src="../images/Favicon.png" alt="Sports Club Logo" class="w-100 h-100 object-fit-cover">
+<header class="py-3" style="background-color: rgba(62, 105, 145, 0.95); backdrop-filter: blur(8px);">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <!-- Logo & Brand -->
+            <div class="d-flex align-items-center gap-3">
+                <div class="bg-white rounded-circle d-flex align-items-center justify-content-center overflow-hidden flex-shrink-0 shadow-sm"
+                    style="width: 56px; height: 56px; border: 1.5px solid rgba(255, 255, 255, 0.25);">
+                    <img src="../images/Favicon.png" alt="Sports Club Logo" class="w-100 h-100 object-fit-cover p-1">
                 </div>
-                    <div>
-                        <h6 class="mb-0 fw-semibold">Sports Club</h6>
-                        <p class="mb-0 small">Sabaragamuwa University of Sri Lanka</p>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center">
-                    <div>
-                        <p class="mb-0 fw-semibold"><?php echo $user['name']; ?></p>
-                        <small><?php echo $user['student_id']; ?></small>
-                    </div>
+                <div>
+                    <h6 class="mb-0 fw-semibold text-white">Sports Club</h6>
+                    <p class="mb-0 small text-white opacity-85">Sabaragamuwa University of Sri Lanka</p>
                 </div>
             </div>
+            
+            <!-- Student Info -->
+            <div class="d-flex align-items-center">
+    <div class="text-end ps-3">
+        <p class="mb-0 fw-semibold text-white" style="font-size: 0.95rem;">
+            <?php echo htmlspecialchars($user['name']); ?>
+        </p>
+        <small class="text-white opacity-85"><?php echo htmlspecialchars($user['student_id']); ?></small>
+    </div>
+</div>
         </div>
-    </header>
+    </div>
+</header>
 
-    <!-- Navigation -->
+<!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-custom py-3">
     <div class="container">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -317,26 +373,29 @@ while($row = $sportsWithCoaches->fetch_assoc()) {
             <!-- Center Nav Items -->
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                <a class="nav-link px-3" href="../Homepage.php#home">Home</a>
+                    <a class="nav-link px-3" 
+                       href="../Homepage.php#home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-3" href="#sports">My Sports</a>
+                    <a class="nav-link px-3" 
+                       href="#sports">My Sports</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-3" href="#schedules">My Schedules</a>
+                    <a class="nav-link px-3" 
+                       href="#schedules">My Schedules</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-3" href="#achievements">Achievements</a>
+                    <a class="nav-link px-3" 
+                       href="#achievements">Achievements</a>
                 </li>
-                <!-- Logout Button Right-Aligned -->
-            <a href="../Dashboard/logout.php" class="btn btn-danger logout-btn ms-lg-3">
-                Logout
-            </a>
             </ul>
+            
+            <!-- Logout Button Right-Aligned -->
+            <a href="../Dashboard/logout.php" 
+               class="btn ms-lg-3 logout-btn">Logout</a>
         </div>
     </div>
 </nav>
-
 
     <!-- Main Content -->
     <main class="container my-4">
