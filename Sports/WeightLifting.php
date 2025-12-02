@@ -9,25 +9,49 @@
 </head>
 <body class="bg-blue-50 text-gray-800 font-sans scroll-smooth">
 
- <!-- Navbar -->
-<header class="bg-[#3e6991] text-white py-4 shadow fixed w-full top-0 z-50">
-  <div class="max-w-6xl mx-auto px-4 flex justify-between items-center gap-3 sm:gap-0">
-    <div class="flex items-center space-x-2 sm:space-x-3">
-      <img src="../images/Favicon.png" alt="SUSL Logo" class="w-12 h-12 rounded-full bg-white p-1" />
+<!-- Navbar -->
+<header class="text-white py-3 shadow-lg fixed w-full top-0 z-50" style="background-color: rgba(62, 105, 145, 0.95); backdrop-filter: blur(8px);">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center">
+    <!-- Logo Section -->
+    <div class="flex items-center space-x-3">
+      <img src="../images/Favicon.png" alt="SUSL Logo" class="w-12 h-12 rounded-full bg-white p-1.5 border border-white/20 shadow-sm" />
       <div>
-        <h1 class="text-base sm:text-lg font-bold leading-tight">Sports Club</h1>
-        <p class="text-sm text-gray-200 -mt-1">Sabaragamuwa University of Sri Lanka</p>
+        <h1 class="text-lg font-semibold tracking-tight text-white">University Sports Club</h1>
+        <p class="text-xs text-gray-100 font-medium opacity-90">Sabaragamuwa University of Sri Lanka</p>
       </div>
     </div>
-    <nav class="flex flex-wrap justify-center gap-2 sm:gap-4 text-sm sm:text-base">
-      <a href="#introduction" class="hover:underline transition duration-300">Introduction</a>
-      <a href="#details" class="hover:underline transition duration-300">Team Highlights</a>
+
+    <!-- Navigation -->
+    <nav class="flex items-center space-x-2 sm:space-x-4">
+      <a href="#introduction" 
+         class="px-4 py-2 text-sm font-medium text-gray-100 hover:text-white 
+                hover:bg-white/10 rounded-md transition-all duration-200
+                focus:outline-none focus:ring-2 focus:ring-white/30">
+        Introduction
+      </a>
+      
+      <div class="h-5 w-px bg-white/30 hidden sm:block"></div>
+      
+      <a href="#details" 
+         class="px-4 py-2 text-sm font-medium text-gray-100 hover:text-white 
+                hover:bg-white/10 rounded-md transition-all duration-200
+                focus:outline-none focus:ring-2 focus:ring-white/30">
+        Team Highlights
+      </a>
+      
+      <div class="h-5 w-px bg-white/30 hidden sm:block"></div>
+      
       <a href="../Homepage.php#categories"
-      class="px-3 py-1.5 rounded-md bg-white/10 border border-white/20 
-          text-white text-sm backdrop-blur-sm
-          hover:bg-white/20 hover:border-white/30 hover:shadow-sm
-          transition duration-300 ease-out">
-          ⬅ Back
+         class="px-4 py-2 text-sm font-medium bg-white/15 hover:bg-white/25 
+                border border-white/30 rounded-md transition-all duration-200 
+                flex items-center space-x-2 group focus:outline-none focus:ring-2 focus:ring-white/30">
+        <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" 
+             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" 
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        <span class="hidden sm:inline">Back to Home</span>
+        <span class="sm:hidden">Back</span>
       </a>
     </nav>
   </div>
