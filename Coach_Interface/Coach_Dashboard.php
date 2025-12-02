@@ -125,6 +125,7 @@ if($sportID) {
             ssr.id AS registration_id,
             u.id AS user_id,
             u.name,
+            u.contact,
             u.nic,
             u.student_id,
             'extra' AS registration_type
@@ -140,6 +141,7 @@ if($sportID) {
             NULL AS registration_id,
             u.id AS user_id,
             u.name,
+            u.contact,
             u.nic,
             u.student_id,
             'initial' AS registration_type
@@ -165,6 +167,7 @@ if($sportID) {
         SELECT 
             u.id AS user_id,
             u.name,
+            u.contact,
             u.nic,
             u.student_id,
             ssr.id AS registration_id
@@ -245,50 +248,15 @@ $bookingCount = $bookingResult['booking_count'] ?? 0;
         .registration-badge {font-size: 0.7rem;padding: 2px 6px;}
 
         /* Table styling enhancements */
-.table-primary {
-    background-color: rgba(62, 105, 145, 0.9) !important;
-    color: white !important;
-}
-
-.table-hover tbody tr:hover {
-    background-color: rgba(62, 105, 145, 0.05) !important;
-    transition: background-color 0.2s ease;
-}
-
-.border-light {
-    border-color: rgba(0, 0, 0, 0.08) !important;
-}
-
-.badge {
-    font-size: 0.75rem !important;
-    font-weight: 500 !important;
-    padding: 0.4rem 0.8rem !important;
-    border-radius: 20px !important;
-}
-
-.btn-success {
-    background-color: #28a745 !important;
-    border-color: #28a745 !important;
-}
-
-.btn-outline-danger {
-    color: #dc3545 !important;
-    border-color: #dc3545 !important;
-}
-
-.btn-outline-danger:hover {
-    background-color: #dc3545 !important;
-    color: white !important;
-}
-
-.bg-custom-blue {
-    background-color: rgba(62, 105, 145, 0.05) !important;
-}
-
-.rounded {
-    border-radius: 10px !important;
-}
-
+        .table-primary {background-color: rgba(62, 105, 145, 0.9) !important;color: white !important;}
+        .table-hover tbody tr:hover {background-color: rgba(62, 105, 145, 0.05) !important;transition: background-color 0.2s ease;}
+        .border-light {border-color: rgba(0, 0, 0, 0.08) !important;}
+        .badge {font-size: 0.75rem !important;font-weight: 500 !important;padding: 0.4rem 0.8rem !important;border-radius: 20px !important;}
+        .btn-success {background-color: #28a745 !important;border-color: #28a745 !important;}
+        .btn-outline-danger {color: #dc3545 !important;border-color: #dc3545 !important;}
+        .btn-outline-danger:hover {background-color: #dc3545 !important;color: white !important;}
+        .bg-custom-blue {background-color: rgba(62, 105, 145, 0.05) !important;}
+        .rounded {border-radius: 10px !important;}
 
         /* Footer */
         .footer {background-color: rgb(30, 58, 85);color: white;}
@@ -488,31 +456,6 @@ $bookingCount = $bookingResult['booking_count'] ?? 0;
                     </div>
                 </div>
             </div>
-            
-            <div class="col-6 col-sm-4 col-md-4">
-                <div class="card shadow-sm h-100 border-0">
-                    <div class="card-body py-3">
-                        <div class="d-none d-md-flex align-items-center justify-content-between">
-                            <div class="d-flex align-items-center">
-                                <div class="bg-primary text-white rounded d-flex align-items-center justify-content-center me-3 flex-shrink-0"
-                                    style="width: 45px; height: 45px; font-size: 20px;">
-                                    ⚽
-                                </div>
-                                <p class="text-muted mb-0 small">Bookings</p>
-                            </div>
-                            <h2 class="display-6 fw-bold mb-0"><?= $bookingCount ?></h2>
-                        </div>
-                        <div class="d-md-none text-center">
-                            <div class="bg-primary text-white rounded d-flex align-items-center justify-content-center mx-auto mb-3"
-                                style="width: 50px; height: 50px; font-size: 24px;">
-                                ⚽
-                            </div>
-                            <h2 class="display-6 fw-bold mb-1"><?= $bookingCount ?></h2>
-                            <p class="text-muted mb-0 small">Bookings</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- Schedule and Quick Actions -->
@@ -624,6 +567,7 @@ $bookingCount = $bookingResult['booking_count'] ?? 0;
                                 <thead>
                                     <tr class="table-primary">
                                         <th class="border-0 py-3 text-start ps-4" style="border-top-left-radius: 8px;">Name</th>
+                                        <th class="border-0 py-3">Contact</th>
                                         <th class="border-0 py-3">NIC</th>
                                         <th class="border-0 py-3">Student ID</th>
                                         <th class="border-0 py-3">Type</th>
@@ -635,6 +579,7 @@ $bookingCount = $bookingResult['booking_count'] ?? 0;
                                         <?php while($row = $pendingStudentsResult->fetch_assoc()): ?>
                                         <tr class="border-bottom border-light">
                                             <td class="py-3 ps-4 fw-medium"><?= htmlspecialchars($row['name']) ?></td>
+                                            <td class="py-3"><?= htmlspecialchars($row['contact']) ?></td>
                                             <td class="py-3"><?= htmlspecialchars($row['nic']) ?></td>
                                             <td class="py-3"><?= htmlspecialchars($row['student_id'] ?? 'N/A') ?></td>
                                             <td class="py-3">
@@ -707,6 +652,7 @@ $bookingCount = $bookingResult['booking_count'] ?? 0;
                             <thead>
                                 <tr class="table-primary">
                                     <th class="border-0 py-3 text-start ps-4" style="border-top-left-radius: 8px;">Name</th>
+                                    <th class="border-0 py-3">Contact</th>
                                     <th class="border-0 py-3">Student ID</th>
                                     <th class="border-0 py-3">NIC</th>
                                     <th class="border-0 py-3" style="border-top-right-radius: 8px;">Action</th>
@@ -717,6 +663,7 @@ $bookingCount = $bookingResult['booking_count'] ?? 0;
                                     <?php while($row = $approvedPlayersResult->fetch_assoc()): ?>
                                     <tr class="border-bottom border-light">
                                         <td class="py-3 ps-4 fw-medium"><?= htmlspecialchars($row['name']) ?></td>
+                                        <td class="py-3"><?= htmlspecialchars($row['contact']) ?></td>
                                         <td class="py-3"><?= htmlspecialchars($row['student_id']) ?></td>
                                         <td class="py-3"><?= htmlspecialchars($row['nic']) ?></td>
                                         <td class="py-3">

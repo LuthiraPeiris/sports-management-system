@@ -1,3 +1,25 @@
+<?php
+include 'Dashboard/db.php';  // Your DB connection
+// Query to get counts and names for all sports (one efficient query)
+$sql = "SELECT s.sport_id, s.name AS sport_name, COUNT(ssr.id) AS student_count
+        FROM sports s
+        LEFT JOIN student_sport_registration ssr ON s.sport_id = ssr.sport_id
+        LEFT JOIN users u ON ssr.user_id = u.id
+        WHERE u.role = 'student' AND ssr.status = 'Approved'
+        GROUP BY s.sport_id, s.name";
+
+$result = $conn->query($sql);
+$counts = [];  // Array keyed by sport_id
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $counts[$row['sport_id']] = [
+            'name' => $row['sport_name'],
+            'count' => $row['student_count']
+        ];
+    }
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -296,7 +318,7 @@
           <div class="card-content">
             <h3>Cricket</h3>
             <p>Join competitive cricket leagues and professional training</p>
-            <p class="participants">Participants: <span>190</span></p>
+            <p class="participants">Participants: <span><?php echo isset($counts[1]) ? $counts[1]['count'] : 0; ?></span></p>
             <button class="btn" onclick="gotoPage('Cricket')">View detail</button>
           </div>
         </div>
@@ -306,7 +328,7 @@
           <div class="card-content">
             <h3>Baseball</h3>
             <p>Professional baseball coaching and team formations</p>
-            <p class="participants">Participants: <span>195</span></p>
+            <p class="participants">Participants: <span><?php echo isset($counts[2]) ? $counts[2]['count'] : 0; ?></span></p>
             <button class="btn" onclick="gotoPage('Baseball')">View Details</button>
           </div>
         </div>
@@ -316,7 +338,7 @@
           <div class="card-content">
             <h3>Netball</h3>
             <p>Competitive Elle netball programs and tournaments</p>
-            <p class="participants">Participants: <span>234</span></p>
+            <p class="participants">Participants: <span><?php echo isset($counts[3]) ? $counts[3]['count'] : 0; ?></span></p>
             <button class="btn" onclick="gotoPage('Netball')">View Details</button>
           </div>
         </div>
@@ -326,7 +348,7 @@
           <div class="card-content">
             <h3>Basketball</h3>
             <p>Basketball leagues with state-of-the-art facilities</p>
-            <p class="participants">Participants: <span>245</span></p>
+            <p class="participants">Participants: <span><?php echo isset($counts[4]) ? $counts[4]['count'] : 0; ?></span></p>
             <button class="btn" onclick="gotoPage('Basketball')">View Details</button>
           </div>
         </div>
@@ -337,7 +359,7 @@
           <div class="card-content">
             <h3>Football</h3>
             <p>Competitive football leagues and training programs</p>
-            <p class="participants">Participants: <span>320</span></p>
+            <p class="participants">Participants: <span><?php echo isset($counts[5]) ? $counts[5]['count'] : 0; ?></span></p>
             <button class="btn" onclick="gotoPage('Football')">View Details</button>
           </div>
         </div>
@@ -347,7 +369,7 @@
           <div class="card-content">
             <h3>Tennis</h3>
             <p>Professional tennis coaching and tournaments</p>
-            <p class="participants">Participants: <span>210</span></p>
+            <p class="participants">Participants: <span><?php echo isset($counts[6]) ? $counts[6]['count'] : 0; ?></span></p>
             <button class="btn" onclick="gotoPage('Tennis')">View Details</button>
           </div>
         </div>
@@ -357,7 +379,7 @@
           <div class="card-content">
             <h3>Swimming</h3>
             <p>Competitive swimming programs and training</p>
-            <p class="participants">Participants: <span>180</span></p>
+            <p class="participants">Participants: <span><?php echo isset($counts[7]) ? $counts[7]['count'] : 0; ?></span></p>
             <button class="btn" onclick="gotoPage('Swimming')">View Details</button>
           </div>
         </div>
@@ -367,7 +389,7 @@
           <div class="card-content">
             <h3>Table Tennis</h3>
             <p>Fast-paced table tennis training and competitions</p>
-            <p class="participants">Participants: <span>190</span></p>
+            <p class="participants">Participants: <span><?php echo isset($counts[8]) ? $counts[8]['count'] : 0; ?></span></p>
             <button class="btn" onclick="gotoPage('TableTennis')">View Details</button>
           </div>
         </div>
@@ -377,7 +399,7 @@
           <div class="card-content">
             <h3>Athletics</h3>
             <p>Track and field events to boost your endurance</p>
-            <p class="participants">Participants: <span>220</span></p>
+            <p class="participants">Participants: <span><?php echo isset($counts[9]) ? $counts[9]['count'] : 0; ?></span></p>
             <button class="btn" onclick="gotoPage('Athletics')">View Details</button>
           </div>
         </div>
@@ -387,7 +409,7 @@
           <div class="card-content">
             <h3>Hockey</h3>
             <p>Competitive hockey teams and inter-university matches</p>
-            <p class="participants">Participants: <span>175</span></p>
+            <p class="participants">Participants: <span><?php echo isset($counts[10]) ? $counts[10]['count'] : 0; ?></span></p>
             <button class="btn" onclick="gotoPage('Hockey')">View Details</button>
           </div>
         </div>
@@ -397,7 +419,7 @@
           <div class="card-content">
             <h3>Elle</h3>
             <p>Competitive Elle netball programs and tournaments</p>
-            <p class="participants">Participants: <span>234</span></p>
+            <p class="participants">Participants: <span><?php echo isset($counts[11]) ? $counts[11]['count'] : 0; ?></span></p>
             <button class="btn" onclick="gotoPage('Elle')">View Details</button>
           </div>
         </div>
@@ -407,7 +429,7 @@
           <div class="card-content">
             <h3>Karate</h3>
             <p>Professional martial arts and self-defense programs</p>
-            <p class="participants">Participants: <span>190</span></p>
+            <p class="participants">Participants: <span><?php echo isset($counts[12]) ? $counts[12]['count'] : 0; ?></span></p>
             <button class="btn" onclick="gotoPage('Karate')">View Details</button>
           </div>
         </div>
@@ -417,7 +439,7 @@
           <div class="card-content">
             <h3>Rugby</h3>
             <p>Join the thrill of competitive rugby leagues</p>
-            <p class="participants">Participants: <span>180</span></p>
+            <p class="participants">Participants: <span><?php echo isset($counts[13]) ? $counts[13]['count'] : 0; ?></span></p>
             <button class="btn" onclick="gotoPage('Rugby')">View Details</button>
           </div>
         </div>
@@ -427,7 +449,7 @@
           <div class="card-content">
             <h3>Volleyball</h3>
             <p>Indoor and beach volleyball tournaments</p>
-            <p class="participants">Participants: <span>210</span></p>
+            <p class="participants">Participants: <span><?php echo isset($counts[14]) ? $counts[14]['count'] : 0; ?></span></p>
             <button class="btn" onclick="gotoPage('Volleyball')">View Details</button>
           </div>
         </div>
@@ -437,7 +459,7 @@
           <div class="card-content">
             <h3>Weight Lifting</h3>
             <p>Strength training and professional competitions</p>
-            <p class="participants">Participants: <span>160</span></p>
+            <p class="participants">Participants: <span><?php echo isset($counts[15]) ? $counts[15]['count'] : 0; ?></span></p>
             <button class="btn" onclick="gotoPage('WeightLifting')">View Details</button>
           </div>
         </div>
@@ -447,7 +469,7 @@
           <div class="card-content">
             <h3>Wrestling</h3>
             <p>Professional wrestling programs and tournaments</p>
-            <p class="participants">Participants: <span>150</span></p>
+            <p class="participants">Participants: <span><?php echo isset($counts[16]) ? $counts[16]['count'] : 0; ?></span></p>
             <button class="btn" onclick="gotoPage('Wrestling')">View Details</button>
           </div>
         </div>
@@ -457,7 +479,7 @@
           <div class="card-content">
             <h3>Badminton</h3>
             <p>Exciting badminton training sessions and inter-college tournaments</p>
-            <p class="participants">Participants: <span>205</span></p>
+            <p class="participants">Participants: <span><?php echo isset($counts[17]) ? $counts[17]['count'] : 0; ?></span></p>
             <button class="btn" onclick="gotoPage('Badminton')">View Details</button>
           </div>
         </div>

@@ -393,24 +393,29 @@ while($row = $sportsWithCoaches->fetch_assoc()) {
         </div>
 
         <?php if($scheduleCount > 0): ?>
-            <?php while($row = $schedules->fetch_assoc()): ?>
-            <div class="schedule-item p-3 mb-3 d-flex justify-content-between align-items-center bg-light rounded">
-                <div class="d-flex align-items-center">
-                    <div class="schedule-date text-center me-3">
-                        <span class="day"><?= date("d", strtotime($row['schedule_date'])) ?></span>
-                        <span class="month d-block"><?= strtoupper(date("M", strtotime($row['schedule_date']))) ?></span>
-                    </div>
-                    <div>
-                        <div class="schedule-title fw-semibold fs-5"><?= htmlspecialchars($row['title']) ?></div>
-                        <small class="text-muted"><?= date("h:i A", strtotime($row['schedule_time'])) ?></small>
-                    </div>
-                </div>
-                <a href="?delete=<?= $row['id'] ?>" class="btn btn-danger btn-sm">Delete</a>
+    <?php while($row = $schedules->fetch_assoc()): ?>
+    <div class="schedule-item p-3 mb-3 d-flex justify-content-between align-items-center bg-light rounded">
+        <div class="d-flex align-items-center flex-grow-1">
+            <div class="schedule-date text-center me-3">
+                <span class="day"><?= date("d", strtotime($row['schedule_date'])) ?></span>
+                <span class="month d-block"><?= strtoupper(date("M", strtotime($row['schedule_date']))) ?></span>
             </div>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <p class="text-muted">No schedules added yet.</p>
-        <?php endif; ?>
+            <div class="flex-grow-1">
+                <div class="schedule-title fw-semibold fs-5 mb-1"><?= htmlspecialchars($row['title']) ?></div>
+                <small class="text-muted"><?= date("h:i A", strtotime($row['schedule_time'])) ?></small>
+                <?php if(!empty($row['description'])): ?>
+                    <div class="schedule-description text-muted mb-1" style="font-size: 1.2rem;">
+                        <?= htmlspecialchars($row['description']) ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+        <a href="?delete=<?= $row['id'] ?>" class="btn btn-danger btn-sm ms-3">Delete</a>
+    </div>
+    <?php endwhile; ?>
+<?php else: ?>
+    <p class="text-muted">No schedules added yet.</p>
+<?php endif; ?>
     </div>
 </div>
             

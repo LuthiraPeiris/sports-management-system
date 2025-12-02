@@ -5,6 +5,7 @@ if (isset($_POST['register'])) {
 
     $name = $_POST['name'];
     $email = $_POST['email'];
+    $contact = $_POST['contact'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $role = $_POST['role'];
     $sport_id = intval($_POST['sport_id']);
@@ -14,15 +15,15 @@ if (isset($_POST['register'])) {
         $nic = $_POST['studentNIC'];
         $coach_id = NULL;
     } else {
-        $coach_id = $_POST['coachID'];
+        $coach_id = intval($_POST['coachID']);
         $nic = $_POST['coachNIC'];
         $student_id = NULL;
     }
 
     //  Insert into users table
-    $stmt = $conn->prepare("INSERT INTO users (name, email, password, role, nic, sport_id, student_id, coach_id) 
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssiss", $name, $email, $password, $role, $nic, $sport_id, $student_id, $coach_id);
+    $stmt = $conn->prepare("INSERT INTO users (name, email, contact, password, role, nic, sport_id, student_id, coach_id) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssssiss", $name, $email, $contact, $password, $role, $nic, $sport_id, $student_id, $coach_id);
 
     if ($stmt->execute()) {
 
@@ -31,18 +32,17 @@ if (isset($_POST['register'])) {
         if ($role == 'student') {
 
             //  Insert Student
-            $stmt2 = $conn->prepare("INSERT INTO student (user_id, name, nic, sport_id, student_id) 
-                                     VALUES (?, ?, ?, ?, ?)");
-            $stmt2->bind_param("issis", $user_id, $name, $nic, $sport_id, $student_id);
+            $stmt2 = $conn->prepare("INSERT INTO student (user_id, name, contact, nic, sport_id, student_id) 
+                                     VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt2->bind_param("isssis", $user_id, $name, $contact, $nic, $sport_id, $student_id);
             $stmt2->execute();
             $stmt2->close();
-
         } else {
 
             //  Insert Coach
             $stmt3 = $conn->prepare("INSERT INTO coach (user_id, name, nic, sport_id, coach_id) 
                                      VALUES (?, ?, ?, ?, ?)");
-            $stmt3->bind_param("issis", $user_id, $name, $nic, $sport_id, $coach_id);
+            $stmt3->bind_param("issii", $user_id, $name, $nic, $sport_id, $coach_id);
             $stmt3->execute();
             $stmt3->close();
 
@@ -75,29 +75,83 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        
         body {
-        background-image: url("../images/register.png"); 
-        background-size: cover;background-position: center;background-attachment: fixed;height: 100vh;overflow: hidden;margin: 0;padding: 0;
+            background-image: url("../images/register.png");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
         }
 
-        .role-btn {padding: 10px 20px;font-weight: 600;border-radius: 8px;transition: all 0.25s ease;background-color: #ffffff88;backdrop-filter: blur(6px);}
+        .role-btn {
+            padding: 10px 20px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.25s ease;
+            background-color: #ffffff88;
+            backdrop-filter: blur(6px);
+        }
 
         /* Hover effect */
-        .role-btn:hover {background-color: #e6e9ff;border-color: #2937a5;color: #2937a5;}
+        .role-btn:hover {
+            background-color: #e6e9ff;
+            border-color: #2937a5;
+            color: #2937a5;
+        }
 
         /* Active (Selected) Button */
-        .role-btn.active {background-color: #2937a5 !important;border-color: #2937a5 !important;color: white !important;box-shadow: 0 0 12px rgba(41, 55, 165, 0.4);}
+        .role-btn.active {
+            background-color: #2937a5 !important;
+            border-color: #2937a5 !important;
+            color: white !important;
+            box-shadow: 0 0 12px rgba(41, 55, 165, 0.4);
+        }
 
-        .home-btn {position: absolute; top: 20px; left: 20px; background-color: rgba(198, 220, 228, 0.95); color: #333; border: 2px solid rgba(255, 255, 255, 1);backdrop-filter: blur(10px);font-weight: 500;padding: 10px 20px;border-radius: 10px;box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);transition: 0.3s;}
-        .home-btn:hover {background-color: white; color: rgb(70, 140, 252);border-color: rgba(28, 52, 139, 0.97);box-shadow: 0px 4px 15px rgba(143, 70, 252, 0.85);transform: translateY(-2px);}
-        
-        .login-link {color: #1a1a1a; text-decoration: none; font-size: 14px; font-weight: 500;}
-        .login-link:hover {color: rgb(70, 140, 252); text-decoration: underline;}
-        
-        .btn {transition: 0.7s;}
-        .btn:hover {box-shadow: 1px 2px 6px rgb(78, 78, 78);}
+        .home-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(198, 220, 228, 0.95);
+            color: #333;
+            border: 2px solid rgba(255, 255, 255, 1);
+            backdrop-filter: blur(10px);
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+            transition: 0.3s;
+        }
 
+        .home-btn:hover {
+            background-color: white;
+            color: rgb(70, 140, 252);
+            border-color: rgba(28, 52, 139, 0.97);
+            box-shadow: 0px 4px 15px rgba(143, 70, 252, 0.85);
+            transform: translateY(-2px);
+        }
+
+        .login-link {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .login-link:hover {
+            color: rgb(70, 140, 252);
+            text-decoration: underline;
+        }
+
+        .btn {
+            transition: 0.7s;
+        }
+
+        .btn:hover {
+            box-shadow: 1px 2px 6px rgb(78, 78, 78);
+        }
     </style>
 </head>
 
@@ -106,7 +160,7 @@ $conn->close();
     <a href="../Homepage.php" class="btn home-btn">
         ← Back to Home
     </a>
- 
+
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh; padding: 20px; overflow-y: auto;">
         <div class="card shadow-lg p-4 w-100 rounded-4" style="max-width: 650px; background:   rgba(198, 220, 228, 0.95);box-shadow: 0px 2px 8px rgb(70, 140, 252);backdrop-filter: blur(10px); ">
             <h2 class="text-center mb-4 fw-bold" style="color:#1a1a1a;" id="formTitle"> Registration Form</h2>
@@ -116,7 +170,7 @@ $conn->close();
                 <label class="form-label fw-semibold" style="color: #333;">Select Role:</label>
                 <div class="btn-group w-100">
                     <button type="button" class="btn btn-outline-primary role-btn active" id="studentBtn">Student</button>
-                    <button type="button" class="btn btn-outline-primary role-btn" id="coachBtn" >Coach</button>
+                    <button type="button" class="btn btn-outline-primary role-btn" id="coachBtn">Coach</button>
                 </div>
             </div>
 
@@ -147,14 +201,14 @@ $conn->close();
                         <div class="mb-3">
                             <label for="sport_id" class="form-label">Select Sport</label>
                             <select name="sport_id" id="sport_id" class="form-select" required>
-                            <option value="">-- Choose a Sport --</option>
-                            <?php
-                            include 'db.php';
-                            $sports = $conn->query("SELECT sport_id, name FROM sports");
-                            while ($row = $sports->fetch_assoc()) {
-                                echo "<option value='{$row['sport_id']}'>{$row['name']}</option>";
-                            }
-                            ?>
+                                <option value="">-- Choose a Sport --</option>
+                                <?php
+                                include 'db.php';
+                                $sports = $conn->query("SELECT sport_id, name FROM sports");
+                                while ($row = $sports->fetch_assoc()) {
+                                    echo "<option value='{$row['sport_id']}'>{$row['name']}</option>";
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>
@@ -192,6 +246,15 @@ $conn->close();
                                 <label class="form-label" style="color: #333">NIC:</label>
                                 <input type="text" name="coachNIC" id="coachNIC" class="form-control" placeholder="Enter NIC">
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" style="color: #333">Contact:</label>
+                            <input type="contact" name="contact" class="form-control" placeholder="Enter Your Contact" required>
                         </div>
                     </div>
                 </div>
