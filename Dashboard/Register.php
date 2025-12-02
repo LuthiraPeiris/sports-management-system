@@ -22,9 +22,8 @@ if (isset($_POST['register'])) {
         $student_id = NULL;
     }
 
-    // -------------------------
-    // ❗ VALIDATIONS
-    // -------------------------
+
+    // VALIDATIONS
 
     // Check empty fields
     if (empty($name) || empty($email) || empty($contact) || empty($nic)) {
@@ -160,83 +159,26 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            background-image: url("../images/register.png");
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            height: 100vh;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-        }
+        body {background-image: url("../images/register.png");background-size: cover;background-position: center;background-attachment: fixed;height: 100vh;overflow: hidden;margin: 0;padding: 0;}
 
-        .role-btn {
-            padding: 10px 20px;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: all 0.25s ease;
-            background-color: #ffffff88;
-            backdrop-filter: blur(6px);
-        }
+        .role-btn {padding: 10px 20px;font-weight: 600;border-radius: 8px;transition: all 0.25s ease;background-color: #ffffff88;backdrop-filter: blur(6px);}
 
         /* Hover effect */
-        .role-btn:hover {
-            background-color: #e6e9ff;
-            border-color: #2937a5;
-            color: #2937a5;
-        }
+        .role-btn:hover {background-color: #e6e9ff;border-color: #2937a5;color: #2937a5;}
 
         /* Active (Selected) Button */
-        .role-btn.active {
-            background-color: #2937a5 !important;
-            border-color: #2937a5 !important;
-            color: white !important;
-            box-shadow: 0 0 12px rgba(41, 55, 165, 0.4);
-        }
+        .role-btn.active {background-color: #2937a5 !important;border-color: #2937a5 !important;color: white !important;box-shadow: 0 0 12px rgba(41, 55, 165, 0.4);}
 
-        .home-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background-color: rgba(198, 220, 228, 0.95);
-            color: #333;
-            border: 2px solid rgba(255, 255, 255, 1);
-            backdrop-filter: blur(10px);
-            font-weight: 500;
-            padding: 10px 20px;
-            border-radius: 10px;
-            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
-            transition: 0.3s;
-        }
+        .home-btn {position: absolute;top: 20px;left: 20px;background-color: rgba(198, 220, 228, 0.95);color: #333;border: 2px solid rgba(255, 255, 255, 1);backdrop-filter: blur(10px);font-weight: 500;padding: 10px 20px;border-radius: 10px;box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);transition: 0.3s;}
 
-        .home-btn:hover {
-            background-color: white;
-            color: rgb(70, 140, 252);
-            border-color: rgba(28, 52, 139, 0.97);
-            box-shadow: 0px 4px 15px rgba(143, 70, 252, 0.85);
-            transform: translateY(-2px);
-        }
+        .home-btn:hover {background-color: white;color: rgb(70, 140, 252);border-color: rgba(28, 52, 139, 0.97);box-shadow: 0px 4px 15px rgba(143, 70, 252, 0.85);transform: translateY(-2px);}
 
-        .login-link {
-            color: #1a1a1a;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-        }
+        .login-link {color: #1a1a1a;text-decoration: none;font-size: 14px;font-weight: 500;}
 
-        .login-link:hover {
-            color: rgb(70, 140, 252);
-            text-decoration: underline;
-        }
+        .login-link:hover {color: rgb(70, 140, 252);text-decoration: underline;}
 
-        .btn {
-            transition: 0.7s;
-        }
-
-        .btn:hover {
-            box-shadow: 1px 2px 6px rgb(78, 78, 78);
-        }
+        .btn {transition: 0.7s;}
+        .btn:hover {box-shadow: 1px 2px 6px rgb(78, 78, 78);}
     </style>
 </head>
 
