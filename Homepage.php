@@ -42,8 +42,8 @@ if ($result->num_rows > 0) {
     .navbar { background-color: rgba(62, 105, 145, 0.95);padding: 10px 0;box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);transition: background-color 0.3s ease, padding 0.2s ease;}
     .navbar-scrolled { background-color: rgba(62, 105, 145, 0.95) !important; padding: 6px 0;}
     .navbar-brand {display: flex;align-items: center;color: #fff !important;font-weight: 600;}
-    .logo-circle {width: 50px;height: 50px;background: #fff;border-radius: 50%;display: flex;align-items: center;justify-content: center;margin-right: 12px;}
-    .logo-circle img {width: 34px;height: 34px;object-fit: contain;}
+    .logo-circle {width: 53px;height: 53px;background: #fff;border-radius: 50%;display: flex;align-items: center;justify-content: center;margin-right: 12px;}
+    .logo-circle img {width: 42px;height: 42px;object-fit: contain;}
     .brand-text {display: flex;flex-direction: column;line-height: 1.1;}
     .brand-title {font-size: 17px;font-weight: 700;color: #fff;}
     .brand-subtitle {font-size: 14px;color: rgba(255, 255, 255, 0.95);font-weight: 400;}
@@ -242,7 +242,7 @@ if ($result->num_rows > 0) {
 
   <!-- About -->
 <section id="about" class="py-5">
-  <div class="container">
+  <div class="container mt-4">
     <h1 class="text-center mb-4">About Us</h1>
 
     <div class="row justify-content-center">
