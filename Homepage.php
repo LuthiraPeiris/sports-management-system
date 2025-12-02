@@ -107,8 +107,10 @@
 
     /* Help/Contact */
     #help {background: #f8f9fa;}
-    .help-card {background: #fff;border-radius: 10px;padding: 26px;text-align: center;transition: all .2s;height: 100%;border: 2px solid transparent;}
-    .help-card:hover {border-color: #1e3a55;box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);}
+    .help-card {background: #fff;border-radius: 10px;padding: 26px;text-align: center;transition: all .2s;height: 100%;}
+    .help-card:hover {box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);}
+    .help-card {position: relative;transition: transform 0.3s ease, box-shadow 0.3s ease;}
+    .help-card:hover {transform: translateY(-8px); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15) !important;}
     .help-icon {font-size: 2.6rem;color: #1e3a55;margin-bottom: 14px;}
     .contact-info {background: #0b52d7;color: #fff;padding: 28px;border-radius: 10px;margin-top: 22px;}
     .map-container {margin-top: 25px;border-radius: 8px;overflow: hidden;box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);border: 3px solid rgba(255, 255, 255, 0.2);}
