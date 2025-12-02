@@ -3,59 +3,143 @@ include 'db.php';
 
 if (isset($_POST['register'])) {
 
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $contact = $_POST['contact'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $role = $_POST['role'];
-    $sport_id = intval($_POST['sport_id']);
+    // Get form data safely
+    $name       = trim($_POST['name']);
+    $email      = trim($_POST['email']);
+    $contact    = trim($_POST['contact']);
+    $password   = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $role       = $_POST['role'];
+    $sport_id   = intval($_POST['sport_id']);
 
+    // Role-based fields
     if ($role == 'student') {
-        $student_id = $_POST['studentID'];
-        $nic = $_POST['studentNIC'];
-        $coach_id = NULL;
-    } else {
-        $coach_id = intval($_POST['coachID']);
-        $nic = $_POST['coachNIC'];
+        $student_id = trim($_POST['studentID']);
+        $nic        = trim($_POST['studentNIC']);
+        $coach_id   = NULL;
+    } else { // coach
+        $coach_id   = intval($_POST['coachID']);
+        $nic        = trim($_POST['coachNIC']);
         $student_id = NULL;
     }
 
-    //  Insert into users table
-    $stmt = $conn->prepare("INSERT INTO users (name, email, contact, password, role, nic, sport_id, student_id, coach_id) 
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssiss", $name, $email, $contact, $password, $role, $nic, $sport_id, $student_id, $coach_id);
+    // -------------------------
+    // ❗ VALIDATIONS
+    // -------------------------
+
+    // Check empty fields
+    if (empty($name) || empty($email) || empty($contact) || empty($nic)) {
+        echo "<script>alert('Please fill all required fields'); window.history.back();</script>";
+        exit;
+    }
+
+    // Check duplicate email
+    $checkEmail = $conn->prepare("SELECT id FROM users WHERE email = ?");
+    $checkEmail->bind_param("s", $email);
+    $checkEmail->execute();
+    $checkEmail->store_result();
+
+    if ($checkEmail->num_rows > 0) {
+        echo "<script>alert('Email already registered!'); window.history.back();</script>";
+        exit;
+    }
+    $checkEmail->close();
+
+    // Check duplicate NIC
+    $checkNIC = $conn->prepare("SELECT id FROM users WHERE nic = ?");
+    $checkNIC->bind_param("s", $nic);
+    $checkNIC->execute();
+    $checkNIC->store_result();
+
+    if ($checkNIC->num_rows > 0) {
+        echo "<script>alert('NIC already exists!'); window.history.back();</script>";
+        exit;
+    }
+    $checkNIC->close();
+
+
+    // INSERT into users table
+
+    $stmt = $conn->prepare("
+        INSERT INTO users 
+        (name, email, contact, password, role, nic, sport_id, student_id, coach_id) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ");
+    $stmt->bind_param("ssssssiss", 
+        $name, 
+        $email, 
+        $contact, 
+        $password, 
+        $role, 
+        $nic, 
+        $sport_id, 
+        $student_id, 
+        $coach_id
+    );
 
     if ($stmt->execute()) {
 
-        $user_id = $conn->insert_id; //  newly created user id
+        $user_id = $conn->insert_id; // user's ID
 
+        // STUDENT REGISTRATION
         if ($role == 'student') {
+            $stmt2 = $conn->prepare("
+                INSERT INTO student (user_id, name, contact, nic, sport_id, student_id)
+                VALUES (?, ?, ?, ?, ?, ?)
+            ");
+            $stmt2->bind_param("isssis", 
+                $user_id, 
+                $name, 
+                $contact, 
+                $nic, 
+                $sport_id, 
+                $student_id
+            );
 
-            //  Insert Student
-            $stmt2 = $conn->prepare("INSERT INTO student (user_id, name, contact, nic, sport_id, student_id) 
-                                     VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt2->bind_param("isssis", $user_id, $name, $contact, $nic, $sport_id, $student_id);
             $stmt2->execute();
             $stmt2->close();
-        } else {
 
-            //  Insert Coach
-            $stmt3 = $conn->prepare("INSERT INTO coach (user_id, name, nic, sport_id, coach_id) 
-                                     VALUES (?, ?, ?, ?, ?)");
-            $stmt3->bind_param("issii", $user_id, $name, $nic, $sport_id, $coach_id);
+        } 
+        // COACH REGISTRATION
+        else {
+
+            $stmt3 = $conn->prepare("
+                INSERT INTO coach (user_id, name, nic, sport_id, coach_id)
+                VALUES (?, ?, ?, ?, ?)
+            ");
+            $stmt3->bind_param("issii", 
+                $user_id, 
+                $name, 
+                $nic, 
+                $sport_id, 
+                $coach_id
+            );
             $stmt3->execute();
             $stmt3->close();
 
-            //  Assign Coach to Sport (using user_id as coach reference)
-            $assign = $conn->prepare("INSERT INTO sport_coach (sport_id, coach_id) VALUES (?, ?)");
-            $assign->bind_param("ii", $sport_id, $user_id);
-            $assign->execute();
-            $assign->close();
+            // Avoid duplicate assignment
+            $checkAssign = $conn->prepare("
+                SELECT id FROM sport_coach WHERE sport_id = ? AND coach_id = ?
+            ");
+            $checkAssign->bind_param("ii", $sport_id, $user_id);
+            $checkAssign->execute();
+            $checkAssign->store_result();
+
+            if ($checkAssign->num_rows == 0) {
+                $assign = $conn->prepare("
+                    INSERT INTO sport_coach (sport_id, coach_id)
+                    VALUES (?, ?)
+                ");
+                $assign->bind_param("ii", $sport_id, $user_id);
+                $assign->execute();
+                $assign->close();
+            }
+            $checkAssign->close();
         }
 
         echo "<script>alert('Registration Successful!'); window.location='login.php';</script>";
+
     } else {
-        echo "<script>alert('Registration Failed: " . $stmt->error . "');</script>";
+        echo "<script>alert('Registration Failed: " . addslashes($stmt->error) . "');</script>";
     }
 
     $stmt->close();
@@ -63,6 +147,7 @@ if (isset($_POST['register'])) {
 
 $conn->close();
 ?>
+
 
 
 <!DOCTYPE html>
@@ -201,16 +286,28 @@ $conn->close();
                         <div class="mb-3">
                             <label for="sport_id" class="form-label">Select Sport</label>
                             <select name="sport_id" id="sport_id" class="form-select" required>
-                                <option value="">-- Choose a Sport --</option>
-                                <?php
-                                include 'db.php';
-                                $sports = $conn->query("SELECT sport_id, name FROM sports");
-                                while ($row = $sports->fetch_assoc()) {
-                                    echo "<option value='{$row['sport_id']}'>{$row['name']}</option>";
-                                }
-                                ?>
+                            <option value="">-- Choose a Sport --</option>
+                            <?php
+                            include 'db.php';
+                            // Fetch all sports
+                            $sports = $conn->query("SELECT sport_id, name FROM sports");
+
+                            // Fetch sports that already have a coach
+                            $assigned = [];
+                            $result = $conn->query("SELECT sport_id FROM sport_coach");
+                            while ($row = $result->fetch_assoc()) {
+                                $assigned[] = $row['sport_id'];
+                            }
+
+                            while ($row = $sports->fetch_assoc()) {
+                                $data_assigned = in_array($row['sport_id'], $assigned) ? "data-assigned='1'" : "";
+                                $text = $row['name'] . (in_array($row['sport_id'], $assigned) ? " (Coach Assigned)" : "");
+                                echo "<option value='{$row['sport_id']}' $data_assigned>$text</option>";
+                            }
+                            ?>
                             </select>
                         </div>
+
                     </div>
                 </div>
 
@@ -276,7 +373,7 @@ $conn->close();
         const studentFields = document.getElementById('studentFields');
         const coachFields = document.getElementById('coachFields');
         const selectedRole = document.getElementById('selectedRole');
-        const formTitle = document.getElementById('formTitle');
+        const sportSelect = document.getElementById('sport_id');
 
         studentBtn.onclick = () => {
             selectedRole.value = "student";
@@ -290,6 +387,11 @@ $conn->close();
             document.getElementById('studentNIC').required = true;
             document.getElementById('coachID').required = false;
             document.getElementById('coachNIC').required = false;
+
+            // Enable all sports for students
+            for (let option of sportSelect.options) {
+                option.disabled = false;
+            }
         };
 
         coachBtn.onclick = () => {
@@ -304,7 +406,13 @@ $conn->close();
             document.getElementById('coachNIC').required = true;
             document.getElementById('studentID').required = false;
             document.getElementById('studentNIC').required = false;
+
+            // Disable sports that already have a coach
+            for (let option of sportSelect.options) {
+                option.disabled = option.dataset.assigned === '1';
+            }
         };
+
     </script>
 
 
