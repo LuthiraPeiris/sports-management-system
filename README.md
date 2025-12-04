@@ -95,7 +95,7 @@ Here are some snapshots of the system:
 
 `DB_NAME = "sport_management";`
 
-5. Start your local server (XAMPP, WAMP, MAMP, etc.) and open index.php in your browser.
+5. Start your local server (XAMPP, WAMP, etc.) and open Homepage.php in your browser.
 
 
 
