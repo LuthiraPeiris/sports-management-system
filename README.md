@@ -11,21 +11,31 @@ Figma Design: 🔗 [**View Figma Design of our project**](https://www.figma.com/
 A web application for booking sports facilities including grounds, gym, and indoor courts.
 
 ## 🌟 Features
+
 ### Student Portal
 
 • Explore available sports and coaches
+
 • Register for sports with real-time status updates
+
 • Add achievements, training schedules, and sports details
+
 • View upcoming events and notices
+
 • Responsive UI built with Bootstrap 5 + TailwindCSS
 
 ### Coach Portal
 
 • Manage registered students and teams
+
 • Approve or reject student registrations
+
 • Create and publish training schedules
+
 • Book sports facilities
+
 • Track attendance and team performance
+
 • Manage events and announcements
 
 ## 🖼 Screenshots
@@ -54,7 +64,9 @@ Here are some snapshots of the system:
 ## 🛠️ Technology Stack
 
 • Frontend: HTML, CSS, JavaScript, Bootstrap 5, TailwindCSS
+
 • Backend: PHP
+
 • Database: MySQL
 
 ## 💻 Setup Instructions
@@ -67,12 +79,15 @@ Here are some snapshots of the system:
 
 3. Import the database:
 • Create a MySQL database (e.g., sport_management)
+
 • Import the provided `sport_management.sql` file
+
 • Update database credentials in PHP files:
-`DB_HOST = "localhost";
-DB_USER = "root";
-DB_PASS = "password";
-DB_NAME = "sport_management";`
+
+`DB_HOST = "localhost";`
+`DB_USER = "root";`
+`DB_PASS = "password";`
+`DB_NAME = "sport_management";`
 
 5. Start your local server (XAMPP, WAMP, MAMP, etc.) and open index.php in your browser.
 
