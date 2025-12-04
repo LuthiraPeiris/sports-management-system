@@ -72,12 +72,15 @@ Here are some snapshots of the system:
 ## 💻 Setup Instructions
 
 1. Clone the repository:
+
 `git clone https://github.com/your-username/your-repo.git`
 
 2. Move to the project directory:
+
 `cd your-repo`
 
 3. Import the database:
+
 • Create a MySQL database (e.g., sport_management)
 
 • Import the provided `sport_management.sql` file
@@ -85,8 +88,11 @@ Here are some snapshots of the system:
 • Update database credentials in PHP files:
 
 `DB_HOST = "localhost";`
+
 `DB_USER = "root";`
+
 `DB_PASS = "password";`
+
 `DB_NAME = "sport_management";`
 
 5. Start your local server (XAMPP, WAMP, MAMP, etc.) and open index.php in your browser.
