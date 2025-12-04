@@ -91,7 +91,7 @@ Here are some snapshots of the system:
 
 `DB_USER = "root";`
 
-`DB_PASS = "password";`
+`DB_PASS = "";`
 
 `DB_NAME = "sport_management";`
 
